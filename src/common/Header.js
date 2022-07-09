@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import palette from '../lib/styles/palette';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LoginForm from '../components/auth/LoginForm';
 
 const HeaderBlock = styled.div`
@@ -13,6 +13,13 @@ const HeaderBlock = styled.div`
   justify-content: space-between;
   padding: 0 3rem;
 
+  .headerTitle {
+    display: flex;
+
+    #kakao {
+      color: ${palette.yellow[0]};
+    }
+  }
   .buttonWrapper {
     button {
       cursor: pointer;
@@ -27,28 +34,24 @@ const HeaderBlock = styled.div`
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
     }
-
+    /* 
     #register {
       background-color: white;
       color: ${palette.black[0]};
       font-weight: 500;
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
-    }
+    } */
   }
 `;
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const onMoveRegister = () => {
-    navigate('/register');
-  };
-
-  const onOpenLoginModal = () => {
-    setIsOpen(!isOpen);
-  };
+  // const onMoveRegister = () => {
+  //   navigate('/register');
+  // };
 
   const onCloseLoginModal = () => {
     setIsOpen(!isOpen);
@@ -57,16 +60,19 @@ function Header() {
     <>
       {isOpen && <LoginForm onCloseLoginModal={onCloseLoginModal} />}
       <HeaderBlock>
-        <h2>
-          <Link to="/">KCS</Link>
-        </h2>
+        <Link to="/">
+          <div className="headerTitle">
+            <h2 id="kakao">카카오</h2>
+            <h2>클라우드 스쿨</h2>
+          </div>
+        </Link>
         <div className="buttonWrapper">
-          <button id="login" onClick={onOpenLoginModal}>
+          <button id="login" onClick={() => setIsOpen(!isOpen)}>
             로그인
           </button>
-          <button id="register" onClick={onMoveRegister}>
+          {/* <button id="register" onClick={onMoveRegister}>
             회원가입
-          </button>
+          </button> */}
         </div>
       </HeaderBlock>
     </>
