@@ -61,7 +61,7 @@ const LoginFormWrapper = styled.form`
 
   button {
     width: 80%;
-    padding: 0.5rem 0;
+    padding: 0.7rem 0;
     font-weight: bold;
     color: ${palette.black[0]};
     border: none;
@@ -70,10 +70,10 @@ const LoginFormWrapper = styled.form`
     background-color: ${palette.yellow[0]};
   }
 `;
-const InputStyle = styled.input`
+const StyledInput = styled.input`
   width: 80%;
   outline: none;
-  padding: 0.5rem;
+  padding: 0.7rem;
   margin-bottom: 1rem;
   border-radius: 7px;
   border: 1px solid ${palette.gray[1]};
@@ -107,8 +107,8 @@ function LoginForm({ onCloseLoginModal }) {
           <h2>로그인</h2>
         </div>
         <LoginFormWrapper>
-          <InputStyle type="text" placeholder="아이디를 입력해주세요" />
-          <InputStyle type="password" placeholder="비밀번호를 입력해주세요" />
+          <StyledInput type="text" placeholder="아이디를 입력해주세요" />
+          <StyledInput type="password" placeholder="비밀번호를 입력해주세요" />
           <button type="submit">로그인</button>
         </LoginFormWrapper>
         <div className="extraInfo">
