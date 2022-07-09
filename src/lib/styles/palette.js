@@ -13,6 +13,10 @@ const palette = {
     //버튼 글자 색
     '#333',
   ],
+  brown: [
+    //카카오 글자 색
+    '#3a1d1d',
+  ],
 };
 
 export default palette;

@@ -66,9 +66,10 @@ const LoginFormWrapper = styled.form`
     width: 80%;
     padding: 0.7rem 0;
     font-weight: bold;
-    color: ${palette.black[0]};
+    color: ${palette.brown[0]};
     border: none;
     border-radius: 7px;
+    font-size: 18px;
     cursor: pointer;
     background-color: ${palette.yellow[0]};
   }

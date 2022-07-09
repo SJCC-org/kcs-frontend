@@ -21,10 +21,11 @@ const MainItemListBlock = styled.div`
     margin-bottom: 1rem;
 
     button {
-      padding: 0.5rem 0.7rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 18px;
       background-color: ${palette.yellow[0]};
-      color: ${palette.black[0]};
-      font-weight: 500;
+      color: ${palette.brown[0]};
+      font-weight: bold;
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
       cursor: pointer;
@@ -38,7 +39,7 @@ function MainItemList() {
       <StudyCategory />
       <MainItemListBlock>
         <div className="listHeader">
-          <button>글쓰기</button>
+          <button>개설하기</button>
         </div>
         <MainItem />
         <MainItem />

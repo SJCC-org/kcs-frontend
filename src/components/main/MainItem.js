@@ -26,7 +26,7 @@ const MainItemBlock = styled.div`
     font-size: 14px;
     padding: 0.3rem;
     font-weight: bold;
-    margin-bottom: 0.3rem;
+    margin-bottom: 1rem;
     background-color: ${palette.yellow[0]};
   }
 `;

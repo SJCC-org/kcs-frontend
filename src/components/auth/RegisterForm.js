@@ -26,6 +26,8 @@ const RegisterFormWrapper = styled.form`
       button {
         width: 20%;
         margin-left: 1rem;
+        color: ${palette.brown[0]};
+        font-size: 13px;
       }
     }
 
@@ -39,11 +41,12 @@ const RegisterFormWrapper = styled.form`
     width: 100%;
     padding: 0.7rem 0;
     font-weight: bold;
-    color: ${palette.black[0]};
+    color: ${palette.brown[0]};
     border: none;
     border-radius: 7px;
     cursor: pointer;
     background-color: ${palette.yellow[0]};
+    font-size: 18px;
   }
 `;
 const StyledInput = styled.input`

@@ -6,7 +6,7 @@ import LoginForm from '../components/auth/LoginForm';
 
 const HeaderBlock = styled.div`
   width: 100%;
-  height: 60px;
+  height: 80px;
   border-bottom: 1px solid ${palette.gray[0]};
   display: flex;
   align-items: center;
@@ -19,18 +19,26 @@ const HeaderBlock = styled.div`
     #kakao {
       color: ${palette.yellow[0]};
     }
+
+    #cloud {
+      color: ${palette.brown[0]};
+    }
   }
   .buttonWrapper {
+    display: flex;
+    align-items: center;
+
     button {
       cursor: pointer;
       outline: none;
       margin-left: 1rem;
-      padding: 0.5rem 0.7rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 18px;
     }
     #login {
       background-color: ${palette.yellow[0]};
-      color: ${palette.black[0]};
-      font-weight: 500;
+      color: ${palette.brown[0]};
+      font-weight: bold;
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
     }
@@ -63,7 +71,7 @@ function Header() {
         <Link to="/">
           <div className="headerTitle">
             <h2 id="kakao">카카오</h2>
-            <h2>클라우드 스쿨</h2>
+            <h2 id="cloud">클라우드 스쿨 스터디</h2>
           </div>
         </Link>
         <div className="buttonWrapper">

@@ -18,10 +18,11 @@ const ItemInfoTempleteBlock = styled.div`
       padding: 0.5rem 0.7rem;
       background-color: ${palette.yellow[0]};
       color: ${palette.black[0]};
-      font-weight: 500;
+      font-weight: bold;
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
       cursor: pointer;
+      color: ${palette.brown[0]};
     }
   }
 `;
@@ -37,7 +38,7 @@ const ItemInfoWrapper = styled.div`
 
 const AddComment = styled.div`
   width: 800px;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `;
 
 const StyledTextArea = styled.textarea`
@@ -61,16 +62,16 @@ function ItemInfoTemplete() {
   return (
     <ItemInfoTempleteBlock>
       <ItemInfoWrapper>스터디 상세 정보</ItemInfoWrapper>
-      <div className="commentButton">
-        <button onClick={() => setIsOpenComment(!isOpenComment)}>
-          댓글 작성
-        </button>
-      </div>
       {isOpenComment && (
         <AddComment>
           <StyledTextArea />
         </AddComment>
       )}
+      <div className="commentButton">
+        <button onClick={() => setIsOpenComment(!isOpenComment)}>
+          댓글 작성
+        </button>
+      </div>
       <CommentBlock>
         <Comment />
         <Comment />
