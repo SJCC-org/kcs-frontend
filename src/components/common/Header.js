@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import palette from '../lib/styles/palette';
+import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
-import LoginForm from '../components/auth/LoginForm';
+import LoginForm from '../auth/LoginForm';
 
 const HeaderBlock = styled.div`
   width: 100%;
