@@ -1,10 +1,13 @@
 import React from 'react';
+import MainItemList from '../components/main/MainItemList';
 import MainTemplete from '../components/MainTemplete';
 
 function MainPage() {
   return (
     <div>
-      <MainTemplete />
+      <MainTemplete>
+        <MainItemList />
+      </MainTemplete>
     </div>
   );
 }
