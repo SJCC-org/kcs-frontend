@@ -23,7 +23,7 @@ const HeaderBlock = styled.div`
     #login {
       background-color: ${palette.yellow[0]};
       color: ${palette.black[0]};
-      font-weight: 400;
+      font-weight: 500;
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
     }
@@ -31,7 +31,7 @@ const HeaderBlock = styled.div`
     #register {
       background-color: white;
       color: ${palette.black[0]};
-      font-weight: 400;
+      font-weight: 500;
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
     }
