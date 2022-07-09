@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Comment from './comment/Comment';
@@ -11,11 +11,11 @@ const ItemInfoTempleteBlock = styled.div`
 
   .commentButton {
     width: 800px;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     text-align: right;
 
     button {
-      padding: 0.5rem 0.7rem;
+      padding: 0.7rem 1rem;
       background-color: ${palette.yellow[0]};
       color: ${palette.black[0]};
       font-weight: bold;
@@ -48,6 +48,15 @@ const StyledTextArea = styled.textarea`
   outline: none;
   border-radius: 7px;
   border: 1px solid ${palette.gray[1]};
+  padding: 1rem;
+  font-size: 18px;
+
+  &:placeholder-shown {
+    font-size: 18px;
+  }
+  &:focus {
+    border: 1px solid ${palette.yellow[0]};
+  }
 `;
 
 const CommentBlock = styled.div`
@@ -57,20 +66,14 @@ const CommentBlock = styled.div`
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
 `;
 function ItemInfoTemplete() {
-  const [isOpenComment, setIsOpenComment] = useState(false);
-
   return (
     <ItemInfoTempleteBlock>
       <ItemInfoWrapper>스터디 상세 정보</ItemInfoWrapper>
-      {isOpenComment && (
-        <AddComment>
-          <StyledTextArea />
-        </AddComment>
-      )}
+      <AddComment>
+        <StyledTextArea placeholder="댓글을 작성하세요" />
+      </AddComment>
       <div className="commentButton">
-        <button onClick={() => setIsOpenComment(!isOpenComment)}>
-          댓글 작성
-        </button>
+        <button>댓글 작성</button>
       </div>
       <CommentBlock>
         <Comment />
