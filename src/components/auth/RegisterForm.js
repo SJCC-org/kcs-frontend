@@ -61,37 +61,64 @@ const StyledInput = styled.input`
   }
 `;
 
-function RegisterForm() {
+function RegisterForm({ form, onChange }) {
   return (
     <RegisterFormBlock>
       <h2>회원가입</h2>
       <RegisterFormWrapper>
         <div className="inputBlock">
           <span>이름</span>
-          <StyledInput type="text" placeholder="이름을 입력해주세요" />
+          <StyledInput
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={onChange}
+            placeholder="이름을 입력해주세요"
+          />
         </div>
         <div className="inputBlock">
           <span>아이디</span>
           <div className="duplicateBlock">
-            <StyledInput type="text" placeholder="아이디를 입력해주세요" />
+            <StyledInput
+              type="text"
+              name="username"
+              value={form.username}
+              onChange={onChange}
+              placeholder="아이디를 입력해주세요"
+            />
             <button>중복확인</button>
           </div>
         </div>
         <div className="inputBlock">
           <span>비밀번호</span>
-          <StyledInput type="password" placeholder="비밀번호를 입력해주세요" />
+          <StyledInput
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={onChange}
+            placeholder="비밀번호를 입력해주세요"
+          />
         </div>
         <div className="inputBlock">
           <span>비밀번호 확인</span>
           <StyledInput
             type="password"
+            name="passwordConfirm"
+            value={form.passwordConfirm}
+            onChange={onChange}
             placeholder="비밀번호를 한번 더 입력해주세요"
           />
         </div>
         <div className="inputBlock">
           <span>이메일</span>
           <div className="duplicateBlock">
-            <StyledInput type="email" placeholder="이메일을 입력해주세요" />
+            <StyledInput
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={onChange}
+              placeholder="이메일을 입력해주세요"
+            />
             <button>인증하기</button>
           </div>
         </div>
