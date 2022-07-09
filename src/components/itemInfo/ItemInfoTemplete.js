@@ -58,14 +58,13 @@ const CommentBlock = styled.div`
 function ItemInfoTemplete() {
   const [isOpenComment, setIsOpenComment] = useState(false);
 
-  const onOpenComment = () => {
-    setIsOpenComment(!isOpenComment);
-  };
   return (
     <ItemInfoTempleteBlock>
       <ItemInfoWrapper>스터디 상세 정보</ItemInfoWrapper>
       <div className="commentButton">
-        <button onClick={onOpenComment}>댓글 작성</button>
+        <button onClick={() => setIsOpenComment(!isOpenComment)}>
+          댓글 작성
+        </button>
       </div>
       {isOpenComment && (
         <AddComment>
