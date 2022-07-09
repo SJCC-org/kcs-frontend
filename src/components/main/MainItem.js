@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -9,8 +10,9 @@ const MainItemBlock = styled.div`
   border-radius: 7px;
   margin-bottom: 1rem;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
-
+  cursor: pointer;
   padding: 1rem;
+
   h3 {
     margin: 0;
   }
@@ -30,8 +32,13 @@ const MainItemBlock = styled.div`
 `;
 
 function MainItem() {
+  const navigate = useNavigate();
+
+  const onMoveStudyInfo = () => {
+    navigate('/study/info');
+  };
   return (
-    <MainItemBlock>
+    <MainItemBlock onClick={onMoveStudyInfo}>
       <div className="studyStatus">모집중</div>
       <h3>스터디를 합시다</h3>
     </MainItemBlock>
