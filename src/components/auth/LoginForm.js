@@ -87,7 +87,7 @@ const StyledInput = styled.input`
   }
 `;
 
-function LoginForm({ onCloseLoginModal }) {
+function LoginForm({ onCloseLoginModal, onChange, form }) {
   const navigate = useNavigate();
 
   const onMoveRegister = () => {
@@ -117,8 +117,20 @@ function LoginForm({ onCloseLoginModal }) {
           <h2>로그인</h2>
         </div>
         <LoginFormWrapper>
-          <StyledInput type="text" placeholder="아이디를 입력해주세요" />
-          <StyledInput type="password" placeholder="비밀번호를 입력해주세요" />
+          <StyledInput
+            type="text"
+            name="username"
+            value={form.username}
+            onChange={onChange}
+            placeholder="아이디를 입력해주세요"
+          />
+          <StyledInput
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={onChange}
+            placeholder="비밀번호를 입력해주세요"
+          />
           <button type="submit">로그인</button>
         </LoginFormWrapper>
         <div className="extraInfo">

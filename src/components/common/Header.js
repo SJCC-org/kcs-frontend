@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
-import LoginForm from '../auth/LoginForm';
+import LoginFormContainer from '../../containers/auth/LoginFormContainer';
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -66,7 +66,7 @@ function Header() {
   };
   return (
     <>
-      {isOpen && <LoginForm onCloseLoginModal={onCloseLoginModal} />}
+      {isOpen && <LoginFormContainer onCloseLoginModal={onCloseLoginModal} />}
       <HeaderBlock>
         <Link to="/">
           <div className="headerTitle">
