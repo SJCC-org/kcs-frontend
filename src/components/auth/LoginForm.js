@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const LoginFormBlock = styled.div`
   position: absolute;
@@ -84,6 +85,12 @@ const StyledInput = styled.input`
 `;
 
 function LoginForm({ onCloseLoginModal }) {
+  const navigate = useNavigate();
+
+  const onMoveRegister = () => {
+    navigate('/register');
+  };
+
   useEffect(() => {
     document.body.style.cssText = `
       position: fixed;
@@ -113,7 +120,15 @@ function LoginForm({ onCloseLoginModal }) {
         </LoginFormWrapper>
         <div className="extraInfo">
           <span>비밀번호 찾기</span>
-          <span id="goRegister">회원가입</span>
+          <span
+            id="goRegister"
+            onClick={() => {
+              onMoveRegister();
+              onCloseLoginModal();
+            }}
+          >
+            회원가입
+          </span>
         </div>
       </LoginModal>
     </LoginFormBlock>
