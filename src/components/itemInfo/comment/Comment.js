@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import palette from '../../../lib/styles/palette';
+import CommentAdd from './CommentAdd';
 
 const CommentBlock = styled.div`
   width: 100%;
@@ -13,9 +14,21 @@ const CommentBlock = styled.div`
     align-items: center;
     margin-bottom: 1rem;
   }
+
+  .addComment {
+    margin-top: 1rem;
+    text-align: right;
+    cursor: pointer;
+    span {
+      font-size: 18px;
+      font-weight: bold;
+      color: ${palette.brown[0]};
+    }
+  }
 `;
 
 function Comment() {
+  const [isOpenComment, setIsOpenComment] = useState(false);
   return (
     <CommentBlock>
       <div className="whoComment">
@@ -30,6 +43,16 @@ function Comment() {
         입니다.댓글 예시 입니다.댓글 예시 입니다.댓글 예시 입니다.댓글 예시
         입니다.댓글 예시 입니다.댓글 예시 입니다.댓글 예시 입니다.
       </div>
+      <div className="addComment">
+        {isOpenComment ? (
+          <span onClick={() => setIsOpenComment(!isOpenComment)}>숨기기</span>
+        ) : (
+          <span onClick={() => setIsOpenComment(!isOpenComment)}>
+            답글 달기
+          </span>
+        )}
+      </div>
+      {isOpenComment && <CommentAdd />}
     </CommentBlock>
   );
 }
