@@ -1,14 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
+import StudyCategory from '../categories/StudyCategory';
 import MainItem from './MainItem';
 
+const WholeWrapper = styled.div`
+  display: flex;
+`;
 const MainItemListBlock = styled.div`
   width: 50%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   margin-top: 2rem;
+  position: relative;
 
   .listHeader {
     width: 100%;
@@ -29,22 +34,25 @@ const MainItemListBlock = styled.div`
 
 function MainItemList() {
   return (
-    <MainItemListBlock>
-      <div className="listHeader">
-        <button>글쓰기</button>
-      </div>
-      <MainItem />
-      <MainItem />
-      <MainItem />
-      <MainItem />
-      <MainItem />
-      <MainItem />
-      <MainItem />
-      <MainItem />
-      <MainItem />
-      <MainItem />
-      <MainItem />
-    </MainItemListBlock>
+    <WholeWrapper>
+      <StudyCategory />
+      <MainItemListBlock>
+        <div className="listHeader">
+          <button>글쓰기</button>
+        </div>
+        <MainItem />
+        <MainItem />
+        <MainItem />
+        <MainItem />
+        <MainItem />
+        <MainItem />
+        <MainItem />
+        <MainItem />
+        <MainItem />
+        <MainItem />
+        <MainItem />
+      </MainItemListBlock>
+    </WholeWrapper>
   );
 }
 
