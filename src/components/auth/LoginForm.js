@@ -11,6 +11,7 @@ const LoginFormBlock = styled.div`
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  z-index: 10000;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
