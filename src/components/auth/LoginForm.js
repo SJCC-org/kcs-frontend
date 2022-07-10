@@ -89,6 +89,13 @@ const StyledInput = styled.input`
   }
 `;
 
+const ErrorMessageBlock = styled.div`
+  text-align: center;
+  margin-bottom: 0.3rem;
+  color: red;
+  font-weight: bold;
+`;
+
 function LoginForm({ onCloseLoginModal, onChange, form, onSubmit }) {
   const navigate = useNavigate();
 
@@ -133,6 +140,7 @@ function LoginForm({ onCloseLoginModal, onChange, form, onSubmit }) {
             onChange={onChange}
             placeholder="비밀번호를 입력해주세요"
           />
+          <ErrorMessageBlock>에러 입니다.</ErrorMessageBlock>
           <button type="submit">로그인</button>
         </LoginFormWrapper>
         <div className="extraInfo">
