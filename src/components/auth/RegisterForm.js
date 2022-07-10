@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -60,7 +60,15 @@ const StyledInput = styled.input`
   }
 `;
 
+const ErrorMessageBlock = styled.div`
+  text-align: center;
+  margin: 0.3rem 0;
+  color: red;
+  font-weight: bold;
+`;
+
 function RegisterForm({ form, onChange, onSubmit }) {
+  const [isOpenEmail, setIsOpenEmail] = useState(false);
   return (
     <RegisterFormBlock>
       <h2>회원가입</h2>
@@ -85,9 +93,10 @@ function RegisterForm({ form, onChange, onSubmit }) {
               onChange={onChange}
               placeholder="아이디를 입력해주세요"
             />
-            <button>중복확인</button>
+            <button type="button">중복확인</button>
           </div>
         </div>
+        <ErrorMessageBlock>에러입니다.</ErrorMessageBlock>
         <div className="inputBlock">
           <span>비밀번호</span>
           <StyledInput
@@ -118,9 +127,20 @@ function RegisterForm({ form, onChange, onSubmit }) {
               onChange={onChange}
               placeholder="이메일을 입력해주세요"
             />
-            <button>인증하기</button>
+            <button type="button" onClick={() => setIsOpenEmail(!isOpenEmail)}>
+              인증하기
+            </button>
           </div>
         </div>
+        {isOpenEmail && (
+          <div className="inputBlock">
+            <div className="duplicateBlock">
+              <StyledInput type="text" placeholder="인증코드를 입력해주세요" />
+              <button type="button">확인</button>
+            </div>
+          </div>
+        )}
+        <ErrorMessageBlock>에러입니다.</ErrorMessageBlock>
         <button type="submit" style={{ marginTop: '1rem' }}>
           회원가입
         </button>
