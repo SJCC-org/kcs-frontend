@@ -52,6 +52,7 @@ const LoginModal = styled.div`
 
     #goRegister {
       margin-left: 0.5rem;
+      text-decoration: underline;
     }
   }
 `;
