@@ -5,7 +5,7 @@ import palette from '../../lib/styles/palette';
 const EditPasswordFormBlock = styled.div`
   width: 50%;
   margin: 0 auto;
-  margin-top: 3rem;
+  margin-top: 84px;
   display: flex;
   flex-direction: column;
   align-items: center;
