@@ -67,7 +67,13 @@ const ErrorMessageBlock = styled.div`
   font-weight: bold;
 `;
 
-function RegisterForm({ form, onChange, onSubmit }) {
+function RegisterForm({
+  form,
+  error,
+  onChange,
+  onSubmit,
+  onCheckPasswordConfirm,
+}) {
   const [isOpenEmail, setIsOpenEmail] = useState(false);
   return (
     <RegisterFormBlock>
@@ -114,9 +120,11 @@ function RegisterForm({ form, onChange, onSubmit }) {
             name="passwordConfirm"
             value={form.passwordConfirm}
             onChange={onChange}
+            onKeyUp={onCheckPasswordConfirm}
             placeholder="비밀번호를 한번 더 입력해주세요"
           />
         </div>
+        {error && <ErrorMessageBlock>에러 입니다.</ErrorMessageBlock>}
         <div className="inputBlock">
           <span>이메일</span>
           <div className="duplicateBlock">
