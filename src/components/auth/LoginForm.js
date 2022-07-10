@@ -89,7 +89,7 @@ const StyledInput = styled.input`
   }
 `;
 
-function LoginForm({ onCloseLoginModal, onChange, form }) {
+function LoginForm({ onCloseLoginModal, onChange, form, onSubmit }) {
   const navigate = useNavigate();
 
   const onMoveRegister = () => {
@@ -118,7 +118,7 @@ function LoginForm({ onCloseLoginModal, onChange, form }) {
           </div>
           <h2>로그인</h2>
         </div>
-        <LoginFormWrapper>
+        <LoginFormWrapper onSubmit={onSubmit}>
           <StyledInput
             type="text"
             name="username"
