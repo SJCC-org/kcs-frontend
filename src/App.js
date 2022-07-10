@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/common/Layout';
+import EditPasswordPage from './pages/EditPasswordPage';
 import ItemInfoPage from './pages/ItemInfoPage';
 import MainPage from './pages/MainPage';
 import MyPage from './pages/MyPage';
@@ -15,6 +16,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/study/info" element={<ItemInfoPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/mypage/edit/password" element={<EditPasswordPage />} />
         </Route>
       </Routes>
     </div>
