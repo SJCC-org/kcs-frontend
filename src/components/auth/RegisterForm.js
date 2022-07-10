@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -61,11 +60,11 @@ const StyledInput = styled.input`
   }
 `;
 
-function RegisterForm({ form, onChange }) {
+function RegisterForm({ form, onChange, onSubmit }) {
   return (
     <RegisterFormBlock>
       <h2>회원가입</h2>
-      <RegisterFormWrapper>
+      <RegisterFormWrapper onSubmit={onSubmit}>
         <div className="inputBlock">
           <span>이름</span>
           <StyledInput
@@ -123,7 +122,7 @@ function RegisterForm({ form, onChange }) {
           </div>
         </div>
         <button type="submit" style={{ marginTop: '1rem' }}>
-          <Link to="/">회원가입</Link>
+          회원가입
         </button>
       </RegisterFormWrapper>
     </RegisterFormBlock>
