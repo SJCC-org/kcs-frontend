@@ -3,16 +3,16 @@ import styled from 'styled-components';
 import MyPageCategory from '../categories/MyPageCategory';
 import EditPasswordForm from './EditPasswordForm';
 
-const EditUserTempleteBlock = styled.div`
+const EditPasswordTempleteBlock = styled.div`
   display: flex;
 `;
 
 function EditUserTemplete() {
   return (
-    <EditUserTempleteBlock>
+    <EditPasswordTempleteBlock>
       <MyPageCategory />
       <EditPasswordForm />
-    </EditUserTempleteBlock>
+    </EditPasswordTempleteBlock>
   );
 }
 
