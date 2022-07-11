@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -33,11 +33,20 @@ const EditUserFormWrapper = styled.form`
     .duplicateBlock {
       display: flex;
 
+      @media (max-width: 400px) {
+        flex-direction: column;
+      }
+
       button {
         width: 20%;
         margin-left: 1rem;
         color: ${palette.brown[0]};
         font-size: 13px;
+
+        @media (max-width: 400px) {
+          width: 100%;
+          margin: 0.5rem 0;
+        }
       }
     }
   }
@@ -67,22 +76,33 @@ const StyledInput = styled.input`
 `;
 
 function EditUserForm() {
+  const [isOpenEmail, setIsOpenEmail] = useState(false);
   return (
     <EditUserFormBlock>
       <h2>회원정보 수정</h2>
       <EditUserFormWrapper>
         <div className="inputBlock">
           <span>이름</span>
-          <StyledInput />
+          <StyledInput type="text" placeholder="이름을 입력해주세요" />
         </div>
         <div className="inputBlock">
           <span>이메일</span>
           <div className="duplicateBlock">
-            <StyledInput />
-            <button>인증하기</button>
+            <StyledInput type="email" placeholder="이메일을 입력해주세요" />
+            <button type="button" onClick={() => setIsOpenEmail(!isOpenEmail)}>
+              인증하기
+            </button>
           </div>
         </div>
-        <button>회원정보 수정</button>
+        {isOpenEmail && (
+          <div className="inputBlock">
+            <div className="duplicateBlock">
+              <StyledInput type="text" placeholder="인증코드를 입력해주세요" />
+              <button type="button">확인</button>
+            </div>
+          </div>
+        )}
+        <button type="submit">회원정보 수정</button>
       </EditUserFormWrapper>
     </EditUserFormBlock>
   );
