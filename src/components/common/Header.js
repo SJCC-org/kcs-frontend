@@ -16,6 +16,13 @@ const HeaderBlock = styled.div`
   .headerTitle {
     display: flex;
 
+    @media (max-width: 425px) {
+      flex-direction: column;
+
+      h2 {
+        margin: 0;
+      }
+    }
     #kakao {
       color: ${palette.yellow[0]};
     }
