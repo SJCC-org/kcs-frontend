@@ -13,14 +13,22 @@ const HeaderBlock = styled.div`
   justify-content: space-between;
   padding: 0 3rem;
 
+  @media (max-width: 375px) {
+    padding: 0 1rem;
+  }
+
   .headerTitle {
     display: flex;
 
-    @media (max-width: 425px) {
+    @media (max-width: 480px) {
       flex-direction: column;
 
       h2 {
         margin: 0;
+
+        @media (max-width: 375px) {
+          font-size: 20px;
+        }
       }
     }
     #kakao {
@@ -38,9 +46,13 @@ const HeaderBlock = styled.div`
     button {
       cursor: pointer;
       outline: none;
-      margin-left: 1rem;
       padding: 0.7rem 1.5rem;
       font-size: 18px;
+
+      @media (max-width: 425px) {
+        padding: 0.5rem 0.7rem;
+        font-size: 16px;
+      }
     }
     #login {
       background-color: ${palette.yellow[0]};
@@ -49,9 +61,9 @@ const HeaderBlock = styled.div`
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
 
-      @media (max-width: 768px) {
+      /* @media (max-width: 768px) {
         display: none;
-      }
+      } */
     }
     /* 
     #register {
