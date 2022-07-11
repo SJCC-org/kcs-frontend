@@ -13,6 +13,10 @@ const MyPageCategoryBlock = styled.div`
   h1 {
     margin-top: 0;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const CategoryBlock = styled.div`
