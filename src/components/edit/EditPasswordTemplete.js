@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MyPageCategory from '../categories/MyPageCategory';
+import EditCategoryContainer from '../../containers/categories/EditCategoryContainer';
 import EditPasswordForm from './EditPasswordForm';
 
 const EditPasswordTempleteBlock = styled.div`
@@ -10,7 +10,7 @@ const EditPasswordTempleteBlock = styled.div`
 function EditUserTemplete() {
   return (
     <EditPasswordTempleteBlock>
-      <MyPageCategory />
+      <EditCategoryContainer />
       <EditPasswordForm />
     </EditPasswordTempleteBlock>
   );

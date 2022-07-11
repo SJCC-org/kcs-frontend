@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import EditCategory from '../../components/categories/EditCategory';
 import { useDispatch, useSelector } from 'react-redux';
-import MyPageCategory from '../../components/categories/MyPageCategory';
 import { membershipWithdrawalFailure } from '../../modules/auth';
 
-function MyPageCategoryContainer() {
+function EditCategoryContainer() {
   const { withDrawalRes } = useSelector(({ auth }) => ({
     withDrawalRes: auth.withDrawalRes,
   }));
@@ -30,7 +30,7 @@ function MyPageCategoryContainer() {
     }
   }, [withDrawalRes]);
 
-  return <MyPageCategory onWithDrawal={onWithDrawal} />;
+  return <EditCategory onWithDrawal={onWithDrawal} />;
 }
 
-export default MyPageCategoryContainer;
+export default EditCategoryContainer;

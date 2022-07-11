@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 
-const MyPageCategoryBlock = styled.div`
+const EditCategoryBlock = styled.div`
   margin-top: 84px;
   width: 200px;
   height: 400px;
@@ -25,22 +25,27 @@ const CategoryBlock = styled.div`
   cursor: pointer;
 `;
 
-function MyPageCategory() {
+function EditCategory({ onWithDrawal }) {
   return (
-    <MyPageCategoryBlock>
+    <EditCategoryBlock>
       <Link to="/mypage">
         <h1>마이페이지</h1>
       </Link>
-      <CategoryBlock>
-        <span>내 정보</span>
-      </CategoryBlock>
       <CategoryBlock>
         <Link to="/mypage/edit/user">
           <span>회원정보 수정</span>
         </Link>
       </CategoryBlock>
-    </MyPageCategoryBlock>
+      <CategoryBlock>
+        <Link to="/mypage/edit/password">
+          <span>비밀번호 수정</span>
+        </Link>
+      </CategoryBlock>
+      <CategoryBlock onClick={onWithDrawal}>
+        <span>회원 탈퇴</span>
+      </CategoryBlock>
+    </EditCategoryBlock>
   );
 }
 
-export default MyPageCategory;
+export default EditCategory;

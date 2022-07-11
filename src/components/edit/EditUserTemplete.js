@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MyPageCategory from '../categories/MyPageCategory';
+import EditCategoryContainer from '../../containers/categories/EditCategoryContainer';
 import EditUserForm from './EditUserForm';
 
 const EditUserTempleteBlock = styled.div`
@@ -10,7 +10,7 @@ const EditUserTempleteBlock = styled.div`
 function EditUserTemplete() {
   return (
     <EditUserTempleteBlock>
-      <MyPageCategory />
+      <EditCategoryContainer />
       <EditUserForm />
     </EditUserTempleteBlock>
   );
