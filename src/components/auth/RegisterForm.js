@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -15,6 +14,10 @@ const RegisterFormBlock = styled.div`
 const RegisterFormWrapper = styled.form`
   width: 400px;
 
+  @media (max-width: 430px) {
+    width: 100%;
+  }
+
   .inputBlock {
     display: flex;
     flex-direction: column;
@@ -23,11 +26,20 @@ const RegisterFormWrapper = styled.form`
     .duplicateBlock {
       display: flex;
 
+      @media (max-width: 500px) {
+        flex-direction: column;
+      }
+
       button {
         width: 20%;
         margin-left: 1rem;
         color: ${palette.brown[0]};
         font-size: 13px;
+
+        @media (max-width: 500px) {
+          width: 100%;
+          margin: 0.5rem 0;
+        }
       }
     }
 
@@ -61,11 +73,24 @@ const StyledInput = styled.input`
   }
 `;
 
-function RegisterForm({ form, onChange }) {
+const ErrorMessageBlock = styled.div`
+  text-align: center;
+  color: red;
+  font-weight: bold;
+`;
+
+function RegisterForm({
+  form,
+  error,
+  onChange,
+  onSubmit,
+  onCheckPasswordConfirm,
+}) {
+  const [isOpenEmail, setIsOpenEmail] = useState(false);
   return (
     <RegisterFormBlock>
       <h2>회원가입</h2>
-      <RegisterFormWrapper>
+      <RegisterFormWrapper onSubmit={onSubmit}>
         <div className="inputBlock">
           <span>이름</span>
           <StyledInput
@@ -86,9 +111,10 @@ function RegisterForm({ form, onChange }) {
               onChange={onChange}
               placeholder="아이디를 입력해주세요"
             />
-            <button>중복확인</button>
+            <button type="button">중복확인</button>
           </div>
         </div>
+        <ErrorMessageBlock>에러입니다.</ErrorMessageBlock>
         <div className="inputBlock">
           <span>비밀번호</span>
           <StyledInput
@@ -106,9 +132,11 @@ function RegisterForm({ form, onChange }) {
             name="passwordConfirm"
             value={form.passwordConfirm}
             onChange={onChange}
+            onKeyUp={onCheckPasswordConfirm}
             placeholder="비밀번호를 한번 더 입력해주세요"
           />
         </div>
+        {error && <ErrorMessageBlock>에러 입니다.</ErrorMessageBlock>}
         <div className="inputBlock">
           <span>이메일</span>
           <div className="duplicateBlock">
@@ -119,11 +147,22 @@ function RegisterForm({ form, onChange }) {
               onChange={onChange}
               placeholder="이메일을 입력해주세요"
             />
-            <button>인증하기</button>
+            <button type="button" onClick={() => setIsOpenEmail(!isOpenEmail)}>
+              인증하기
+            </button>
           </div>
         </div>
-        <button type="submit" style={{ marginTop: '1rem' }}>
-          <Link to="/">회원가입</Link>
+        {isOpenEmail && (
+          <div className="inputBlock">
+            <div className="duplicateBlock">
+              <StyledInput type="text" placeholder="인증코드를 입력해주세요" />
+              <button type="button">확인</button>
+            </div>
+          </div>
+        )}
+        <ErrorMessageBlock>에러입니다.</ErrorMessageBlock>
+        <button type="submit" style={{ margin: '1rem  0' }}>
+          회원가입
         </button>
       </RegisterFormWrapper>
     </RegisterFormBlock>

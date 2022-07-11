@@ -16,6 +16,13 @@ const HeaderBlock = styled.div`
   .headerTitle {
     display: flex;
 
+    @media (max-width: 425px) {
+      flex-direction: column;
+
+      h2 {
+        margin: 0;
+      }
+    }
     #kakao {
       color: ${palette.yellow[0]};
     }
@@ -41,6 +48,10 @@ const HeaderBlock = styled.div`
       font-weight: bold;
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
     /* 
     #register {

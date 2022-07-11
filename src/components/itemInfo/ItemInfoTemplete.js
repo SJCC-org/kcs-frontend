@@ -24,6 +24,10 @@ const ItemInfoTempleteBlock = styled.div`
       cursor: pointer;
       color: ${palette.brown[0]};
     }
+
+    @media (max-width: 800px) {
+      width: 100%;
+    }
   }
 `;
 
@@ -34,11 +38,19 @@ const ItemInfoWrapper = styled.div`
   margin-top: 2rem;
   border-radius: 7px;
   margin-bottom: 2rem;
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 const AddComment = styled.div`
   width: 800px;
   margin-bottom: 0.5rem;
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 const StyledTextArea = styled.textarea`
@@ -64,6 +76,10 @@ const CommentBlock = styled.div`
   margin-bottom: 2rem;
   border-radius: 7px;
   box-shadow: 4px 12px 30px 6px rgb(0 0 0 / 9%);
+
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 function ItemInfoTemplete() {
   return (

@@ -16,6 +16,10 @@ const LoginFormBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 500px) {
+    padding: 0 1rem;
+  }
 `;
 
 const LoginModal = styled.div`
@@ -89,7 +93,14 @@ const StyledInput = styled.input`
   }
 `;
 
-function LoginForm({ onCloseLoginModal, onChange, form }) {
+const ErrorMessageBlock = styled.div`
+  text-align: center;
+  margin-bottom: 0.3rem;
+  color: red;
+  font-weight: bold;
+`;
+
+function LoginForm({ onCloseLoginModal, onChange, form, onSubmit }) {
   const navigate = useNavigate();
 
   const onMoveRegister = () => {
@@ -118,7 +129,7 @@ function LoginForm({ onCloseLoginModal, onChange, form }) {
           </div>
           <h2>로그인</h2>
         </div>
-        <LoginFormWrapper>
+        <LoginFormWrapper onSubmit={onSubmit}>
           <StyledInput
             type="text"
             name="username"
@@ -133,6 +144,7 @@ function LoginForm({ onCloseLoginModal, onChange, form }) {
             onChange={onChange}
             placeholder="비밀번호를 입력해주세요"
           />
+          <ErrorMessageBlock>에러 입니다.</ErrorMessageBlock>
           <button type="submit">로그인</button>
         </LoginFormWrapper>
         <div className="extraInfo">
