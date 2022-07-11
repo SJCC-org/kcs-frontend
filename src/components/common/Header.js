@@ -41,6 +41,10 @@ const HeaderBlock = styled.div`
       font-weight: bold;
       border: 2px solid ${palette.yellow[0]};
       border-radius: 7px;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
     /* 
     #register {
