@@ -30,16 +30,25 @@ function StudyCategory() {
     <StudyCategoryBlock>
       <h1>카테고리</h1>
       <CategoryBlock>
-        <span>클라우드</span>
+        <span>개설하기</span>
       </CategoryBlock>
       <CategoryBlock>
-        <span>클라우드</span>
+        <span>알고리즘</span>
       </CategoryBlock>
       <CategoryBlock>
-        <span>클라우드</span>
+        <span>자격증</span>
       </CategoryBlock>
       <CategoryBlock>
-        <span>클라우드</span>
+        <span>수업복습</span>
+      </CategoryBlock>
+      <CategoryBlock>
+        <span>프로젝트</span>
+      </CategoryBlock>
+      <CategoryBlock>
+        <span>CS</span>
+      </CategoryBlock>
+      <CategoryBlock>
+        <span>기타</span>
       </CategoryBlock>
     </StudyCategoryBlock>
   );
