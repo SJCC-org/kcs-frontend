@@ -1,10 +1,13 @@
 import React from 'react';
 import ItemInfoTemplete from '../components/itemInfo/ItemInfoTemplete';
+import MainTemplete from '../components/MainTemplete';
 
 function ItemInfoPage() {
   return (
     <div>
-      <ItemInfoTemplete />
+      <MainTemplete>
+        <ItemInfoTemplete />
+      </MainTemplete>
     </div>
   );
 }
