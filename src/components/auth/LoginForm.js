@@ -100,7 +100,13 @@ const ErrorMessageBlock = styled.div`
   font-weight: bold;
 `;
 
-function LoginForm({ onCloseLoginModal, onChange, form, onSubmit }) {
+function LoginForm({
+  onCloseLoginModal,
+  onChange,
+  form,
+  onSubmit,
+  loginError,
+}) {
   useEffect(() => {
     document.body.style.cssText = `
       position: fixed;
@@ -138,9 +144,11 @@ function LoginForm({ onCloseLoginModal, onChange, form, onSubmit }) {
             onChange={onChange}
             placeholder="비밀번호를 입력해주세요"
           />
-          <ErrorMessageBlock>
-            아이디와 비밀번호를 확인해주세요.
-          </ErrorMessageBlock>
+          {loginError && (
+            <ErrorMessageBlock>
+              아이디와 비밀번호를 확인해주세요.
+            </ErrorMessageBlock>
+          )}
           <button type="submit">로그인</button>
         </LoginFormWrapper>
         <div className="extraInfo">
