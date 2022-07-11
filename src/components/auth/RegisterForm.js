@@ -14,6 +14,10 @@ const RegisterFormBlock = styled.div`
 const RegisterFormWrapper = styled.form`
   width: 400px;
 
+  @media (max-width: 430px) {
+    width: 100%;
+  }
+
   .inputBlock {
     display: flex;
     flex-direction: column;
@@ -22,11 +26,20 @@ const RegisterFormWrapper = styled.form`
     .duplicateBlock {
       display: flex;
 
+      @media (max-width: 500px) {
+        flex-direction: column;
+      }
+
       button {
         width: 20%;
         margin-left: 1rem;
         color: ${palette.brown[0]};
         font-size: 13px;
+
+        @media (max-width: 500px) {
+          width: 100%;
+          margin: 0.5rem 0;
+        }
       }
     }
 
@@ -62,7 +75,6 @@ const StyledInput = styled.input`
 
 const ErrorMessageBlock = styled.div`
   text-align: center;
-  margin: 0.3rem 0;
   color: red;
   font-weight: bold;
 `;
@@ -149,7 +161,7 @@ function RegisterForm({
           </div>
         )}
         <ErrorMessageBlock>에러입니다.</ErrorMessageBlock>
-        <button type="submit" style={{ marginTop: '1rem' }}>
+        <button type="submit" style={{ margin: '1rem  0' }}>
           회원가입
         </button>
       </RegisterFormWrapper>

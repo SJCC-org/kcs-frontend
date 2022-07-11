@@ -16,6 +16,10 @@ const LoginFormBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 500px) {
+    padding: 0 1rem;
+  }
 `;
 
 const LoginModal = styled.div`
