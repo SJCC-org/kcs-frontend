@@ -25,7 +25,7 @@ const CategoryBlock = styled.div`
   cursor: pointer;
 `;
 
-function MyPageCategory() {
+function MyPageCategory({ onWithDrawal }) {
   return (
     <MyPageCategoryBlock>
       <h1>마이페이지</h1>
@@ -42,7 +42,7 @@ function MyPageCategory() {
           <span>회원정보 수정</span>
         </Link>
       </CategoryBlock>
-      <CategoryBlock>
+      <CategoryBlock onClick={onWithDrawal}>
         <span>회원 탈퇴</span>
       </CategoryBlock>
     </MyPageCategoryBlock>

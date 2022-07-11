@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import MyPageCategory from '../categories/MyPageCategory';
+import MyPageCategoryContainer from '../../containers/categories/MyPageCategoryContainer';
 
 const MyPageTempleteBlock = styled.div``;
 
 function MyPageTemplete() {
   return (
     <MyPageTempleteBlock>
-      <MyPageCategory />
+      <MyPageCategoryContainer />
     </MyPageTempleteBlock>
   );
 }
