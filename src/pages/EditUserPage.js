@@ -1,12 +1,12 @@
 import React from 'react';
-import ResponsiveMyPageCategory from '../components/categories/responsive/ResponsiveMyPageCategory';
 import EditUserTemplete from '../components/edit/EditUserTemplete';
 import MainTemplete from '../components/MainTemplete';
+import ResponsiveEditCategoryContainer from '../containers/categories/responsive/ResponsiveEditCategoryContainer';
 
 function EditUserPage() {
   return (
     <div>
-      <ResponsiveMyPageCategory />
+      <ResponsiveEditCategoryContainer />
       <MainTemplete>
         <EditUserTemplete />
       </MainTemplete>

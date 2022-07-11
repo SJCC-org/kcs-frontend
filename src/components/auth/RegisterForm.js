@@ -82,9 +82,11 @@ const ErrorMessageBlock = styled.div`
 function RegisterForm({
   form,
   error,
+  userDuplicationRes,
   onChange,
   onSubmit,
   onCheckPasswordConfirm,
+  onDuplicateUsername,
 }) {
   const [isOpenEmail, setIsOpenEmail] = useState(false);
   return (
@@ -111,10 +113,17 @@ function RegisterForm({
               onChange={onChange}
               placeholder="아이디를 입력해주세요"
             />
-            <button type="button">중복확인</button>
+            <button type="button" onClick={onDuplicateUsername}>
+              중복확인
+            </button>
           </div>
         </div>
-        <ErrorMessageBlock>에러입니다.</ErrorMessageBlock>
+        {userDuplicationRes === true && (
+          <ErrorMessageBlock>아이디가 중복됩니다.</ErrorMessageBlock>
+        )}
+        {userDuplicationRes === false && (
+          <ErrorMessageBlock>사용가능한 아이디 입니다.</ErrorMessageBlock>
+        )}
         <div className="inputBlock">
           <span>비밀번호</span>
           <StyledInput

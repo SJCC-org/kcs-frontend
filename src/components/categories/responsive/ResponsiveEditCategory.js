@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper';
 import 'swiper/css';
 
-const ResponsiveMyPageCategoryBlock = styled.div`
+const ResponsiveEditCategoryBlock = styled.div`
   display: none;
   @media (max-width: 768px) {
     display: block;
@@ -28,9 +28,9 @@ const ResponsiveMyPageCategoryBlock = styled.div`
   }
 `;
 
-function ResponsiveMyPageCategory() {
+function ResponsiveEditCategory({ onWithDrawal }) {
   return (
-    <ResponsiveMyPageCategoryBlock>
+    <ResponsiveEditCategoryBlock>
       <Swiper
         className="mySwiper"
         slidesPerView={2}
@@ -49,16 +49,21 @@ function ResponsiveMyPageCategory() {
           </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <span>내 정보</span>
-        </SwiperSlide>
-        <SwiperSlide>
           <Link to="/mypage/edit/user">
             <span>회원정보 수정</span>
           </Link>
         </SwiperSlide>
+        <SwiperSlide>
+          <Link to="/mypage/edit/password">
+            <span>비밀번호 수정</span>
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide onClick={onWithDrawal}>
+          <span>회원 탈퇴</span>
+        </SwiperSlide>
       </Swiper>
-    </ResponsiveMyPageCategoryBlock>
+    </ResponsiveEditCategoryBlock>
   );
 }
 
-export default ResponsiveMyPageCategory;
+export default ResponsiveEditCategory;
