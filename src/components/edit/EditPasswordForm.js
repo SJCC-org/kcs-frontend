@@ -62,15 +62,24 @@ function EditPasswordForm() {
       <EditPasswordFormWrapper>
         <div className="inputBlock">
           <span>현재 비밀번호</span>
-          <StyledInput />
+          <StyledInput
+            type="password"
+            placeholder="현재 비밀번호를 입력해주세요"
+          />
         </div>
         <div className="inputBlock">
           <span>새로운 비밀번호</span>
-          <StyledInput />
+          <StyledInput
+            type="password"
+            placeholder="새로운 비밀번호를 입력해주세요"
+          />
         </div>
         <div className="inputBlock">
           <span>비밀번호 확인</span>
-          <StyledInput />
+          <StyledInput
+            type="password"
+            placeholder="비밀번호를 한번 더 입력해주세요"
+          />
         </div>
         <button>비밀번호 수정하기</button>
       </EditPasswordFormWrapper>
