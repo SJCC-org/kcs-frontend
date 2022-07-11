@@ -148,9 +148,6 @@ function LoginForm({ onCloseLoginModal, onChange, form, onSubmit }) {
               회원가입
             </span>
           </Link>
-          <Link to="/mypage">
-            <span onClick={onCloseLoginModal}>마이페이지</span>
-          </Link>
         </div>
       </LoginModal>
     </LoginFormBlock>
