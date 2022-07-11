@@ -9,9 +9,17 @@ const EditUserFormBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 400px) {
+    width: 100%;
+  }
 `;
 const EditUserFormWrapper = styled.form`
   width: 400px;
+
+  @media (max-width: 400px) {
+    width: 100%;
+  }
   .inputBlock {
     display: flex;
     flex-direction: column;
