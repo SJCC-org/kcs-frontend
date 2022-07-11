@@ -15,6 +15,10 @@ const MainItemListBlock = styled.div`
   margin-top: 2rem;
   position: relative;
 
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+
   .listHeader {
     width: 100%;
     text-align: right;
