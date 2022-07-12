@@ -72,7 +72,7 @@ const HeaderBlock = styled.div`
   }
 `;
 
-function Header() {
+function Header({ userRes }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenHelp, setIsOpenHelp] = useState(false);
   const onCloseLoginModal = () => {
@@ -96,9 +96,15 @@ function Header() {
           <div id="help" onClick={onCloseHelp}>
             문의사항
           </div>
-          <div id="login" onClick={() => setIsOpen(!isOpen)}>
-            로그인
-          </div>
+          {userRes ? (
+            <div id="login">
+              <Link to="/mypage">MY</Link>
+            </div>
+          ) : (
+            <div id="login" onClick={() => setIsOpen(!isOpen)}>
+              로그인
+            </div>
+          )}
         </div>
       </HeaderBlock>
     </>
