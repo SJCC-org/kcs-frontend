@@ -19,24 +19,26 @@ const MyPageItemListBlock = styled.div`
   }
 `;
 
-function MyPageItemList() {
+function MyPageItemList({ userRes }) {
   return (
-    <WholeWrapper>
-      <MyPageCategory />
-      <MyPageItemListBlock>
-        <h2>000님 안녕하세요!</h2>
-        <MyPageItem />
-        <MyPageItem />
-        <MyPageItem />
-        <MyPageItem />
-        <MyPageItem />
-        <MyPageItem />
-        <MyPageItem />
-        <MyPageItem />
-        <MyPageItem />
-        <MyPageItem />
-      </MyPageItemListBlock>
-    </WholeWrapper>
+    userRes && (
+      <WholeWrapper>
+        <MyPageCategory />
+        <MyPageItemListBlock>
+          <h2>{userRes.name}님 안녕하세요!</h2>
+          <MyPageItem />
+          <MyPageItem />
+          <MyPageItem />
+          <MyPageItem />
+          <MyPageItem />
+          <MyPageItem />
+          <MyPageItem />
+          <MyPageItem />
+          <MyPageItem />
+          <MyPageItem />
+        </MyPageItemListBlock>
+      </WholeWrapper>
+    )
   );
 }
 
