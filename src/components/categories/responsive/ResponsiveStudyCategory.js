@@ -38,24 +38,27 @@ function ResponsiveStudyCategory() {
         modules={[Pagination]}
         breakpoints={{
           425: {
-            slidesPerView: 3,
+            slidesPerView: 5,
           },
         }}
       >
         <SwiperSlide>
-          <span>클라우드</span>
+          <span>알고리즘</span>
         </SwiperSlide>
         <SwiperSlide>
-          <span>클라우드</span>
+          <span>자격증</span>
         </SwiperSlide>
         <SwiperSlide>
-          <span>클라우드</span>
+          <span>수업복습</span>
         </SwiperSlide>
         <SwiperSlide>
-          <span>클라우드</span>
+          <span>프로젝트</span>
         </SwiperSlide>
         <SwiperSlide>
-          <span>클라우드</span>
+          <span>CS</span>
+        </SwiperSlide>
+        <SwiperSlide>
+          <span>기타</span>
         </SwiperSlide>
       </Swiper>
     </ResponsiveStudyCategoryBlock>
