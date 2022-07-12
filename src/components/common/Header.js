@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
 import LoginFormContainer from '../../containers/auth/LoginFormContainer';
+import HelpTemplete from '../help/HelpTemplete';
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -13,7 +14,7 @@ const HeaderBlock = styled.div`
   justify-content: space-between;
   padding: 0 3rem;
 
-  @media (max-width: 375px) {
+  @media (max-width: 425px) {
     padding: 0 1rem;
   }
 
@@ -26,7 +27,7 @@ const HeaderBlock = styled.div`
       h2 {
         margin: 0;
 
-        @media (max-width: 375px) {
+        @media (max-width: 460px) {
           font-size: 20px;
         }
       }
@@ -43,7 +44,7 @@ const HeaderBlock = styled.div`
     display: flex;
     align-items: center;
 
-    button {
+    /* button {
       cursor: pointer;
       outline: none;
       padding: 0.7rem 1.5rem;
@@ -53,43 +54,56 @@ const HeaderBlock = styled.div`
         padding: 0.5rem 0.7rem;
         font-size: 16px;
       }
-    }
+    } */
     #login {
-      background-color: ${palette.yellow[0]};
+      /* background-color: ${palette.yellow[0]}; */
       color: ${palette.brown[0]};
+      font-size: 18px;
       font-weight: bold;
-      border: 2px solid ${palette.yellow[0]};
-      border-radius: 7px;
+      padding-left: 0.5rem;
+      cursor: pointer;
+      /* border: 2px solid ${palette.yellow[0]}; */
+      /* border-radius: 7px; */
 
       /* @media (max-width: 768px) {
         display: none;
       } */
+
+      @media (max-width: 460px) {
+        padding: 0.5rem 0.7rem;
+        font-size: 16px;
+      }
     }
-    /* 
-    #register {
-      background-color: white;
-      color: ${palette.black[0]};
-      font-weight: 500;
-      border: 2px solid ${palette.yellow[0]};
-      border-radius: 7px;
-    } */
+
+    #help {
+      color: ${palette.brown[0]};
+      font-size: 18px;
+      font-weight: bold;
+      padding-right: 0.5rem;
+      border-right: 2px solid ${palette.yellow[0]};
+      cursor: pointer;
+
+      @media (max-width: 460px) {
+        padding: 0.5rem 0.7rem;
+        font-size: 16px;
+      }
+    }
   }
 `;
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  // const navigate = useNavigate();
-
-  // const onMoveRegister = () => {
-  //   navigate('/register');
-  // };
-
+  const [isOpenHelp, setIsOpenHelp] = useState(false);
   const onCloseLoginModal = () => {
     setIsOpen(!isOpen);
+  };
+  const onCloseHelp = () => {
+    setIsOpenHelp(!isOpenHelp);
   };
   return (
     <>
       {isOpen && <LoginFormContainer onCloseLoginModal={onCloseLoginModal} />}
+      {isOpenHelp && <HelpTemplete onCloseHelp={onCloseHelp} />}
       <HeaderBlock>
         <Link to="/">
           <div className="headerTitle">
@@ -98,12 +112,15 @@ function Header() {
           </div>
         </Link>
         <div className="buttonWrapper">
-          <button id="login" onClick={() => setIsOpen(!isOpen)}>
+          {/* <button id="login" onClick={() => setIsOpen(!isOpen)}>
             로그인
-          </button>
-          {/* <button id="register" onClick={onMoveRegister}>
-            회원가입
           </button> */}
+          <div id="help" onClick={onCloseHelp}>
+            문의사항
+          </div>
+          <div id="login" onClick={() => setIsOpen(!isOpen)}>
+            로그인
+          </div>
         </div>
       </HeaderBlock>
     </>
