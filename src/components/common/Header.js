@@ -44,31 +44,12 @@ const HeaderBlock = styled.div`
     display: flex;
     align-items: center;
 
-    /* button {
-      cursor: pointer;
-      outline: none;
-      padding: 0.7rem 1.5rem;
-      font-size: 18px;
-
-      @media (max-width: 425px) {
-        padding: 0.5rem 0.7rem;
-        font-size: 16px;
-      }
-    } */
     #login {
-      /* background-color: ${palette.yellow[0]}; */
       color: ${palette.brown[0]};
       font-size: 18px;
       font-weight: bold;
       padding-left: 0.5rem;
       cursor: pointer;
-      /* border: 2px solid ${palette.yellow[0]}; */
-      /* border-radius: 7px; */
-
-      /* @media (max-width: 768px) {
-        display: none;
-      } */
-
       @media (max-width: 460px) {
         padding: 0.5rem 0.7rem;
         font-size: 16px;
@@ -91,7 +72,7 @@ const HeaderBlock = styled.div`
   }
 `;
 
-function Header() {
+function Header({ userRes }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenHelp, setIsOpenHelp] = useState(false);
   const onCloseLoginModal = () => {
@@ -112,15 +93,18 @@ function Header() {
           </div>
         </Link>
         <div className="buttonWrapper">
-          {/* <button id="login" onClick={() => setIsOpen(!isOpen)}>
-            로그인
-          </button> */}
           <div id="help" onClick={onCloseHelp}>
             문의사항
           </div>
-          <div id="login" onClick={() => setIsOpen(!isOpen)}>
-            로그인
-          </div>
+          {userRes ? (
+            <div id="login">
+              <Link to="/mypage">MY</Link>
+            </div>
+          ) : (
+            <div id="login" onClick={() => setIsOpen(!isOpen)}>
+              로그인
+            </div>
+          )}
         </div>
       </HeaderBlock>
     </>

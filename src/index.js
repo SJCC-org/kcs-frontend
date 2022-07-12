@@ -9,9 +9,27 @@ import rootReducer from './modules';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
+import { getCookie } from './lib/cookie';
+import { userFailure, userSuccess } from './modules/user';
+import axios from 'axios';
 
 const store = createStore(rootReducer, composeWithDevTools());
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+async function loadUser() {
+  const accessToken = getCookie('myAToken');
+  if (!accessToken) {
+    return;
+  }
+  axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+  try {
+    const response = await axios.get('https://api.kcs.zooneon.dev/v1/members');
+    store.dispatch(userSuccess(response.data.data));
+  } catch (e) {
+    store.dispatch(userFailure(e));
+  }
+}
+loadUser();
 
 root.render(
   <Provider store={store}>
