@@ -8,7 +8,8 @@ const MyPageCategoryBlock = styled.div`
   width: 200px;
   height: 400px;
   padding: 1rem;
-  border-radius: 7px;
+  position: sticky;
+  top: 100px;
 
   h1 {
     margin-top: 0;

@@ -9,7 +9,6 @@ const StudyCategoryBlock = styled.div`
   position: sticky;
   top: 100px;
   padding: 1rem;
-  border-radius: 7px;
 
   h1 {
     margin-top: 0;
