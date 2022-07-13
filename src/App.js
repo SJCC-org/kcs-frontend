@@ -19,7 +19,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/study/info" element={<ItemInfoPage />} />
+          <Route path="/study/info/:studyId" element={<ItemInfoPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypage/edit/user" element={<EditUserPage />} />
           <Route path="/mypage/edit/password" element={<EditPasswordPage />} />
