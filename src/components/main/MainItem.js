@@ -31,11 +31,15 @@ const MainItemBlock = styled.div`
   }
 `;
 
-function MainItem() {
+function MainItem({ userRes }) {
   const navigate = useNavigate();
 
   const onMoveStudyInfo = () => {
-    navigate('/study/info');
+    if (userRes) {
+      navigate('/study/info');
+    } else {
+      alert('로그인 후 이용하실 수 있습니다.');
+    }
   };
   return (
     <MainItemBlock onClick={onMoveStudyInfo}>

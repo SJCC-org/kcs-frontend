@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import MainItemContainer from '../../containers/main/MainItemContainer';
 import StudyCategory from '../categories/StudyCategory';
-import MainItem from './MainItem';
 
 const WholeWrapper = styled.div`
   display: flex;
@@ -24,17 +24,18 @@ function MainItemList() {
     <WholeWrapper>
       <StudyCategory />
       <MainItemListBlock>
-        <MainItem />
-        <MainItem />
-        <MainItem />
-        <MainItem />
-        <MainItem />
-        <MainItem />
-        <MainItem />
-        <MainItem />
-        <MainItem />
-        <MainItem />
-        <MainItem />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
+        <MainItemContainer />
       </MainItemListBlock>
     </WholeWrapper>
   );
