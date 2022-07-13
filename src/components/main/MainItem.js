@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
@@ -31,21 +30,14 @@ const MainItemBlock = styled.div`
   }
 `;
 
-function MainItem({ userRes }) {
-  const navigate = useNavigate();
-
-  const onMoveStudyInfo = () => {
-    if (userRes) {
-      navigate('/study/info');
-    } else {
-      alert('로그인 후 이용하실 수 있습니다.');
-    }
-  };
+function MainItem({ userRes, studyRes }) {
   return (
-    <MainItemBlock onClick={onMoveStudyInfo}>
-      <div className="studyStatus">모집중</div>
-      <h3>스터디를 합시다</h3>
-    </MainItemBlock>
+    studyRes && (
+      <MainItemBlock>
+        <div className="studyStatus">모집중</div>
+        <h3>스터디를 합시다</h3>
+      </MainItemBlock>
+    )
   );
 }
 
