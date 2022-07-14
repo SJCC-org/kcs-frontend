@@ -61,6 +61,12 @@ function AddStudyContainer({ onOpenStudy }) {
     dispatch(initailizeForm('study'));
   }, [dispatch]);
 
+  useEffect(() => {
+    if (addRes) {
+      window.location.replace('/');
+    }
+  }, [addRes]);
+
   return (
     <AddStudy
       form={form}
