@@ -224,7 +224,11 @@ const StyledTextArea = styled.textarea`
   }
 `;
 function AddStudy({
-  form,
+  title,
+  description,
+  schedule,
+  howTo,
+  maxNum,
   onChange,
   onChangeCategory,
   onOpenStudy,
@@ -324,7 +328,7 @@ function AddStudy({
         <StyledInput
           type="text"
           name="schedule"
-          value={form.schedule}
+          value={schedule}
           onChange={onChange}
         />
       </StudySchedule>
@@ -333,7 +337,7 @@ function AddStudy({
         <StyledInput
           type="text"
           name="howTo"
-          value={form.howTo}
+          value={howTo}
           onChange={onChange}
         />
       </StudyHowTo>
@@ -344,7 +348,7 @@ function AddStudy({
           min={1}
           max={25}
           name="maxNum"
-          value={form.maxNum}
+          value={maxNum}
           onChange={onChange}
         />
       </StudyMaxNum>
@@ -354,12 +358,12 @@ function AddStudy({
           type="text"
           placeholder="제목을 입력해주세요"
           name="title"
-          value={form.title}
+          value={title}
           onChange={onChange}
         />
         <StyledTextArea
           name="description"
-          value={form.description}
+          value={description}
           onChange={onChange}
           placeholder="스터디를 설명해주세요"
         />

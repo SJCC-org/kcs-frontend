@@ -11,17 +11,22 @@ import axios from 'axios';
 import { getCookie } from '../../lib/cookie';
 
 function AddStudyContainer({ onOpenStudy, onIsResponsiveOpen }) {
-  const { form, addRes } = useSelector(({ study }) => ({
-    form: study.study,
-    addRes: study.addRes,
-  }));
+  const { title, description, schedule, howTo, studyCategory, maxNum, addRes } =
+    useSelector(({ study }) => ({
+      title: study.title,
+      description: study.description,
+      schedule: study.schedule,
+      howTo: study.howTo,
+      studyCategory: study.studyCategory,
+      maxNum: study.maxNum,
+      addRes: study.addRes,
+    }));
   const dispatch = useDispatch();
 
   const onChange = (e) => {
     const { name, value } = e.target;
     dispatch(
       changeField({
-        form: 'study',
         key: name,
         value,
       }),
@@ -31,7 +36,6 @@ function AddStudyContainer({ onOpenStudy, onIsResponsiveOpen }) {
   const onChangeCategory = (value) => {
     dispatch(
       changeField({
-        form: 'study',
         key: 'studyCategory',
         value,
       }),
@@ -42,8 +46,6 @@ function AddStudyContainer({ onOpenStudy, onIsResponsiveOpen }) {
     async function addStudy() {
       const accessToken = getCookie('myAToken');
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-      const { title, description, schedule, howTo, studyCategory, maxNum } =
-        form;
       try {
         const response = await axios.post(
           'https://api.kcs.zooneon.dev/v1/study',
@@ -69,7 +71,12 @@ function AddStudyContainer({ onOpenStudy, onIsResponsiveOpen }) {
 
   return (
     <AddStudy
-      form={form}
+      title={title}
+      description={description}
+      schedule={schedule}
+      howTo={howTo}
+      studyCategory={studyCategory}
+      maxNum={maxNum}
       addRes={addRes}
       onChange={onChange}
       onChangeCategory={onChangeCategory}
