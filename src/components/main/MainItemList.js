@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import AddStudyContainer from '../../containers/main/AddStudyContainer';
-import MainItemContainer from '../../containers/main/MainItemContainer';
 import { useNavigate } from 'react-router-dom';
 import StudyCategoryContainer from '../../containers/categories/StudyCategoryContainer';
+import MainItem from './MainItem';
 
 const WholeWrapper = styled.div`
   display: flex;
@@ -45,9 +45,10 @@ function MainItemList({ userRes, listRes }) {
             <span>스터디 목록이 없습니다.</span>
           ) : (
             listRes.content.map((list) => (
-              <MainItemContainer
+              <MainItem
                 key={list.id}
-                onclick={() => onMoveStudyInfo(list.id)}
+                data={list}
+                onMoveStudyInfo={onMoveStudyInfo}
               />
             ))
           ))}
