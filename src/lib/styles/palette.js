@@ -8,6 +8,9 @@ const palette = {
     '#eeeeee',
     //input 테두리 색
     '#CFD2CF',
+
+    //서브 글자 색
+    '#A6A6A6',
   ],
   black: [
     //버튼 글자 색
