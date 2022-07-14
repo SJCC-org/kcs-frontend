@@ -5,7 +5,7 @@ import palette from '../../lib/styles/palette';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 
 const ModifyStudyBlock = styled.div`
-  width: 100%;
+  width: 800px;
   background-color: rgba(0, 0, 0, 0.016);
   padding: 1rem;
   border-radius: 7px;
@@ -20,6 +20,9 @@ const ModifyStudyBlock = styled.div`
       cursor: pointer;
       font-size: 20px;
     }
+  }
+  @media (max-width: 800px) {
+    width: 100%;
   }
   .buttonWrapper {
     width: 100%;
