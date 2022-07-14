@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function MainItemListContainer() {
   const { userRes, listRes } = useSelector(({ user, study }) => ({
-    userRes: study.userRes,
+    userRes: user.userRes,
     listRes: study.listRes,
   }));
   const dispatch = useDispatch();
