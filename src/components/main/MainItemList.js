@@ -30,7 +30,11 @@ function MainItemList({
   const [isOpenStudy, setIsOpenStudy] = useState(false);
   const navigate = useNavigate();
   const onOpenStudy = () => {
-    setIsOpenStudy(!isOpenStudy);
+    if (userRes) {
+      setIsOpenStudy(!isOpenStudy);
+    } else {
+      alert('로그인 후 이용하실 수 있습니다.');
+    }
   };
 
   const onMoveStudyInfo = (studyId) => {

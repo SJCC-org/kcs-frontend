@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ModifyStudyContainer from '../../containers/itemInfo/ModifyStudyContainer';
 import palette from '../../lib/styles/palette';
 import Comment from './comment/Comment';
 
@@ -174,6 +175,7 @@ const CommentBlock = styled.div`
 `;
 function ItemInfoTemplete({ userRes, studyRes }) {
   const [isOpenParticipant, setIsOpenParticipant] = useState(false);
+  const [isOpenModify, setIsOpenModify] = useState(false);
   const onOpenParticipant = () => {
     // eslint-disable-next-line no-restricted-globals
     if (confirm('스터디에 참여하시겠습니까?') === true) {
@@ -181,6 +183,11 @@ function ItemInfoTemplete({ userRes, studyRes }) {
       return;
     }
   };
+
+  const onOpenModify = () => {
+    setIsOpenModify(!isOpenModify);
+  };
+
   return (
     studyRes && (
       <ItemInfoTempleteBlock>
@@ -196,7 +203,7 @@ function ItemInfoTemplete({ userRes, studyRes }) {
             <h2>{studyRes.title}</h2>
             {userRes.username === studyRes.organizerUsername && (
               <div className="studyModify">
-                <button>수정</button>
+                <button onClick={onOpenModify}>수정</button>
                 <button>삭제</button>
               </div>
             )}
@@ -245,6 +252,7 @@ function ItemInfoTemplete({ userRes, studyRes }) {
             </div>
           )}
         </ItemInfoWrapper>
+        {isOpenModify && <ModifyStudyContainer onOpenModify={onOpenModify} />}
         <AddComment>
           <StyledTextArea placeholder="댓글을 작성하세요" />
         </AddComment>

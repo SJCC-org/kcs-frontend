@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
 import { AiOutlineClose } from 'react-icons/ai';
+import palette from '../../lib/styles/palette';
 import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 
-const AddStudyBlock = styled.div`
-  width: 100%;
+const ModifyStudyBlock = styled.div`
+  width: 800px;
   background-color: rgba(0, 0, 0, 0.016);
   padding: 1rem;
   border-radius: 7px;
@@ -21,7 +21,9 @@ const AddStudyBlock = styled.div`
       font-size: 20px;
     }
   }
-
+  @media (max-width: 800px) {
+    width: 100%;
+  }
   .buttonWrapper {
     width: 100%;
     padding-top: 1rem;
@@ -41,6 +43,35 @@ const AddStudyBlock = styled.div`
         font-size: 16px;
       }
     }
+  }
+`;
+
+const StyledInput = styled.input`
+  width: 80%;
+  outline: none;
+  padding: 0.7rem;
+  border-radius: 7px;
+  border: 1px solid ${palette.gray[1]};
+
+  @media (max-width: 425px) {
+    width: 100%;
+  }
+
+  &:focus {
+    border: 2px solid ${palette.yellow[0]};
+  }
+`;
+
+const StyledTextArea = styled.textarea`
+  width: 100%;
+  outline: none;
+  padding: 0.7rem;
+  border-radius: 7px;
+  border: 1px solid ${palette.gray[1]};
+  resize: none;
+
+  &:focus {
+    border: 2px solid ${palette.yellow[0]};
   }
 `;
 
@@ -196,44 +227,17 @@ const StudyInfo = styled.div`
     margin-bottom: 1rem;
   }
 `;
-const StyledInput = styled.input`
-  width: 80%;
-  outline: none;
-  padding: 0.7rem;
-  border-radius: 7px;
-  border: 1px solid ${palette.gray[1]};
 
-  @media (max-width: 425px) {
-    width: 100%;
-  }
-
-  &:focus {
-    border: 2px solid ${palette.yellow[0]};
-  }
-`;
-const StyledTextArea = styled.textarea`
-  width: 100%;
-  outline: none;
-  padding: 0.7rem;
-  border-radius: 7px;
-  border: 1px solid ${palette.gray[1]};
-  resize: none;
-
-  &:focus {
-    border: 2px solid ${palette.yellow[0]};
-  }
-`;
-function AddStudy({
+function ModifyStudy({
   title,
   description,
   schedule,
   howTo,
   maxNum,
   onChange,
+  onModifyStudy,
   onChangeCategory,
-  onOpenStudy,
-  onAddStudy,
-  onIsResponsiveOpen,
+  onOpenModify,
 }) {
   const [category, setCategory] = useState('카테고리를 선택해주세요');
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
@@ -243,14 +247,9 @@ function AddStudy({
     setIsOpenDropDown(!isOpenDropDown);
   };
   return (
-    <AddStudyBlock>
+    <ModifyStudyBlock>
       <div className="closeBlock">
-        <AiOutlineClose
-          onClick={() => {
-            onOpenStudy();
-            onIsResponsiveOpen();
-          }}
-        />
+        <AiOutlineClose onClick={onOpenModify} />
       </div>
       <StudyCategory>
         <span>카테고리</span>
@@ -272,48 +271,48 @@ function AddStudy({
               <ul>
                 <li
                   onClick={() => {
-                    onChangeCategory('ALGORITHM');
                     onChangeCategoryName('알고리즘');
+                    onChangeCategory('ALGORITHM');
                   }}
                 >
                   알고리즘
                 </li>
                 <li
                   onClick={() => {
-                    onChangeCategory('CERTIFICATE');
                     onChangeCategoryName('자격증');
+                    onChangeCategory('CERTIFICATE');
                   }}
                 >
                   자격증
                 </li>
                 <li
                   onClick={() => {
-                    onChangeCategory('CLASS_REVIEW');
                     onChangeCategoryName('수업복습');
+                    onChangeCategory('CLASS_REVIEW');
                   }}
                 >
                   수업복습
                 </li>
                 <li
                   onClick={() => {
-                    onChangeCategory('PROJECT');
                     onChangeCategoryName('프로젝트');
+                    onChangeCategory('PROJECT');
                   }}
                 >
                   프로젝트
                 </li>
                 <li
                   onClick={() => {
-                    onChangeCategory('CS');
                     onChangeCategoryName('CS');
+                    onChangeCategory('CS');
                   }}
                 >
                   CS
                 </li>
                 <li
                   onClick={() => {
-                    onChangeCategory('ETC');
                     onChangeCategoryName('기타');
+                    onChangeCategory('ETC');
                   }}
                 >
                   기타
@@ -342,6 +341,7 @@ function AddStudy({
         />
       </StudyHowTo>
       <StudyMaxNum>
+        {' '}
         <span>정원</span>
         <StyledInput
           type="number"
@@ -369,10 +369,10 @@ function AddStudy({
         />
       </StudyInfo>
       <div className="buttonWrapper">
-        <button onClick={onAddStudy}>개설하기</button>
+        <button onClick={onModifyStudy}>수정하기</button>
       </div>
-    </AddStudyBlock>
+    </ModifyStudyBlock>
   );
 }
 
-export default AddStudy;
+export default ModifyStudy;
