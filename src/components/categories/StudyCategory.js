@@ -24,12 +24,15 @@ const CategoryBlock = styled.div`
   padding: 1rem 0;
   cursor: pointer;
 `;
-function StudyCategory({ onOpenStudy, onGetCategoryStudy }) {
+function StudyCategory({ onOpenStudy, onGetCategoryStudy, onGetCategory }) {
   return (
     <StudyCategoryBlock>
       <h1>카테고리</h1>
       <CategoryBlock>
         <span onClick={onOpenStudy}>개설하기</span>
+      </CategoryBlock>
+      <CategoryBlock onClick={onGetCategory}>
+        <span>전체보기</span>
       </CategoryBlock>
       <CategoryBlock onClick={() => onGetCategoryStudy('ALGORITHM')}>
         <span>알고리즘</span>
