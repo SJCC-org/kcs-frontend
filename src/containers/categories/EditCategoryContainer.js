@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import EditCategory from '../../components/categories/EditCategory';
 import { useDispatch, useSelector } from 'react-redux';
-import { membershipWithdrawalFailure } from '../../modules/auth';
-
+import {
+  membershipWithdrawalFailure,
+  membershipWithdrawalSuccess,
+} from '../../modules/auth';
+import { getCookie } from '../../lib/cookie';
+import axios from 'axios';
 function EditCategoryContainer() {
   const { withDrawalRes } = useSelector(({ auth }) => ({
     withDrawalRes: auth.withDrawalRes,
@@ -10,7 +14,13 @@ function EditCategoryContainer() {
   const dispatch = useDispatch();
 
   async function withDrawal() {
+    const accessToken = getCookie('myAToken');
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
     try {
+      const response = await axios.delete(
+        'https://api.kcs.zooneon.dev/v1/members',
+      );
+      dispatch(membershipWithdrawalSuccess(response.data));
     } catch (e) {
       dispatch(membershipWithdrawalFailure(e));
     }

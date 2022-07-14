@@ -27,7 +27,11 @@ const ResponsiveStudyCategoryBlock = styled.div`
   }
 `;
 
-function ResponsiveStudyCategory() {
+function ResponsiveStudyCategory({
+  onIsResponsiveOpen,
+  onGetCategoryStudy,
+  onGetCategory,
+}) {
   return (
     <ResponsiveStudyCategoryBlock>
       <Swiper
@@ -42,22 +46,28 @@ function ResponsiveStudyCategory() {
           },
         }}
       >
-        <SwiperSlide>
+        <SwiperSlide onClick={onIsResponsiveOpen}>
+          <span>개설하기</span>
+        </SwiperSlide>
+        <SwiperSlide onClick={onGetCategory}>
+          <span>전체보기</span>
+        </SwiperSlide>
+        <SwiperSlide onClick={() => onGetCategoryStudy('ALGORITHM')}>
           <span>알고리즘</span>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={() => onGetCategoryStudy('CERTIFICATE')}>
           <span>자격증</span>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={() => onGetCategoryStudy('CLASS_REVIEW')}>
           <span>수업복습</span>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={() => onGetCategoryStudy('PROJECT')}>
           <span>프로젝트</span>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={() => onGetCategoryStudy('CS')}>
           <span>CS</span>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide onClick={() => onGetCategoryStudy('ETC')}>
           <span>기타</span>
         </SwiperSlide>
       </Swiper>

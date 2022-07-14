@@ -1,14 +1,24 @@
-import React from 'react';
-import ResponsiveStudyCategory from '../components/categories/responsive/ResponsiveStudyCategory';
-import MainItemList from '../components/main/MainItemList';
+import React, { useState } from 'react';
 import MainTemplete from '../components/MainTemplete';
+import ResponsiveStudyCategoryContainer from '../containers/categories/responsive/ResponsiveStudyCategoryContainer';
+import MainItemListContainer from '../containers/main/MainItemListContainer';
 
 function MainPage() {
+  const [isResponsiveOpen, setIsResponsiveOpen] = useState(false);
+
+  const onIsResponsiveOpen = () => {
+    setIsResponsiveOpen(!isResponsiveOpen);
+  };
   return (
     <div>
-      <ResponsiveStudyCategory />
+      <ResponsiveStudyCategoryContainer
+        onIsResponsiveOpen={onIsResponsiveOpen}
+      />
       <MainTemplete>
-        <MainItemList />
+        <MainItemListContainer
+          isResponsiveOpen={isResponsiveOpen}
+          onIsResponsiveOpen={onIsResponsiveOpen}
+        />
       </MainTemplete>
     </div>
   );
