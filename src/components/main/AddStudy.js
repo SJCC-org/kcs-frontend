@@ -229,6 +229,7 @@ function AddStudy({
   onChangeCategory,
   onOpenStudy,
   onAddStudy,
+  onIsResponsiveOpen,
 }) {
   const [category, setCategory] = useState('카테고리를 선택해주세요');
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
@@ -240,7 +241,12 @@ function AddStudy({
   return (
     <AddStudyBlock>
       <div className="closeBlock">
-        <AiOutlineClose onClick={onOpenStudy} />
+        <AiOutlineClose
+          onClick={() => {
+            onOpenStudy();
+            onIsResponsiveOpen();
+          }}
+        />
       </div>
       <StudyCategory>
         <span>카테고리</span>

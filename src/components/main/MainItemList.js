@@ -21,7 +21,12 @@ const MainItemListBlock = styled.div`
   }
 `;
 
-function MainItemList({ userRes, listRes }) {
+function MainItemList({
+  userRes,
+  listRes,
+  isResponsiveOpen,
+  onIsResponsiveOpen,
+}) {
   const [isOpenStudy, setIsOpenStudy] = useState(false);
   const navigate = useNavigate();
   const onOpenStudy = () => {
@@ -40,6 +45,9 @@ function MainItemList({ userRes, listRes }) {
       <StudyCategoryContainer onOpenStudy={onOpenStudy} />
       <MainItemListBlock>
         {isOpenStudy && <AddStudyContainer onOpenStudy={onOpenStudy} />}
+        {isResponsiveOpen && (
+          <AddStudyContainer onIsResponsiveOpen={onIsResponsiveOpen} />
+        )}
         {listRes &&
           (listRes.content.length === 0 ? (
             <span>스터디 목록이 없습니다.</span>

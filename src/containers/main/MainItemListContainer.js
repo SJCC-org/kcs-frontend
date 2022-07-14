@@ -4,7 +4,7 @@ import MainItemList from '../../components/main/MainItemList';
 import { StudyListFailure, studyListSuccess } from '../../modules/study';
 import axios from 'axios';
 
-function MainItemListContainer() {
+function MainItemListContainer({ onIsResponsiveOpen, isResponsiveOpen }) {
   const { userRes, listRes } = useSelector(({ user, study }) => ({
     userRes: user.userRes,
     listRes: study.listRes,
@@ -25,7 +25,14 @@ function MainItemListContainer() {
     getStudyList();
   }, [dispatch]);
 
-  return <MainItemList userRes={userRes} listRes={listRes} />;
+  return (
+    <MainItemList
+      userRes={userRes}
+      listRes={listRes}
+      isResponsiveOpen={isResponsiveOpen}
+      onIsResponsiveOpen={onIsResponsiveOpen}
+    />
+  );
 }
 
 export default MainItemListContainer;

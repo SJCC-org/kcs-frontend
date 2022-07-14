@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 import { getCookie } from '../../lib/cookie';
 
-function AddStudyContainer({ onOpenStudy }) {
+function AddStudyContainer({ onOpenStudy, onIsResponsiveOpen }) {
   const { form, addRes } = useSelector(({ study }) => ({
     form: study.study,
     addRes: study.addRes,
@@ -75,6 +75,7 @@ function AddStudyContainer({ onOpenStudy }) {
       onChangeCategory={onChangeCategory}
       onOpenStudy={onOpenStudy}
       onAddStudy={onAddStudy}
+      onIsResponsiveOpen={onIsResponsiveOpen}
     />
   );
 }
