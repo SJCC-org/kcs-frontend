@@ -68,6 +68,7 @@ const initialState = {
     password: '',
     passwordConfirm: '',
     email: '',
+    code: '',
   },
 
   loginRes: null,
