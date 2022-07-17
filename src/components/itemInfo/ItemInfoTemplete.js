@@ -247,7 +247,9 @@ function ItemInfoTemplete({
             <button onClick={() => setIsOpenParticipant(!isOpenParticipant)}>
               참여자 보기
             </button>
-            <button onClick={onOpenParticipant}>참여하기 </button>
+            {studyRes.organizerUsername !== userRes.username && (
+              <button onClick={onOpenParticipant}>참여하기 </button>
+            )}
           </div>
           {isOpenParticipant && (
             <div className="infoParticipantData">
