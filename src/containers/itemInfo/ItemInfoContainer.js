@@ -9,8 +9,12 @@ import {
   deleteStudySuccess,
   enterStudyFailure,
   enterStudySuccess,
+  recruitEndStudyFailure,
+  recruitEndStudySuccess,
   studyFailure,
   studySuccess,
+  withDrawalStudyFailure,
+  withDrawalStudySuccess,
 } from '../../modules/study';
 import {
   addCommentFailure,
@@ -22,18 +26,96 @@ import {
 } from '../../modules/comment';
 
 function ItemInfoContainer() {
-  const { userRes, studyRes, commentRes, comment, addRes } = useSelector(
-    ({ user, study, comment }) => ({
-      studyRes: study.studyRes,
-
-      userRes: user.userRes,
-      commentRes: comment.commentRes,
-      comment: comment.comment,
-      addRes: comment.addRes,
-    }),
-  );
+  const {
+    userRes,
+    studyRes,
+    commentRes,
+    comment,
+    addRes,
+    withDrawalRes,
+    recruitRes,
+    deleteRes,
+    enterRes,
+  } = useSelector(({ user, study, comment }) => ({
+    studyRes: study.studyRes,
+    withDrawalRes: study.withDrawalRes,
+    recruitRes: study.recruitRes,
+    deleteRes: study.deleteRes,
+    enterRes: study.enterRes,
+    userRes: user.userRes,
+    commentRes: comment.commentRes,
+    comment: comment.comment,
+    addRes: comment.addRes,
+  }));
   const dispatch = useDispatch();
   const { studyId } = useParams();
+
+  async function withDrawalStudy() {
+    const accessToken = getCookie('myAToken');
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+    try {
+      const response = await axios.patch(
+        `https://api.kcs.zooneon.dev/v1/study/${studyId}/withdraw`,
+      );
+      dispatch(withDrawalStudySuccess(response.data.data));
+    } catch (e) {
+      dispatch(withDrawalStudyFailure(e));
+    }
+  }
+
+  const onWithDrawalStudy = () => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('스터디에서 탈퇴하시겠습니까?') === true) {
+      withDrawalStudy();
+    } else {
+      return;
+    }
+  };
+
+  async function recruitStudy() {
+    const accessToken = getCookie('myAToken');
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+    try {
+      const response = await axios.patch(
+        `https://api.kcs.zooneon.dev/v1/study/${studyId}/recruit?recruitCompleted=true`,
+      );
+      dispatch(recruitEndStudySuccess(response.data.data));
+    } catch (e) {
+      dispatch(recruitEndStudyFailure(e));
+    }
+  }
+
+  async function recruitOpenStudy() {
+    const accessToken = getCookie('myAToken');
+    axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+    try {
+      const response = await axios.patch(
+        `https://api.kcs.zooneon.dev/v1/study/${studyId}/recruit?recruitCompleted=false`,
+      );
+      dispatch(recruitEndStudySuccess(response.data.data));
+    } catch (e) {
+      dispatch(recruitEndStudyFailure(e));
+    }
+  }
+
+  const onRecruitStudy = () => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('스터디를 마감하시겠습니까?') === true) {
+      recruitStudy();
+    } else {
+      return;
+    }
+  };
+
+  const onRecruitOpenStudy = () => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm('스터디를 다시 오픈하시겠습니까?') === true) {
+      recruitOpenStudy();
+    } else {
+      return;
+    }
+  };
 
   async function deleteStudy() {
     const accessToken = getCookie('myAToken');
@@ -42,7 +124,7 @@ function ItemInfoContainer() {
       const response = await axios.delete(
         `https://api.kcs.zooneon.dev/v1/study/${studyId}`,
       );
-      dispatch(deleteStudySuccess(response.data.data));
+      dispatch(deleteStudySuccess(response.data));
     } catch (e) {
       dispatch(deleteStudyFailure(e));
     }
@@ -52,7 +134,6 @@ function ItemInfoContainer() {
     // eslint-disable-next-line no-restricted-globals
     if (confirm('스터디를 삭제하시겠습니까?') === true) {
       deleteStudy();
-      window.location.replace('/');
     } else {
       return;
     }
@@ -75,7 +156,6 @@ function ItemInfoContainer() {
     // eslint-disable-next-line no-restricted-globals
     if (confirm('스터디에 참여하시겠습니까?') === true) {
       enterStudy();
-      window.location.replace(`/study/info/${studyId}`);
     } else {
       return;
     }
@@ -153,6 +233,30 @@ function ItemInfoContainer() {
     }
   }, [addRes, studyId]);
 
+  useEffect(() => {
+    if (withDrawalRes) {
+      window.location.replace(`/study/info/${studyId}`);
+    }
+  }, [withDrawalRes, studyId]);
+
+  useEffect(() => {
+    if (recruitRes) {
+      window.location.replace(`/study/info/${studyId}`);
+    }
+  }, [recruitRes, studyId]);
+
+  useEffect(() => {
+    if (deleteRes) {
+      window.location.replace('/');
+    }
+  }, [deleteRes]);
+
+  useEffect(() => {
+    if (enterRes) {
+      window.location.replace(`/study/info/${studyId}`);
+    }
+  }, [enterRes, studyId]);
+
   return (
     <ItemInfoTemplete
       userRes={userRes}
@@ -163,6 +267,9 @@ function ItemInfoContainer() {
       comment={comment}
       onDeleteStudy={onDeleteStudy}
       onEnterStudy={onEnterStudy}
+      onRecruitStudy={onRecruitStudy}
+      onRecruitOpenStudy={onRecruitOpenStudy}
+      onWithDrawalStudy={onWithDrawalStudy}
     />
   );
 }

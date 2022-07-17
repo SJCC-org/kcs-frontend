@@ -59,6 +59,11 @@ const ItemInfoWrapper = styled.div`
       cursor: pointer;
       color: ${palette.brown[0]};
     }
+    #endRecruit {
+      background-color: ${palette.gray[0]};
+      border: none;
+      color: #333;
+    }
   }
 
   .infoTitle {
@@ -182,6 +187,9 @@ function ItemInfoTemplete({
   onChange,
   onDeleteStudy,
   onEnterStudy,
+  onRecruitStudy,
+  onRecruitOpenStudy,
+  onWithDrawalStudy,
 }) {
   const [isOpenParticipant, setIsOpenParticipant] = useState(false);
   const [isOpenModify, setIsOpenModify] = useState(false);
@@ -196,7 +204,9 @@ function ItemInfoTemplete({
         <ItemInfoWrapper>
           <div className="infoHeader">
             {studyRes.recruitCompleted ? (
-              <div className="studyStatus">모집완료</div>
+              <div className="studyStatus" id="endRecruit">
+                모집완료
+              </div>
             ) : (
               <div className="studyStatus">모집중</div>
             )}
@@ -207,6 +217,11 @@ function ItemInfoTemplete({
               <div className="studyModify">
                 <button onClick={onOpenModify}>수정</button>
                 <button onClick={onDeleteStudy}>삭제</button>
+              </div>
+            )}
+            {studyRes.participantNames.includes(userRes.name) && (
+              <div className="studyModify">
+                <button onClick={onWithDrawalStudy}>탈퇴</button>
               </div>
             )}
           </div>
@@ -243,9 +258,14 @@ function ItemInfoTemplete({
               참여자 보기
             </button>
             {studyRes.organizerUsername !== userRes.username ? (
-              <button onClick={onEnterStudy}>참여하기</button>
+              studyRes.recruitCompleted === false &&
+              !studyRes.participantNames.includes(userRes.name) && (
+                <button onClick={onEnterStudy}>참여하기</button>
+              )
+            ) : studyRes.recruitCompleted === false ? (
+              <button onClick={onRecruitStudy}>모집마감</button>
             ) : (
-              <button onClick={onEnterStudy}>모집마감</button>
+              <button onClick={onRecruitOpenStudy}>스터디 열기</button>
             )}
           </div>
           {isOpenParticipant && (
