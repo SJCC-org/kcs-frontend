@@ -5,7 +5,7 @@ import {
   membershipWithdrawalFailure,
   membershipWithdrawalSuccess,
 } from '../../modules/auth';
-import { getCookie } from '../../lib/cookie';
+import { getCookie, removeCookie } from '../../lib/cookie';
 import axios from 'axios';
 function EditCategoryContainer() {
   const { withDrawalRes } = useSelector(({ auth }) => ({
@@ -20,6 +20,8 @@ function EditCategoryContainer() {
       const response = await axios.delete(
         'https://api.kcs.zooneon.dev/v1/members',
       );
+      removeCookie('myAToken');
+      removeCookie('myRToken');
       dispatch(membershipWithdrawalSuccess(response.data));
     } catch (e) {
       dispatch(membershipWithdrawalFailure(e));
