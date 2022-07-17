@@ -10,6 +10,8 @@ const RECRUIT_END_STUDY_SUCCESS = 'study/RECRUIT_END_STUDY_SUCCESS';
 const RECRUIT_END_STUDY_FAILURE = 'study/RECRUIT_END_STUDY_FAILURE';
 const DELETE_STUDY_SUCCESS = 'study/DELETE_STUDY_SUCCESS';
 const DELETE_STUDY_FAILURE = 'study/DELETE_STUDY_FAILURE';
+const WITHDRAWAL_STUDY_SUCCESS = 'study/WITHDRAWAL_STUDY_SUCCESS';
+const WITHDRAWAL_STUDY_FAILURE = 'study/WITHDRAWAL_STUDY_FAILURE';
 const ENTER_STUDY_SUCCESS = 'study/ENTER_STUDY_SUCCESS';
 const ENTER_STUDY_FAILURE = 'study/ENTER_STUDY_FAILURE';
 const STUDY_LIST_SUCCESS = 'study/STUDY_LIST_SUCCESS';
@@ -51,6 +53,14 @@ export const deleteStudySuccess = createAction(
 export const deleteStudyFailure = createAction(
   DELETE_STUDY_FAILURE,
   (deleteError) => deleteError,
+);
+export const withDrawalStudySuccess = createAction(
+  WITHDRAWAL_STUDY_SUCCESS,
+  (withDrawalRes) => withDrawalRes,
+);
+export const withDrawalStudyFailure = createAction(
+  WITHDRAWAL_STUDY_FAILURE,
+  (withDrawalError) => withDrawalError,
 );
 export const enterStudySuccess = createAction(
   ENTER_STUDY_SUCCESS,
@@ -98,6 +108,8 @@ const initialState = {
   recruitError: null,
   deleteRes: null,
   deleteError: null,
+  withDrawalRes: null,
+  withDrawalError: null,
   enterRes: null,
   enterError: null,
   listRes: null,
@@ -151,6 +163,15 @@ const study = handleActions(
     [DELETE_STUDY_FAILURE]: (state, { payload: deleteError }) => ({
       ...state,
       deleteError,
+    }),
+    [WITHDRAWAL_STUDY_SUCCESS]: (state, { payload: withDrawalRes }) => ({
+      ...state,
+      withDrawalRes,
+      withDrawalError: null,
+    }),
+    [WITHDRAWAL_STUDY_FAILURE]: (state, { payload: withDrawalError }) => ({
+      ...state,
+      withDrawalError,
     }),
     [ENTER_STUDY_SUCCESS]: (state, { payload: enterRes }) => ({
       ...state,
