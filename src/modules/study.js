@@ -6,6 +6,14 @@ const ADD_STUDY_SUCCESS = 'study/ADD_STUDY_SUCCESS';
 const ADD_STUDY_FAILURE = 'study/ADD_STUDY_FAILURE';
 const STUDY_SUCCESS = 'study/STUDY_SUCCESS';
 const STUDY_FAILURE = 'study/STUDY_FAILURE';
+const RECRUIT_END_STUDY_SUCCESS = 'study/RECRUIT_END_STUDY_SUCCESS';
+const RECRUIT_END_STUDY_FAILURE = 'study/RECRUIT_END_STUDY_FAILURE';
+const DELETE_STUDY_SUCCESS = 'study/DELETE_STUDY_SUCCESS';
+const DELETE_STUDY_FAILURE = 'study/DELETE_STUDY_FAILURE';
+const WITHDRAWAL_STUDY_SUCCESS = 'study/WITHDRAWAL_STUDY_SUCCESS';
+const WITHDRAWAL_STUDY_FAILURE = 'study/WITHDRAWAL_STUDY_FAILURE';
+const ENTER_STUDY_SUCCESS = 'study/ENTER_STUDY_SUCCESS';
+const ENTER_STUDY_FAILURE = 'study/ENTER_STUDY_FAILURE';
 const STUDY_LIST_SUCCESS = 'study/STUDY_LIST_SUCCESS';
 const STUDY_LIST_FAILURE = 'study/STUDY_LIST_FAILURE';
 const STUDY_MODIFY_SUCCESS = 'study/STUDY_MODIFY_SUCCESS';
@@ -29,6 +37,38 @@ export const studySuccess = createAction(STUDY_SUCCESS, (studyRes) => studyRes);
 export const studyFailure = createAction(
   STUDY_FAILURE,
   (studyError) => studyError,
+);
+export const recruitEndStudySuccess = createAction(
+  RECRUIT_END_STUDY_SUCCESS,
+  (recruitRes) => recruitRes,
+);
+export const recruitEndStudyFailure = createAction(
+  RECRUIT_END_STUDY_FAILURE,
+  (recruitError) => recruitError,
+);
+export const deleteStudySuccess = createAction(
+  DELETE_STUDY_SUCCESS,
+  (deleteRes) => deleteRes,
+);
+export const deleteStudyFailure = createAction(
+  DELETE_STUDY_FAILURE,
+  (deleteError) => deleteError,
+);
+export const withDrawalStudySuccess = createAction(
+  WITHDRAWAL_STUDY_SUCCESS,
+  (withDrawalRes) => withDrawalRes,
+);
+export const withDrawalStudyFailure = createAction(
+  WITHDRAWAL_STUDY_FAILURE,
+  (withDrawalError) => withDrawalError,
+);
+export const enterStudySuccess = createAction(
+  ENTER_STUDY_SUCCESS,
+  (enterRes) => enterRes,
+);
+export const enterStudyFailure = createAction(
+  ENTER_STUDY_FAILURE,
+  (enterError) => enterError,
 );
 export const studyListSuccess = createAction(
   STUDY_LIST_SUCCESS,
@@ -64,6 +104,14 @@ const initialState = {
   addError: null,
   studyRes: null,
   studyError: null,
+  recruitRes: null,
+  recruitError: null,
+  deleteRes: null,
+  deleteError: null,
+  withDrawalRes: null,
+  withDrawalError: null,
+  enterRes: null,
+  enterError: null,
   listRes: null,
   listError: null,
   modifyRes: null,
@@ -97,6 +145,42 @@ const study = handleActions(
     [STUDY_FAILURE]: (state, { payload: studyError }) => ({
       ...state,
       studyError,
+    }),
+    [RECRUIT_END_STUDY_SUCCESS]: (state, { payload: recruitRes }) => ({
+      ...state,
+      recruitRes,
+      recruitError: null,
+    }),
+    [RECRUIT_END_STUDY_FAILURE]: (state, { payload: recruitError }) => ({
+      ...state,
+      recruitError,
+    }),
+    [DELETE_STUDY_SUCCESS]: (state, { payload: deleteRes }) => ({
+      ...state,
+      deleteRes,
+      deleteError: null,
+    }),
+    [DELETE_STUDY_FAILURE]: (state, { payload: deleteError }) => ({
+      ...state,
+      deleteError,
+    }),
+    [WITHDRAWAL_STUDY_SUCCESS]: (state, { payload: withDrawalRes }) => ({
+      ...state,
+      withDrawalRes,
+      withDrawalError: null,
+    }),
+    [WITHDRAWAL_STUDY_FAILURE]: (state, { payload: withDrawalError }) => ({
+      ...state,
+      withDrawalError,
+    }),
+    [ENTER_STUDY_SUCCESS]: (state, { payload: enterRes }) => ({
+      ...state,
+      enterRes,
+      enterError: null,
+    }),
+    [ENTER_STUDY_FAILURE]: (state, { payload: enterError }) => ({
+      ...state,
+      enterError,
     }),
     [STUDY_LIST_SUCCESS]: (state, { payload: listRes }) => ({
       ...state,

@@ -12,10 +12,22 @@ const StudyCategoryBlock = styled.div`
 
   h1 {
     margin-top: 0;
+    margin-bottom: 2rem;
   }
 
   @media (max-width: 768px) {
     display: none;
+  }
+
+  button {
+    width: 100%;
+    border: none;
+    background-color: ${palette.yellow[0]};
+    padding: 0.5rem 0.7rem;
+    border-radius: 7px;
+    color: ${palette.brown[0]};
+    font-weight: bold;
+    cursor: pointer;
   }
 `;
 
@@ -28,9 +40,7 @@ function StudyCategory({ onOpenStudy, onGetCategoryStudy, onGetCategory }) {
   return (
     <StudyCategoryBlock>
       <h1>카테고리</h1>
-      <CategoryBlock>
-        <span onClick={onOpenStudy}>개설하기</span>
-      </CategoryBlock>
+      <button onClick={onOpenStudy}>개설하기</button>
       <CategoryBlock onClick={onGetCategory}>
         <span>전체보기</span>
       </CategoryBlock>

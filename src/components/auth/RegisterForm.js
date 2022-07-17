@@ -87,8 +87,16 @@ function RegisterForm({
   onSubmit,
   onCheckPasswordConfirm,
   onDuplicateUsername,
+  onAuthEmail,
+  onCheckEmail,
+  emailDuplicationRes,
 }) {
   const [isOpenEmail, setIsOpenEmail] = useState(false);
+
+  const onOpenEmail = () => {
+    setIsOpenEmail(!isOpenEmail);
+    onAuthEmail();
+  };
   return (
     <RegisterFormBlock>
       <h2>회원가입</h2>
@@ -145,7 +153,9 @@ function RegisterForm({
             placeholder="비밀번호를 한번 더 입력해주세요"
           />
         </div>
-        {error && <ErrorMessageBlock>에러 입니다.</ErrorMessageBlock>}
+        {error && (
+          <ErrorMessageBlock>비밀번호가 일치하지 않습니다.</ErrorMessageBlock>
+        )}
         <div className="inputBlock">
           <span>이메일</span>
           <div className="duplicateBlock">
@@ -156,7 +166,7 @@ function RegisterForm({
               onChange={onChange}
               placeholder="이메일을 입력해주세요"
             />
-            <button type="button" onClick={() => setIsOpenEmail(!isOpenEmail)}>
+            <button type="button" onClick={onOpenEmail}>
               인증하기
             </button>
           </div>
@@ -164,12 +174,24 @@ function RegisterForm({
         {isOpenEmail && (
           <div className="inputBlock">
             <div className="duplicateBlock">
-              <StyledInput type="text" placeholder="인증코드를 입력해주세요" />
-              <button type="button">확인</button>
+              <StyledInput
+                type="text"
+                placeholder="인증코드를 입력해주세요"
+                name="code"
+                value={form.code}
+                onChange={onChange}
+              />
+              <button type="button" onClick={onCheckEmail}>
+                확인
+              </button>
             </div>
           </div>
         )}
-        <ErrorMessageBlock>에러입니다.</ErrorMessageBlock>
+        {emailDuplicationRes === false ? (
+          <ErrorMessageBlock>인증코드가 일치하지 않습니다.</ErrorMessageBlock>
+        ) : (
+          <ErrorMessageBlock>인증코드가 일치합니다.</ErrorMessageBlock>
+        )}
         <button type="submit" style={{ margin: '1rem  0' }}>
           회원가입
         </button>

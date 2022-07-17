@@ -57,7 +57,7 @@ function HelpTemplete({ onCloseHelp }) {
           <AiOutlineClose onClick={onCloseHelp} />
         </div>
         <p>
-          💡 장애나 버그 발생시 zooneonbot@gmail.com으로 연락주시기 바랍니다.
+          💡 장애나 버그 발생 시 zooneonbot@gmail.com으로 연락주시기 바랍니다.
         </p>
       </HelpModal>
     </HelpTempleteBlock>

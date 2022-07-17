@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import RegisterForm from '../../components/auth/RegisterForm';
 import {
   changeField,
+  duplicationEmailFailure,
+  duplicationEmailSuccess,
   duplicationUsernameFailure,
   duplicationUsernameSuccess,
   initailizeForm,
@@ -13,15 +15,44 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function RegisterFormContainer() {
-  const { form, userDuplicationRes, registerRes } = useSelector(({ auth }) => ({
-    form: auth.register,
-    registerRes: auth.registerRes,
-    userDuplicationRes: auth.userDuplicationRes,
-  }));
+  const { form, userDuplicationRes, registerRes, emailDuplicationRes } =
+    useSelector(({ auth }) => ({
+      form: auth.register,
+      registerRes: auth.registerRes,
+      userDuplicationRes: auth.userDuplicationRes,
+      emailDuplicationRes: auth.emailDuplicationRes,
+    }));
   const [error, setError] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const onAuthEmail = () => {
+    async function authEmail() {
+      try {
+        await axios.post('https://api.kcs.zooneon.dev/v1/email/auth', {
+          email: form.email,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    authEmail();
+  };
+
+  const onCheckEmail = () => {
+    async function checkEmail() {
+      try {
+        const response = await axios.post(
+          'https://api.kcs.zooneon.dev/v1/email/verify',
+          { email: form.email, code: form.code },
+        );
+        dispatch(duplicationEmailSuccess(response.data.data));
+      } catch (e) {
+        dispatch(duplicationEmailFailure(e));
+      }
+    }
+    checkEmail();
+  };
   const onCheckPasswordConfirm = () => {
     const { password, passwordConfirm } = form;
 
@@ -72,6 +103,10 @@ function RegisterFormContainer() {
       alert('아이디 중복확인을 해주세요');
       return;
     }
+    if (emailDuplicationRes === null) {
+      alert('이메일 인증코드를 확인해주세요');
+      return;
+    }
 
     getRegister();
   };
@@ -111,6 +146,9 @@ function RegisterFormContainer() {
       onChange={onChange}
       onSubmit={onSubmit}
       onDuplicateUsername={onDuplicateUsername}
+      onAuthEmail={onAuthEmail}
+      onCheckEmail={onCheckEmail}
+      emailDuplicationRes={emailDuplicationRes}
     />
   );
 }

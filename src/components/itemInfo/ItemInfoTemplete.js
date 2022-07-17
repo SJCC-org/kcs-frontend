@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import CommentContainer from '../../containers/comment/CommentContainer';
 import ModifyStudyContainer from '../../containers/itemInfo/ModifyStudyContainer';
 import palette from '../../lib/styles/palette';
-import Comment from './comment/Comment';
 
 const ItemInfoTempleteBlock = styled.div`
   width: 100%;
@@ -58,6 +58,11 @@ const ItemInfoWrapper = styled.div`
       border-radius: 7px;
       cursor: pointer;
       color: ${palette.brown[0]};
+    }
+    #endRecruit {
+      background-color: ${palette.gray[0]};
+      border: none;
+      color: #333;
     }
   }
 
@@ -173,16 +178,21 @@ const CommentBlock = styled.div`
     width: 100%;
   }
 `;
-function ItemInfoTemplete({ userRes, studyRes }) {
+function ItemInfoTemplete({
+  userRes,
+  studyRes,
+  commentRes,
+  onAddComment,
+  comment,
+  onChange,
+  onDeleteStudy,
+  onEnterStudy,
+  onRecruitStudy,
+  onRecruitOpenStudy,
+  onWithDrawalStudy,
+}) {
   const [isOpenParticipant, setIsOpenParticipant] = useState(false);
   const [isOpenModify, setIsOpenModify] = useState(false);
-  const onOpenParticipant = () => {
-    // eslint-disable-next-line no-restricted-globals
-    if (confirm('스터디에 참여하시겠습니까?') === true) {
-    } else {
-      return;
-    }
-  };
 
   const onOpenModify = () => {
     setIsOpenModify(!isOpenModify);
@@ -194,7 +204,9 @@ function ItemInfoTemplete({ userRes, studyRes }) {
         <ItemInfoWrapper>
           <div className="infoHeader">
             {studyRes.recruitCompleted ? (
-              <div className="studyStatus">모집완료</div>
+              <div className="studyStatus" id="endRecruit">
+                모집완료
+              </div>
             ) : (
               <div className="studyStatus">모집중</div>
             )}
@@ -204,7 +216,12 @@ function ItemInfoTemplete({ userRes, studyRes }) {
             {userRes.username === studyRes.organizerUsername && (
               <div className="studyModify">
                 <button onClick={onOpenModify}>수정</button>
-                <button>삭제</button>
+                <button onClick={onDeleteStudy}>삭제</button>
+              </div>
+            )}
+            {studyRes.participantNames.includes(userRes.name) && (
+              <div className="studyModify">
+                <button onClick={onWithDrawalStudy}>탈퇴</button>
               </div>
             )}
           </div>
@@ -240,35 +257,50 @@ function ItemInfoTemplete({ userRes, studyRes }) {
             <button onClick={() => setIsOpenParticipant(!isOpenParticipant)}>
               참여자 보기
             </button>
-            <button onClick={onOpenParticipant}>참여하기 </button>
+            {studyRes.organizerUsername !== userRes.username ? (
+              studyRes.recruitCompleted === false &&
+              !studyRes.participantNames.includes(userRes.name) && (
+                <button onClick={onEnterStudy}>참여하기</button>
+              )
+            ) : studyRes.recruitCompleted === false ? (
+              <button onClick={onRecruitStudy}>모집마감</button>
+            ) : (
+              <button onClick={onRecruitOpenStudy}>스터디 열기</button>
+            )}
           </div>
           {isOpenParticipant && (
             <div className="infoParticipantData">
               {studyRes.participantNames.length === 0 ? (
                 <span>참여자 없음</span>
               ) : (
-                studyRes.participantNames.map((name) => <span>{name}</span>)
+                studyRes.participantNames.map((name, index) => (
+                  <span key={index}>{name}</span>
+                ))
               )}
             </div>
           )}
         </ItemInfoWrapper>
         {isOpenModify && <ModifyStudyContainer onOpenModify={onOpenModify} />}
         <AddComment>
-          <StyledTextArea placeholder="댓글을 작성하세요" />
+          <StyledTextArea
+            placeholder="댓글을 작성하세요"
+            name="comment"
+            value={comment}
+            onChange={onChange}
+          />
         </AddComment>
         <div className="commentButton">
-          <button>댓글 작성</button>
+          <button onClick={onAddComment}>댓글 작성</button>
         </div>
         <CommentBlock>
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
+          {commentRes &&
+            commentRes.map((comment) => (
+              <CommentContainer
+                key={comment.id}
+                comment={comment}
+                commentId={comment.id}
+              />
+            ))}
         </CommentBlock>
       </ItemInfoTempleteBlock>
     )
