@@ -50,6 +50,7 @@ const StudyCategory = styled.div`
   padding: 1rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   @media (max-width: 425px) {
     flex-direction: column;
@@ -80,7 +81,6 @@ const StudyCategory = styled.div`
       svg {
         width: 25px;
         height: 25px;
-        cursor: pointer;
       }
     }
     .subCategory {
@@ -218,6 +218,7 @@ const StyledTextArea = styled.textarea`
   border-radius: 7px;
   border: 1px solid ${palette.gray[1]};
   resize: none;
+  height: 200px;
 
   &:focus {
     border: 2px solid ${palette.yellow[0]};
@@ -245,27 +246,17 @@ function AddStudy({
   return (
     <AddStudyBlock>
       <div className="closeBlock">
-        <AiOutlineClose
-          onClick={() => {
-            onOpenStudy();
-            onIsResponsiveOpen();
-          }}
-        />
+        <AiOutlineClose onClick={onOpenStudy} />
       </div>
       <StudyCategory>
         <span>카테고리</span>
         <div className="wholeCategory">
-          <div className="categoryBlock">
+          <div
+            className="categoryBlock"
+            onClick={() => setIsOpenDropDown(!isOpenDropDown)}
+          >
             <span>{category}</span>
-            {isOpenDropDown === true ? (
-              <MdArrowDropUp
-                onClick={() => setIsOpenDropDown(!isOpenDropDown)}
-              />
-            ) : (
-              <MdArrowDropDown
-                onClick={() => setIsOpenDropDown(!isOpenDropDown)}
-              />
-            )}
+            {isOpenDropDown === true ? <MdArrowDropUp /> : <MdArrowDropDown />}
           </div>
           {isOpenDropDown && (
             <div className="subCategory">
@@ -323,6 +314,22 @@ function AddStudy({
           )}
         </div>
       </StudyCategory>
+      <StudyInfo>
+        <StyledInput
+          id="title"
+          type="text"
+          placeholder="제목을 입력해주세요"
+          name="title"
+          value={title}
+          onChange={onChange}
+        />
+        <StyledTextArea
+          name="description"
+          value={description}
+          onChange={onChange}
+          placeholder="스터디를 설명해주세요"
+        />
+      </StudyInfo>
       <StudySchedule>
         <span>스터디 일정</span>
         <StyledInput
@@ -352,22 +359,6 @@ function AddStudy({
           onChange={onChange}
         />
       </StudyMaxNum>
-      <StudyInfo>
-        <StyledInput
-          id="title"
-          type="text"
-          placeholder="제목을 입력해주세요"
-          name="title"
-          value={title}
-          onChange={onChange}
-        />
-        <StyledTextArea
-          name="description"
-          value={description}
-          onChange={onChange}
-          placeholder="스터디를 설명해주세요"
-        />
-      </StudyInfo>
       <div className="buttonWrapper">
         <button onClick={onAddStudy}>개설하기</button>
       </div>
