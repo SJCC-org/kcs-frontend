@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import CommentContainer from '../../containers/comment/CommentContainer';
 import ModifyStudyContainer from '../../containers/itemInfo/ModifyStudyContainer';
 import palette from '../../lib/styles/palette';
-import Comment from './comment/Comment';
 
 const ItemInfoTempleteBlock = styled.div`
   width: 100%;
@@ -173,7 +173,14 @@ const CommentBlock = styled.div`
     width: 100%;
   }
 `;
-function ItemInfoTemplete({ userRes, studyRes }) {
+function ItemInfoTemplete({
+  userRes,
+  studyRes,
+  commentRes,
+  onAddComment,
+  comment,
+  onChange,
+}) {
   const [isOpenParticipant, setIsOpenParticipant] = useState(false);
   const [isOpenModify, setIsOpenModify] = useState(false);
   const onOpenParticipant = () => {
@@ -254,21 +261,25 @@ function ItemInfoTemplete({ userRes, studyRes }) {
         </ItemInfoWrapper>
         {isOpenModify && <ModifyStudyContainer onOpenModify={onOpenModify} />}
         <AddComment>
-          <StyledTextArea placeholder="댓글을 작성하세요" />
+          <StyledTextArea
+            placeholder="댓글을 작성하세요"
+            name="comment"
+            value={comment}
+            onChange={onChange}
+          />
         </AddComment>
         <div className="commentButton">
-          <button>댓글 작성</button>
+          <button onClick={onAddComment}>댓글 작성</button>
         </div>
         <CommentBlock>
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
-          <Comment />
+          {commentRes &&
+            commentRes.map((comment) => (
+              <CommentContainer
+                key={comment.id}
+                comment={comment}
+                commentId={comment.id}
+              />
+            ))}
         </CommentBlock>
       </ItemInfoTempleteBlock>
     )
