@@ -6,6 +6,8 @@ const COMMENT_SUCCESS = 'comment/COMMENT_SUCCESS';
 const COMMENT_FAILURE = 'comment/COMMENT_FAILURE';
 const ADD_COMMENT_SUCCESS = 'comment/ADD_COMMENT_SUCCESS';
 const ADD_COMMENT_FAILURE = 'comment/ADD_COMMENT_FAILURE';
+const ADD_REPLIES_COMMENT_SUCCESS = 'comment/ADD_REPLIES_COMMENT_SUCCESS';
+const ADD_REPLIES_COMMENT_FAILURE = 'comment/ADD_REPLIES_COMMENT_FAILURE';
 const REPLIES_COMMENT_SUCCESS = 'comment/REPLIES_COMMENT_SUCCESS';
 const REPLIES_COMMENT_FAILURE = 'comment/REPLIES_COMMENT_FAILURE';
 
@@ -30,6 +32,14 @@ export const addCommentFailure = createAction(
   ADD_COMMENT_FAILURE,
   (addError) => addError,
 );
+export const addRepliesCommentSuccess = createAction(
+  ADD_REPLIES_COMMENT_SUCCESS,
+  (addRepliesRes) => addRepliesRes,
+);
+export const addRepiesCommentFailure = createAction(
+  ADD_REPLIES_COMMENT_FAILURE,
+  (addRepliesError) => addRepliesError,
+);
 export const repliesCommentSuccess = createAction(
   REPLIES_COMMENT_SUCCESS,
   (repliesRes) => repliesRes,
@@ -41,10 +51,13 @@ export const repliesCommentFailure = createAction(
 
 const initialState = {
   comment: '',
+  replies: '',
   commentRes: null,
   commentError: null,
   addRes: null,
   addError: null,
+  addRepliesRes: null,
+  addRepliesError: null,
   repliesRes: null,
   repliesError: null,
 };
@@ -76,6 +89,15 @@ const comment = handleActions(
     [ADD_COMMENT_FAILURE]: (state, { payload: addError }) => ({
       ...state,
       addError,
+    }),
+    [ADD_REPLIES_COMMENT_SUCCESS]: (state, { payload: addRepliesRes }) => ({
+      ...state,
+      addRepliesRes,
+      addRepliesError: null,
+    }),
+    [ADD_REPLIES_COMMENT_FAILURE]: (state, { payload: addRepliesError }) => ({
+      ...state,
+      addRepliesError,
     }),
     [REPLIES_COMMENT_SUCCESS]: (state, { payload: repliesRes }) => ({
       ...state,
