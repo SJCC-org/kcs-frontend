@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import ModifyCommentContainer from '../../../containers/comment/ModifyCommentContainer';
 import palette from '../../../lib/styles/palette';
 import CommentAdd from './CommentAdd';
 
@@ -23,6 +24,21 @@ const CommentBlock = styled.div`
       font-size: 18px;
       font-weight: bold;
       color: ${palette.brown[0]};
+    }
+  }
+
+  .commentModify {
+    width: 100%;
+    text-align: right;
+
+    button {
+      margin-left: 0.5rem;
+      border: 1px solid ${palette.yellow[0]};
+      background-color: white;
+      border-radius: 7px;
+      padding: 0.3rem 0.5rem;
+      color: ${palette.brown[0]};
+      cursor: pointer;
     }
   }
 `;
@@ -67,33 +83,66 @@ const StyledTextArea = styled.textarea`
     border: 1px solid ${palette.yellow[0]};
   }
 `;
-function Comment({ comment, replies, onChange, onAddReplies }) {
+function Comment({
+  userRes,
+  comment,
+  replies,
+  onChange,
+  onAddReplies,
+  onDeleteReplies,
+}) {
+  const [isModify, setIsModify] = useState(false);
+  const [commentId, setCommentId] = useState(null);
+  const onIsModify = (commentIdx) => {
+    setIsModify(!isModify);
+    setCommentId(commentIdx);
+
+    console.log(commentId);
+  };
   return (
-    <CommentBlock>
-      <div className="whoComment">
-        <span style={{ fontWeight: 'bold', fontSize: '20px' }}>
-          {comment.name}
-        </span>
-        <span style={{ marginLeft: '0.5rem', fontSize: '14px' }}>
-          {comment.createdDate}
-        </span>
-      </div>
-      <div className="commentContent">{comment.content}</div>
-      {comment.replies.map((re) => (
-        <CommentAdd key={re.id} re={re} />
-      ))}
-      <AddComment>
-        <StyledTextArea
-          placeholder="댓글을 작성하세요"
-          name="replies"
-          value={replies}
-          onChange={onChange}
-        />
-        <div className="commentExtraButton">
-          <button onClick={onAddReplies}>댓글 작성</button>
+    <>
+      {isModify && (
+        <ModifyCommentContainer onIsModify={onIsModify} commentId={commentId} />
+      )}
+      <CommentBlock>
+        <div className="whoComment">
+          <span style={{ fontWeight: 'bold', fontSize: '20px' }}>
+            {comment.name}
+          </span>
+          <span style={{ marginLeft: '0.5rem', fontSize: '14px' }}>
+            {comment.createdDate}
+          </span>
         </div>
-      </AddComment>
-    </CommentBlock>
+        <div className="commentContent">{comment.content}</div>
+        {userRes.id === comment.memberId && (
+          <div className="commentModify">
+            <button onClick={() => onIsModify(comment.id)}>수정</button>
+            <button onClick={() => onDeleteReplies(comment.id)}>삭제</button>
+          </div>
+        )}
+        {comment.replies.map((re) => (
+          <CommentAdd
+            key={re.id}
+            userRes={userRes}
+            re={re}
+            onDeleteReplies={onDeleteReplies}
+            isModify={isModify}
+            onIsModify={onIsModify}
+          />
+        ))}
+        <AddComment>
+          <StyledTextArea
+            placeholder="댓글을 작성하세요"
+            name="replies"
+            value={replies}
+            onChange={onChange}
+          />
+          <div className="commentExtraButton">
+            <button onClick={() => onAddReplies(comment.id)}>댓글 작성</button>
+          </div>
+        </AddComment>
+      </CommentBlock>
+    </>
   );
 }
 

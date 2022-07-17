@@ -26,20 +26,25 @@ const CategoryBlock = styled.div`
 `;
 
 function EditCategory({ onWithDrawal }) {
+  const onAlert = () => {
+    alert('준비중 입니다..!');
+  };
   return (
     <EditCategoryBlock>
       <Link to="/mypage">
         <h1>마이페이지</h1>
       </Link>
-      <CategoryBlock>
-        <Link to="/mypage/edit/user">
+      <CategoryBlock onClick={onAlert}>
+        {/* <Link to="/mypage/edit/user">
           <span>회원정보 수정</span>
-        </Link>
+        </Link> */}
+        <span>회원정보 수정</span>
       </CategoryBlock>
-      <CategoryBlock>
-        <Link to="/mypage/edit/password">
+      <CategoryBlock onClick={onAlert}>
+        {/* <Link to="/mypage/edit/password">
           <span>비밀번호 수정</span>
-        </Link>
+        </Link> */}
+        <span>비밀번호 수정</span>
       </CategoryBlock>
       <CategoryBlock onClick={onWithDrawal}>
         <span>회원 탈퇴</span>

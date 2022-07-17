@@ -28,6 +28,20 @@ const CommentAddBlock = styled.div`
         color: ${palette.brown[0]};
       }
     }
+    .commentModify {
+      width: 100%;
+      text-align: right;
+
+      button {
+        margin-left: 0.5rem;
+        border: 1px solid ${palette.yellow[0]};
+        background-color: white;
+        border-radius: 7px;
+        padding: 0.3rem 0.5rem;
+        color: ${palette.brown[0]};
+        cursor: pointer;
+      }
+    }
   }
 `;
 // const AddComment = styled.div`
@@ -70,7 +84,7 @@ const CommentAddBlock = styled.div`
 //     border: 1px solid ${palette.yellow[0]};
 //   }
 // `;
-function CommentAdd({ re }) {
+function CommentAdd({ userRes, onDeleteReplies, re, onIsModify }) {
   return (
     <CommentAddBlock>
       <div className="wholeComment">
@@ -83,6 +97,12 @@ function CommentAdd({ re }) {
           </span>
         </div>
         <div className="commentContent">{re.content}</div>
+        {userRes.id === re.memberId && (
+          <div className="commentModify">
+            <button onClick={() => onIsModify(re.id)}>수정</button>
+            <button onClick={() => onDeleteReplies(re.id)}>삭제</button>
+          </div>
+        )}
         {/* <div className="addComment">
           <span>답글 달기</span>
         </div>

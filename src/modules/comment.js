@@ -8,6 +8,10 @@ const ADD_COMMENT_SUCCESS = 'comment/ADD_COMMENT_SUCCESS';
 const ADD_COMMENT_FAILURE = 'comment/ADD_COMMENT_FAILURE';
 const ADD_REPLIES_COMMENT_SUCCESS = 'comment/ADD_REPLIES_COMMENT_SUCCESS';
 const ADD_REPLIES_COMMENT_FAILURE = 'comment/ADD_REPLIES_COMMENT_FAILURE';
+const DELETE_REPLIES_COMMENT_SUCCESS = 'comment/DELETE_REPLIES_COMMENT_SUCCESS';
+const DELETE_REPLIES_COMMENT_FAILURE = 'comment/DELETE_REPLIES_COMMENT_FAILURE';
+const MODIFY_REPLIES_COMMENT_SUCCESS = 'comment/MODIFY_REPLIES_COMMENT_SUCCESS';
+const MODIFY_REPLIES_COMMENT_FAILURE = 'comment/MODIFY_REPLIES_COMMENT_FAILURE';
 const REPLIES_COMMENT_SUCCESS = 'comment/REPLIES_COMMENT_SUCCESS';
 const REPLIES_COMMENT_FAILURE = 'comment/REPLIES_COMMENT_FAILURE';
 
@@ -40,6 +44,22 @@ export const addRepiesCommentFailure = createAction(
   ADD_REPLIES_COMMENT_FAILURE,
   (addRepliesError) => addRepliesError,
 );
+export const deleteRepliesCommentSuccess = createAction(
+  DELETE_REPLIES_COMMENT_SUCCESS,
+  (deleteRepliesRes) => deleteRepliesRes,
+);
+export const deleteRepiesCommentFailure = createAction(
+  DELETE_REPLIES_COMMENT_FAILURE,
+  (deleteRepliesError) => deleteRepliesError,
+);
+export const modifyRepliesCommentSuccess = createAction(
+  MODIFY_REPLIES_COMMENT_SUCCESS,
+  (modifyRepliesRes) => modifyRepliesRes,
+);
+export const modifyRepiesCommentFailure = createAction(
+  MODIFY_REPLIES_COMMENT_FAILURE,
+  (modifyRepliesError) => modifyRepliesError,
+);
 export const repliesCommentSuccess = createAction(
   REPLIES_COMMENT_SUCCESS,
   (repliesRes) => repliesRes,
@@ -52,12 +72,17 @@ export const repliesCommentFailure = createAction(
 const initialState = {
   comment: '',
   replies: '',
+  modifyReplies: '',
   commentRes: null,
   commentError: null,
   addRes: null,
   addError: null,
   addRepliesRes: null,
   addRepliesError: null,
+  deleteRepliesRes: null,
+  deleteRepliesError: null,
+  modifyRepliesRes: null,
+  modifyRepliesError: null,
   repliesRes: null,
   repliesError: null,
 };
@@ -98,6 +123,36 @@ const comment = handleActions(
     [ADD_REPLIES_COMMENT_FAILURE]: (state, { payload: addRepliesError }) => ({
       ...state,
       addRepliesError,
+    }),
+    [DELETE_REPLIES_COMMENT_SUCCESS]: (
+      state,
+      { payload: deleteRepliesRes },
+    ) => ({
+      ...state,
+      deleteRepliesRes,
+      deleteRepliesError: null,
+    }),
+    [DELETE_REPLIES_COMMENT_FAILURE]: (
+      state,
+      { payload: deleteRepliesError },
+    ) => ({
+      ...state,
+      deleteRepliesError,
+    }),
+    [MODIFY_REPLIES_COMMENT_SUCCESS]: (
+      state,
+      { payload: modifyRepliesRes },
+    ) => ({
+      ...state,
+      modifyRepliesRes,
+      modifyRepliesError: null,
+    }),
+    [MODIFY_REPLIES_COMMENT_FAILURE]: (
+      state,
+      { payload: modifyRepliesError },
+    ) => ({
+      ...state,
+      modifyRepliesError,
     }),
     [REPLIES_COMMENT_SUCCESS]: (state, { payload: repliesRes }) => ({
       ...state,

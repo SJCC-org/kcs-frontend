@@ -26,14 +26,17 @@ const CategoryBlock = styled.div`
   cursor: pointer;
 `;
 
-function MyPageCategory() {
+function MyPageCategory({ onSwitchCategory }) {
   return (
     <MyPageCategoryBlock>
       <Link to="/mypage">
         <h1>마이페이지</h1>
       </Link>
-      <CategoryBlock>
-        <span>내 정보</span>
+      <CategoryBlock onClick={() => onSwitchCategory('make')}>
+        <span>개설한 스터디</span>
+      </CategoryBlock>
+      <CategoryBlock onClick={() => onSwitchCategory('enter')}>
+        <span>참여한 스터디</span>
       </CategoryBlock>
       <CategoryBlock>
         <Link to="/mypage/edit/user">

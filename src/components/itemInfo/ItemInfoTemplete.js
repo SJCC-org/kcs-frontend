@@ -273,7 +273,9 @@ function ItemInfoTemplete({
               {studyRes.participantNames.length === 0 ? (
                 <span>참여자 없음</span>
               ) : (
-                studyRes.participantNames.map((name) => <span>{name}</span>)
+                studyRes.participantNames.map((name, index) => (
+                  <span key={index}>{name}</span>
+                ))
               )}
             </div>
           )}

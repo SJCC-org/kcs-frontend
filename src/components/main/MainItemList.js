@@ -21,6 +21,13 @@ const MainItemListBlock = styled.div`
   }
 `;
 
+const EmptyPage = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+`;
 function MainItemList({
   userRes,
   listRes,
@@ -54,7 +61,7 @@ function MainItemList({
         )}
         {listRes &&
           (listRes.content.length === 0 ? (
-            <span>스터디 목록이 없습니다.</span>
+            <EmptyPage>스터디 목록이 없습니다.</EmptyPage>
           ) : (
             listRes.content.map((list) => (
               <MainItem
