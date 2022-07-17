@@ -180,16 +180,11 @@ function ItemInfoTemplete({
   onAddComment,
   comment,
   onChange,
+  onDeleteStudy,
+  onEnterStudy,
 }) {
   const [isOpenParticipant, setIsOpenParticipant] = useState(false);
   const [isOpenModify, setIsOpenModify] = useState(false);
-  const onOpenParticipant = () => {
-    // eslint-disable-next-line no-restricted-globals
-    if (confirm('스터디에 참여하시겠습니까?') === true) {
-    } else {
-      return;
-    }
-  };
 
   const onOpenModify = () => {
     setIsOpenModify(!isOpenModify);
@@ -211,7 +206,7 @@ function ItemInfoTemplete({
             {userRes.username === studyRes.organizerUsername && (
               <div className="studyModify">
                 <button onClick={onOpenModify}>수정</button>
-                <button>삭제</button>
+                <button onClick={onDeleteStudy}>삭제</button>
               </div>
             )}
           </div>
@@ -248,7 +243,7 @@ function ItemInfoTemplete({
               참여자 보기
             </button>
             {studyRes.organizerUsername !== userRes.username && (
-              <button onClick={onOpenParticipant}>참여하기 </button>
+              <button onClick={onEnterStudy}>참여하기 </button>
             )}
           </div>
           {isOpenParticipant && (
