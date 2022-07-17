@@ -6,6 +6,10 @@ const ADD_STUDY_SUCCESS = 'study/ADD_STUDY_SUCCESS';
 const ADD_STUDY_FAILURE = 'study/ADD_STUDY_FAILURE';
 const STUDY_SUCCESS = 'study/STUDY_SUCCESS';
 const STUDY_FAILURE = 'study/STUDY_FAILURE';
+const DELETE_STUDY_SUCCESS = 'study/DELETE_STUDY_SUCCESS';
+const DELETE_STUDY_FAILURE = 'study/DELETE_STUDY_FAILURE';
+const ENTER_STUDY_SUCCESS = 'study/ENTER_STUDY_SUCCESS';
+const ENTER_STUDY_FAILURE = 'study/ENTER_STUDY_FAILURE';
 const STUDY_LIST_SUCCESS = 'study/STUDY_LIST_SUCCESS';
 const STUDY_LIST_FAILURE = 'study/STUDY_LIST_FAILURE';
 const STUDY_MODIFY_SUCCESS = 'study/STUDY_MODIFY_SUCCESS';
@@ -29,6 +33,22 @@ export const studySuccess = createAction(STUDY_SUCCESS, (studyRes) => studyRes);
 export const studyFailure = createAction(
   STUDY_FAILURE,
   (studyError) => studyError,
+);
+export const deleteStudySuccess = createAction(
+  DELETE_STUDY_SUCCESS,
+  (deleteRes) => deleteRes,
+);
+export const deleteStudyFailure = createAction(
+  DELETE_STUDY_FAILURE,
+  (deleteError) => deleteError,
+);
+export const enterStudySuccess = createAction(
+  ENTER_STUDY_SUCCESS,
+  (enterRes) => enterRes,
+);
+export const enterStudyFailure = createAction(
+  ENTER_STUDY_FAILURE,
+  (enterError) => enterError,
 );
 export const studyListSuccess = createAction(
   STUDY_LIST_SUCCESS,
@@ -64,6 +84,10 @@ const initialState = {
   addError: null,
   studyRes: null,
   studyError: null,
+  deleteRes: null,
+  deleteError: null,
+  enterRes: null,
+  enterError: null,
   listRes: null,
   listError: null,
   modifyRes: null,
@@ -97,6 +121,24 @@ const study = handleActions(
     [STUDY_FAILURE]: (state, { payload: studyError }) => ({
       ...state,
       studyError,
+    }),
+    [DELETE_STUDY_SUCCESS]: (state, { payload: deleteRes }) => ({
+      ...state,
+      deleteRes,
+      deleteError: null,
+    }),
+    [DELETE_STUDY_FAILURE]: (state, { payload: deleteError }) => ({
+      ...state,
+      deleteError,
+    }),
+    [ENTER_STUDY_SUCCESS]: (state, { payload: enterRes }) => ({
+      ...state,
+      enterRes,
+      enterError: null,
+    }),
+    [ENTER_STUDY_FAILURE]: (state, { payload: enterError }) => ({
+      ...state,
+      enterError,
     }),
     [STUDY_LIST_SUCCESS]: (state, { payload: listRes }) => ({
       ...state,
