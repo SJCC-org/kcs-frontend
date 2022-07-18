@@ -27,6 +27,9 @@ const CategoryBlock = styled.div`
 `;
 
 function MyPageCategory({ onSwitchCategory }) {
+  const onCloseModify = () => {
+    alert('준비중 입니다..!');
+  };
   return (
     <MyPageCategoryBlock>
       <Link to="/mypage">
@@ -38,10 +41,11 @@ function MyPageCategory({ onSwitchCategory }) {
       <CategoryBlock onClick={() => onSwitchCategory('enter')}>
         <span>참여한 스터디</span>
       </CategoryBlock>
-      <CategoryBlock>
-        <Link to="/mypage/edit/user">
+      <CategoryBlock onClick={onCloseModify}>
+        {/* <Link to="/mypage/edit/user">
           <span>회원정보 수정</span>
-        </Link>
+        </Link> */}
+        <span>회원정보 수정</span>
       </CategoryBlock>
     </MyPageCategoryBlock>
   );

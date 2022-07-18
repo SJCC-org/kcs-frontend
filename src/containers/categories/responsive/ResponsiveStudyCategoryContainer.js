@@ -4,7 +4,7 @@ import ResponsiveStudyCategory from '../../../components/categories/responsive/R
 import axios from 'axios';
 import { StudyListFailure, studyListSuccess } from '../../../modules/study';
 
-function ResponsiveStudyCategoryContainer({ onIsResponsiveOpen }) {
+function ResponsiveStudyCategoryContainer({ onOpenStudy }) {
   const dispatch = useDispatch();
 
   const onGetCategory = () => {
@@ -37,7 +37,7 @@ function ResponsiveStudyCategoryContainer({ onIsResponsiveOpen }) {
   };
   return (
     <ResponsiveStudyCategory
-      onIsResponsiveOpen={onIsResponsiveOpen}
+      onOpenStudy={onOpenStudy}
       onGetCategoryStudy={onGetCategoryStudy}
       onGetCategory={onGetCategory}
     />

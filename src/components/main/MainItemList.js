@@ -4,6 +4,7 @@ import AddStudyContainer from '../../containers/main/AddStudyContainer';
 import { useNavigate } from 'react-router-dom';
 import StudyCategoryContainer from '../../containers/categories/StudyCategoryContainer';
 import MainItem from './MainItem';
+import ResponsiveStudyCategoryContainer from '../../containers/categories/responsive/ResponsiveStudyCategoryContainer';
 
 const WholeWrapper = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const MainItemListBlock = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+    margin-top: 0;
   }
 `;
 
@@ -55,6 +57,7 @@ function MainItemList({
     <WholeWrapper>
       <StudyCategoryContainer onOpenStudy={onOpenStudy} />
       <MainItemListBlock>
+        <ResponsiveStudyCategoryContainer onOpenStudy={onOpenStudy} />
         {isOpenStudy && <AddStudyContainer onOpenStudy={onOpenStudy} />}
         {isResponsiveOpen && (
           <AddStudyContainer onIsResponsiveOpen={onIsResponsiveOpen} />

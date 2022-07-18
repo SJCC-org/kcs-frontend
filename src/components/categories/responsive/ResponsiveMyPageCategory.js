@@ -14,6 +14,9 @@ const ResponsiveMyPageCategoryBlock = styled.div`
   width: 100%;
   height: 50px;
   background-color: ${palette.yellow[0]};
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  border-radius: 7px;
 
   .swiper-slide {
     height: 50px;
@@ -28,7 +31,10 @@ const ResponsiveMyPageCategoryBlock = styled.div`
   }
 `;
 
-function ResponsiveMyPageCategory() {
+function ResponsiveMyPageCategory({ onSwitchCategory }) {
+  const onCloseModify = () => {
+    alert('준비중 입니다..!');
+  };
   return (
     <ResponsiveMyPageCategoryBlock>
       <Swiper
@@ -48,13 +54,20 @@ function ResponsiveMyPageCategory() {
             <span>마이페이지</span>
           </Link>
         </SwiperSlide>
-        <SwiperSlide>
+        {/* <SwiperSlide>
           <span>내 정보</span>
+        </SwiperSlide> */}
+        <SwiperSlide onClick={() => onSwitchCategory('make')}>
+          <span>개설한 스터디</span>
         </SwiperSlide>
-        <SwiperSlide>
-          <Link to="/mypage/edit/user">
+        <SwiperSlide onClick={() => onSwitchCategory('enter')}>
+          <span>참여한 스터디</span>
+        </SwiperSlide>
+        <SwiperSlide onClick={onCloseModify}>
+          {/* <Link to="/mypage/edit/user">
             <span>회원정보 수정</span>
-          </Link>
+          </Link> */}
+          <span>회원정보 수정</span>
         </SwiperSlide>
       </Swiper>
     </ResponsiveMyPageCategoryBlock>

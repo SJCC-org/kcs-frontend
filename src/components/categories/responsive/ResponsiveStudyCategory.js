@@ -13,6 +13,9 @@ const ResponsiveStudyCategoryBlock = styled.div`
   width: 100%;
   height: 50px;
   background-color: ${palette.yellow[0]};
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  border-radius: 7px;
 
   .swiper-slide {
     height: 50px;
@@ -28,7 +31,7 @@ const ResponsiveStudyCategoryBlock = styled.div`
 `;
 
 function ResponsiveStudyCategory({
-  onIsResponsiveOpen,
+  onOpenStudy,
   onGetCategoryStudy,
   onGetCategory,
 }) {
@@ -46,7 +49,7 @@ function ResponsiveStudyCategory({
           },
         }}
       >
-        <SwiperSlide onClick={onIsResponsiveOpen}>
+        <SwiperSlide onClick={onOpenStudy}>
           <span>개설하기</span>
         </SwiperSlide>
         <SwiperSlide onClick={onGetCategory}>
@@ -59,7 +62,7 @@ function ResponsiveStudyCategory({
           <span>자격증</span>
         </SwiperSlide>
         <SwiperSlide onClick={() => onGetCategoryStudy('CLASS_REVIEW')}>
-          <span>수업복습</span>
+          <span>수업관련</span>
         </SwiperSlide>
         <SwiperSlide onClick={() => onGetCategoryStudy('PROJECT')}>
           <span>프로젝트</span>

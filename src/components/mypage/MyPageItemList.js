@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import MyPageCategory from '../categories/MyPageCategory';
+import ResponsiveMyPageCategory from '../categories/responsive/ResponsiveMyPageCategory';
 import MyPageItem from './MyPageItem';
 
 const WholeWrapper = styled.div`
@@ -16,6 +17,7 @@ const MyPageItemListBlock = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+    margin-top: 0;
   }
 `;
 
@@ -40,6 +42,7 @@ function MyPageItemList({ userRes, listRes }) {
       <WholeWrapper>
         <MyPageCategory onSwitchCategory={onSwitchCategory} />
         <MyPageItemListBlock>
+          <ResponsiveMyPageCategory onSwitchCategory={onSwitchCategory} />
           <h2>{userRes.name}님 안녕하세요!</h2>
           {listRes &&
             (switchCategory === 'make' ? (
