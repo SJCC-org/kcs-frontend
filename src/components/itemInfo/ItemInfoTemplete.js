@@ -278,7 +278,7 @@ function ItemInfoTemplete({
           {isOpenParticipant && (
             <div className="infoParticipantData">
               {studyRes.participantNames.length === 0 ? (
-                <span>참여자 없음</span>
+                <span>{studyRes.organizerName}</span>
               ) : (
                 <>
                   <span>{studyRes.organizerName}</span>
