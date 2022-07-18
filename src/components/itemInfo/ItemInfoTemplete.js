@@ -78,11 +78,12 @@ const ItemInfoWrapper = styled.div`
     .studyModify {
       button {
         margin-left: 0.5rem;
-        border: 1px solid ${palette.yellow[0]};
-        background-color: white;
+        /* border: 1px solid ${palette.yellow[0]}; */
+        border: 1px solid ${palette.brown[0]};
+        background-color: ${palette.brown[0]};
         border-radius: 7px;
         padding: 0.3rem 0.5rem;
-        color: ${palette.brown[0]};
+        color: ${palette.yellow[0]};
         cursor: pointer;
       }
     }
@@ -138,6 +139,12 @@ const ItemInfoWrapper = styled.div`
     padding: 1rem 0;
     color: ${palette.brown[0]};
     font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+
+    span {
+      margin-right: 0.5rem;
+    }
   }
 `;
 
@@ -273,9 +280,12 @@ function ItemInfoTemplete({
               {studyRes.participantNames.length === 0 ? (
                 <span>참여자 없음</span>
               ) : (
-                studyRes.participantNames.map((name, index) => (
-                  <span key={index}>{name}</span>
-                ))
+                <>
+                  <span>{studyRes.organizerName}</span>
+                  {studyRes.participantNames.map((name, index) => (
+                    <span key={index}>{name}</span>
+                  ))}
+                </>
               )}
             </div>
           )}

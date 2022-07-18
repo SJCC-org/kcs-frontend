@@ -187,9 +187,10 @@ function RegisterForm({
             </div>
           </div>
         )}
-        {emailDuplicationRes === false ? (
+        {emailDuplicationRes === false && (
           <ErrorMessageBlock>인증코드가 일치하지 않습니다.</ErrorMessageBlock>
-        ) : (
+        )}
+        {emailDuplicationRes === true && (
           <ErrorMessageBlock>인증코드가 일치합니다.</ErrorMessageBlock>
         )}
         <button type="submit" style={{ margin: '1rem  0' }}>

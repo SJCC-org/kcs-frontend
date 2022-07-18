@@ -34,11 +34,11 @@ const CommentAddBlock = styled.div`
 
       button {
         margin-left: 0.5rem;
-        border: 1px solid ${palette.yellow[0]};
-        background-color: white;
+        border: 1px solid ${palette.brown[0]};
+        background-color: ${palette.brown[0]};
         border-radius: 7px;
         padding: 0.3rem 0.5rem;
-        color: ${palette.brown[0]};
+        color: ${palette.yellow[0]};
         cursor: pointer;
       }
     }

@@ -22,6 +22,7 @@ const ResponsiveStudyCategoryBlock = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     span {
       color: ${palette.brown[0]};
@@ -61,7 +62,7 @@ function ResponsiveStudyCategory({
         <SwiperSlide onClick={() => onGetCategoryStudy('CERTIFICATE')}>
           <span>자격증</span>
         </SwiperSlide>
-        <SwiperSlide onClick={() => onGetCategoryStudy('CLASS_REVIEW')}>
+        <SwiperSlide onClick={() => onGetCategoryStudy('CLASS')}>
           <span>수업관련</span>
         </SwiperSlide>
         <SwiperSlide onClick={() => onGetCategoryStudy('PROJECT')}>

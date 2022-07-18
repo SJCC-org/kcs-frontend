@@ -50,7 +50,7 @@ function StudyCategory({ onOpenStudy, onGetCategoryStudy, onGetCategory }) {
       <CategoryBlock onClick={() => onGetCategoryStudy('CERTIFICATE')}>
         <span>자격증</span>
       </CategoryBlock>
-      <CategoryBlock onClick={() => onGetCategoryStudy('CLASS_REVIEW')}>
+      <CategoryBlock onClick={() => onGetCategoryStudy('CLASS')}>
         <span>수업관련</span>
       </CategoryBlock>
       <CategoryBlock onClick={() => onGetCategoryStudy('PROJECT')}>

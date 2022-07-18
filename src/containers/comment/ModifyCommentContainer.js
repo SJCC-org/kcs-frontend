@@ -12,7 +12,7 @@ import { useParams } from 'react-router-dom';
 import { getCookie } from '../../lib/cookie';
 
 function ModifyCommentContainer({ onIsModify, commentId }) {
-  const { modifyReplies } = useSelector(({ comment }) => ({
+  const { modifyReplies, modifyRepliesRes } = useSelector(({ comment }) => ({
     modifyReplies: comment.modifyReplies,
     modifyRepliesRes: comment.modifyRepliesRes,
   }));
@@ -30,7 +30,7 @@ function ModifyCommentContainer({ onIsModify, commentId }) {
   };
 
   const onModifyReplies = (commentIdx) => {
-    async function modifyReplies() {
+    async function getModifyReplies() {
       const accessToken = getCookie('myAToken');
       axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       try {
@@ -40,24 +40,24 @@ function ModifyCommentContainer({ onIsModify, commentId }) {
             content: modifyReplies,
           },
         );
-        console.log(commentIdx);
+        console.log(modifyReplies);
         dispatch(modifyRepliesCommentSuccess(response.data.data));
       } catch (e) {
         dispatch(modifyRepiesCommentFailure(e));
       }
     }
-    modifyReplies();
+    getModifyReplies();
   };
 
   useEffect(() => {
     dispatch(initializeForm('modifyReplies'));
   }, [dispatch]);
 
-  //   useEffect(() => {
-  //     if (modifyRepliesRes) {
-  //       window.location.replace(`/study/info/${studyId}`);
-  //     }
-  //   }, [modifyRepliesRes, studyId]);
+  useEffect(() => {
+    if (modifyRepliesRes) {
+      window.location.replace(`/study/info/${studyId}`);
+    }
+  }, [modifyRepliesRes, studyId]);
 
   return (
     <ModifyComment
