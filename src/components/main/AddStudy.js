@@ -234,7 +234,6 @@ function AddStudy({
   onChangeCategory,
   onOpenStudy,
   onAddStudy,
-  onIsResponsiveOpen,
 }) {
   const [category, setCategory] = useState('카테고리를 선택해주세요');
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
@@ -279,11 +278,11 @@ function AddStudy({
                 </li>
                 <li
                   onClick={() => {
-                    onChangeCategory('CLASS_REVIEW');
-                    onChangeCategoryName('수업복습');
+                    onChangeCategory('CLASS');
+                    onChangeCategoryName('수업관련');
                   }}
                 >
-                  수업복습
+                  수업관련
                 </li>
                 <li
                   onClick={() => {
