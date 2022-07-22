@@ -133,7 +133,6 @@ function Comment({
         <AddComment>
           <StyledTextArea
             placeholder="댓글을 작성하세요"
-            name="replies"
             value={replies}
             onChange={onChange}
           />

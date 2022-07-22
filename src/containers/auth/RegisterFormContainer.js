@@ -99,11 +99,11 @@ function RegisterFormContainer() {
       return;
     }
 
-    if (userDuplicationRes === null) {
+    if (userDuplicationRes === null || userDuplicationRes === true) {
       alert('아이디 중복확인을 해주세요');
       return;
     }
-    if (emailDuplicationRes === null) {
+    if (emailDuplicationRes === null || emailDuplicationRes === false) {
       alert('이메일 인증코드를 확인해주세요');
       return;
     }

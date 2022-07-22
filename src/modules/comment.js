@@ -71,7 +71,6 @@ export const repliesCommentFailure = createAction(
 
 const initialState = {
   comment: '',
-  replies: '',
   modifyReplies: '',
   commentRes: null,
   commentError: null,

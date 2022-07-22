@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Comment from '../../components/itemInfo/comment/Comment';
 import {
   addRepiesCommentFailure,
   addRepliesCommentSuccess,
-  changeField,
   deleteRepiesCommentFailure,
   deleteRepliesCommentSuccess,
   initializeForm,
@@ -14,25 +13,19 @@ import axios from 'axios';
 import { getCookie } from '../../lib/cookie';
 
 function CommentContainer({ comment }) {
-  const { userRes, replies, addRepliesRes, deleteRepliesRes } = useSelector(
+  const { userRes, addRepliesRes, deleteRepliesRes } = useSelector(
     ({ user, comment }) => ({
       userRes: user.userRes,
-      replies: comment.replies,
       addRepliesRes: comment.addRepliesRes,
       deleteRepliesRes: comment.deleteRepliesRes,
     }),
   );
+  const [replies, setReplies] = useState('');
   const dispatch = useDispatch();
   const { studyId } = useParams();
 
   const onChange = (e) => {
-    const { name, value } = e.target;
-    dispatch(
-      changeField({
-        key: name,
-        value,
-      }),
-    );
+    setReplies(e.target.value);
   };
 
   async function deleteReplies(commentId) {
