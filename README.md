@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# 카카오 클라우드 스쿨 스터디 프론트엔드
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 카카오 클라우드 스쿨의 스터디 모집을 위한 프로젝트 입니다.
 
-## Available Scripts
+👉 <a href="https://kakaocloudschool.zooneon.dev/" target="_blank">배포 링크</a>
 
-In the project directory, you can run:
+## 개발 인원 및 기간
 
-### `yarn start`
+- 개발 기간: 2022.07 ~ 지속적으로 리팩토링 계획 중
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 💻 Tech Stack
 
-### `yarn test`
+- ### Skills
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  React, Styled-components, Redux
 
-### `yarn build`
+- ### CI/CD
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  S3, Route53, CloudFront, Github Actions
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- ### ETC
+  JWT
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br/>
 
-### `yarn eject`
+## 💨 구현 기능
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 로그인/회원가입
+- 스터디 CRUD
+- 스터디 상태 변경(모집중/모집완료)
+- 스터디 참여/탈퇴
+- 댓글 CRUD
+- 계층형 댓글
+- 마이페이지
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🛠 리팩토링
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 마이페이지 회원 정보 수정
+- Redux에서 Redux Toolkit
+- container 대신 커스텀 훅으로 대체
+- 구글 애널리틱스 적용
+- input 리랜더링 최적화
