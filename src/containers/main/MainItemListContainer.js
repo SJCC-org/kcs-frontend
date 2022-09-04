@@ -15,7 +15,7 @@ function MainItemListContainer({ onIsResponsiveOpen, isResponsiveOpen }) {
     async function getStudyList() {
       try {
         const response = await axios.get(
-          'https://api.kcs.zooneon.dev/v1/study?page=0&size=100',
+          'https://was.zooneon.dev/v1/study?page=0&size=100',
         );
         dispatch(studyListSuccess(response.data.data));
       } catch (e) {
