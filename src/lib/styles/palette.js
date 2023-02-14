@@ -20,6 +20,10 @@ const palette = {
     //카카오 글자 색
     "#3a1d1d",
   ],
+  red: [
+    //에러메시지
+    "#FF0000",
+  ],
 };
 
 export default palette;
