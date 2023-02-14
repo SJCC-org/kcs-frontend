@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { postSignIn } from "../../lib/api/auth";
+import ErrorMsg from "../common/ErrorMsg";
 
-function LoginForm({
-  onCloseLoginModal,
-  onChange,
-  form,
-  onSubmit,
-  loginError,
-}) {
+const LoginForm = ({ onCloseLoginModal }) => {
+  const [loginErrorMsg, setLoginErrorMsg] = useState("");
+  const { register, watch, handleSubmit } = useForm();
+
   useEffect(() => {
     document.body.style.cssText = `
       position: fixed;
@@ -24,6 +24,16 @@ function LoginForm({
     };
   }, []);
 
+  const handleSignIn = async () => {
+    const response = await postSignIn(watch("username"), watch("password"));
+    if (response.data) {
+      window.location.replace("/");
+      localStorage.setItem("accessToken", response.data.accessToken);
+    } else {
+      setLoginErrorMsg("아이디와 비밀번호를 확인해주세요");
+    }
+  };
+
   return (
     <LoginFormBlock>
       <LoginModal>
@@ -33,26 +43,19 @@ function LoginForm({
           </div>
           <h2>로그인</h2>
         </div>
-        <LoginFormWrapper onSubmit={onSubmit}>
+        <LoginFormWrapper onSubmit={handleSubmit(handleSignIn)}>
           <StyledInput
             type="text"
-            name="username"
-            value={form.username}
-            onChange={onChange}
             placeholder="아이디를 입력해주세요"
+            {...register("username")}
           />
           <StyledInput
             type="password"
-            name="password"
-            value={form.password}
-            onChange={onChange}
             placeholder="비밀번호를 입력해주세요"
+            {...register("password")}
           />
-          {loginError && (
-            <ErrorMessageBlock>
-              아이디와 비밀번호를 확인해주세요.
-            </ErrorMessageBlock>
-          )}
+          <ErrorMsg errorMsg={loginErrorMsg} />
+
           <button type="submit">로그인</button>
         </LoginFormWrapper>
         <div className="extraInfo">
@@ -66,7 +69,7 @@ function LoginForm({
       </LoginModal>
     </LoginFormBlock>
   );
-}
+};
 
 export default LoginForm;
 
@@ -157,11 +160,4 @@ const StyledInput = styled.input`
   &:focus {
     border: 2px solid ${palette.yellow[0]};
   }
-`;
-
-const ErrorMessageBlock = styled.div`
-  text-align: center;
-  margin-bottom: 0.3rem;
-  color: red;
-  font-weight: bold;
 `;
