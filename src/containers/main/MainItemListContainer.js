@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import MainItemList from '../../components/main/MainItemList';
-import { StudyListFailure, studyListSuccess } from '../../modules/study';
-import axios from 'axios';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import MainItemList from "../../components/main/MainItemList";
+import { StudyListFailure, studyListSuccess } from "../../modules/study";
+import axios from "axios";
 
 function MainItemListContainer({ onIsResponsiveOpen, isResponsiveOpen }) {
   const { userRes, listRes } = useSelector(({ user, study }) => ({
@@ -15,7 +15,7 @@ function MainItemListContainer({ onIsResponsiveOpen, isResponsiveOpen }) {
     async function getStudyList() {
       try {
         const response = await axios.get(
-          'https://was.zooneon.dev/v1/study?page=0&size=100',
+          "https://api.kcs.zooneon.dev/v1/study?page=0&size=100"
         );
         dispatch(studyListSuccess(response.data.data));
       } catch (e) {
