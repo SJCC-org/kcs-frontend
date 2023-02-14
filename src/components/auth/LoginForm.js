@@ -1,8 +1,74 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
-import { AiOutlineClose } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import palette from "../../lib/styles/palette";
+import { AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
+function LoginForm({
+  onCloseLoginModal,
+  onChange,
+  form,
+  onSubmit,
+  loginError,
+}) {
+  useEffect(() => {
+    document.body.style.cssText = `
+      position: fixed;
+      top: -${window.scrollY}px;
+      overflow-y: scroll;
+      width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+
+  return (
+    <LoginFormBlock>
+      <LoginModal>
+        <div className="loginHeader">
+          <div className="closeBlock">
+            <AiOutlineClose onClick={onCloseLoginModal} />
+          </div>
+          <h2>로그인</h2>
+        </div>
+        <LoginFormWrapper onSubmit={onSubmit}>
+          <StyledInput
+            type="text"
+            name="username"
+            value={form.username}
+            onChange={onChange}
+            placeholder="아이디를 입력해주세요"
+          />
+          <StyledInput
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={onChange}
+            placeholder="비밀번호를 입력해주세요"
+          />
+          {loginError && (
+            <ErrorMessageBlock>
+              아이디와 비밀번호를 확인해주세요.
+            </ErrorMessageBlock>
+          )}
+          <button type="submit">로그인</button>
+        </LoginFormWrapper>
+        <div className="extraInfo">
+          <span>비밀번호 찾기</span>
+          <Link to="/register">
+            <span id="goRegister" onClick={onCloseLoginModal}>
+              회원가입
+            </span>
+          </Link>
+        </div>
+      </LoginModal>
+    </LoginFormBlock>
+  );
+}
+
+export default LoginForm;
 
 const LoginFormBlock = styled.div`
   position: fixed;
@@ -99,69 +165,3 @@ const ErrorMessageBlock = styled.div`
   color: red;
   font-weight: bold;
 `;
-
-function LoginForm({
-  onCloseLoginModal,
-  onChange,
-  form,
-  onSubmit,
-  loginError,
-}) {
-  useEffect(() => {
-    document.body.style.cssText = `
-      position: fixed;
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = '';
-      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-    };
-  }, []);
-
-  return (
-    <LoginFormBlock>
-      <LoginModal>
-        <div className="loginHeader">
-          <div className="closeBlock">
-            <AiOutlineClose onClick={onCloseLoginModal} />
-          </div>
-          <h2>로그인</h2>
-        </div>
-        <LoginFormWrapper onSubmit={onSubmit}>
-          <StyledInput
-            type="text"
-            name="username"
-            value={form.username}
-            onChange={onChange}
-            placeholder="아이디를 입력해주세요"
-          />
-          <StyledInput
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={onChange}
-            placeholder="비밀번호를 입력해주세요"
-          />
-          {loginError && (
-            <ErrorMessageBlock>
-              아이디와 비밀번호를 확인해주세요.
-            </ErrorMessageBlock>
-          )}
-          <button type="submit">로그인</button>
-        </LoginFormWrapper>
-        <div className="extraInfo">
-          <span>비밀번호 찾기</span>
-          <Link to="/register">
-            <span id="goRegister" onClick={onCloseLoginModal}>
-              회원가입
-            </span>
-          </Link>
-        </div>
-      </LoginModal>
-    </LoginFormBlock>
-  );
-}
-
-export default LoginForm;

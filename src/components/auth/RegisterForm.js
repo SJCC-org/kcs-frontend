@@ -1,83 +1,6 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
-
-const RegisterFormBlock = styled.div`
-  width: 100%;
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const RegisterFormWrapper = styled.form`
-  width: 400px;
-
-  @media (max-width: 430px) {
-    width: 100%;
-  }
-
-  .inputBlock {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
-
-    .duplicateBlock {
-      display: flex;
-
-      @media (max-width: 500px) {
-        flex-direction: column;
-      }
-
-      button {
-        width: 20%;
-        margin-left: 1rem;
-        color: ${palette.brown[0]};
-        font-size: 13px;
-
-        @media (max-width: 500px) {
-          width: 100%;
-          margin: 0.5rem 0;
-        }
-      }
-    }
-
-    span {
-      font-size: 14px;
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  button {
-    width: 100%;
-    padding: 0.7rem 0;
-    font-weight: bold;
-    color: ${palette.brown[0]};
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    background-color: ${palette.yellow[0]};
-    font-size: 18px;
-  }
-`;
-const StyledInput = styled.input`
-  width: 100%;
-  outline: none;
-  padding: 0.7rem;
-  border-radius: 7px;
-  border: 1px solid ${palette.gray[1]};
-
-  &:focus {
-    border: 2px solid ${palette.yellow[0]};
-  }
-`;
-
-const ErrorMessageBlock = styled.div`
-  text-align: center;
-  color: red;
-  font-weight: bold;
-`;
+import React, { useState } from "react";
+import styled from "styled-components";
+import palette from "../../lib/styles/palette";
 
 function RegisterForm({
   form,
@@ -192,7 +115,7 @@ function RegisterForm({
         ) : (
           <ErrorMessageBlock>인증코드가 일치합니다.</ErrorMessageBlock>
         )}
-        <button type="submit" style={{ margin: '1rem  0' }}>
+        <button type="submit" style={{ margin: "1rem  0" }}>
           회원가입
         </button>
       </RegisterFormWrapper>
@@ -201,3 +124,80 @@ function RegisterForm({
 }
 
 export default RegisterForm;
+
+const RegisterFormBlock = styled.div`
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RegisterFormWrapper = styled.form`
+  width: 400px;
+
+  @media (max-width: 430px) {
+    width: 100%;
+  }
+
+  .inputBlock {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+
+    .duplicateBlock {
+      display: flex;
+
+      @media (max-width: 500px) {
+        flex-direction: column;
+      }
+
+      button {
+        width: 20%;
+        margin-left: 1rem;
+        color: ${palette.brown[0]};
+        font-size: 13px;
+
+        @media (max-width: 500px) {
+          width: 100%;
+          margin: 0.5rem 0;
+        }
+      }
+    }
+
+    span {
+      font-size: 14px;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.7rem 0;
+    font-weight: bold;
+    color: ${palette.brown[0]};
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: ${palette.yellow[0]};
+    font-size: 18px;
+  }
+`;
+const StyledInput = styled.input`
+  width: 100%;
+  outline: none;
+  padding: 0.7rem;
+  border-radius: 7px;
+  border: 1px solid ${palette.gray[1]};
+
+  &:focus {
+    border: 2px solid ${palette.yellow[0]};
+  }
+`;
+
+const ErrorMessageBlock = styled.div`
+  text-align: center;
+  color: red;
+  font-weight: bold;
+`;

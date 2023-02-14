@@ -1,6 +1,34 @@
-import React from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
+import React from "react";
+import styled from "styled-components";
+import palette from "../../lib/styles/palette";
+
+function MainItem({ data, onMoveStudyInfo }) {
+  return (
+    <MainItemBlock onClick={() => onMoveStudyInfo(data.id)}>
+      <StudyItemHeader>
+        <div className="studyInfo">
+          <div className="studyCategory">{data.studyCategory}</div>
+        </div>
+        <div className="studyDate">{data.createdDate.substr(0, 10)}</div>
+      </StudyItemHeader>
+      <StudyItemTitle>
+        <h3>{data.title}</h3>
+      </StudyItemTitle>
+      <StudyItemNum>
+        {data.recruitCompleted ? (
+          <div className="studyStatus">모집완료</div>
+        ) : (
+          <div className="studyStatus">모집중</div>
+        )}
+        <span>{data.curNum}</span>
+        <span>/</span>
+        <span>{data.maxNum}</span>
+      </StudyItemNum>
+    </MainItemBlock>
+  );
+}
+
+export default MainItem;
 
 const MainItemBlock = styled.div`
   width: 100%;
@@ -58,30 +86,3 @@ const StudyItemNum = styled.div`
     margin-bottom: 0.3rem;
   }
 `;
-function MainItem({ data, onMoveStudyInfo }) {
-  return (
-    <MainItemBlock onClick={() => onMoveStudyInfo(data.id)}>
-      <StudyItemHeader>
-        <div className="studyInfo">
-          <div className="studyCategory">{data.studyCategory}</div>
-        </div>
-        <div className="studyDate">{data.createdDate.substr(0, 10)}</div>
-      </StudyItemHeader>
-      <StudyItemTitle>
-        <h3>{data.title}</h3>
-      </StudyItemTitle>
-      <StudyItemNum>
-        {data.recruitCompleted ? (
-          <div className="studyStatus">모집완료</div>
-        ) : (
-          <div className="studyStatus">모집중</div>
-        )}
-        <span>{data.curNum}</span>
-        <span>/</span>
-        <span>{data.maxNum}</span>
-      </StudyItemNum>
-    </MainItemBlock>
-  );
-}
-
-export default MainItem;

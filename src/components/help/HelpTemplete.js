@@ -1,6 +1,35 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import { AiOutlineClose } from 'react-icons/ai';
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import { AiOutlineClose } from "react-icons/ai";
+
+function HelpTemplete({ onCloseHelp }) {
+  useEffect(() => {
+    document.body.style.cssText = `
+          position: fixed;
+          top: -${window.scrollY}px;
+          overflow-y: scroll;
+          width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+  return (
+    <HelpTempleteBlock>
+      <HelpModal>
+        <div className="closeBlock">
+          <AiOutlineClose onClick={onCloseHelp} />
+        </div>
+        <p>
+          💡 장애나 버그 발생 시 zooneonbot@gmail.com으로 연락주시기 바랍니다.
+        </p>
+      </HelpModal>
+    </HelpTempleteBlock>
+  );
+}
+
+export default HelpTemplete;
 
 const HelpTempleteBlock = styled.div`
   position: fixed;
@@ -36,32 +65,3 @@ const HelpModal = styled.div`
     margin: 0;
   }
 `;
-
-function HelpTemplete({ onCloseHelp }) {
-  useEffect(() => {
-    document.body.style.cssText = `
-          position: fixed;
-          top: -${window.scrollY}px;
-          overflow-y: scroll;
-          width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = '';
-      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-    };
-  }, []);
-  return (
-    <HelpTempleteBlock>
-      <HelpModal>
-        <div className="closeBlock">
-          <AiOutlineClose onClick={onCloseHelp} />
-        </div>
-        <p>
-          💡 장애나 버그 발생 시 zooneonbot@gmail.com으로 연락주시기 바랍니다.
-        </p>
-      </HelpModal>
-    </HelpTempleteBlock>
-  );
-}
-
-export default HelpTemplete;

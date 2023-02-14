@@ -1,6 +1,40 @@
-import React from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
+import React from "react";
+import styled from "styled-components";
+import palette from "../../lib/styles/palette";
+
+function EditPasswordForm() {
+  return (
+    <EditPasswordFormBlock>
+      <h2>비밀번호 수정</h2>
+      <EditPasswordFormWrapper>
+        <div className="inputBlock">
+          <span>현재 비밀번호</span>
+          <StyledInput
+            type="password"
+            placeholder="현재 비밀번호를 입력해주세요"
+          />
+        </div>
+        <div className="inputBlock">
+          <span>새로운 비밀번호</span>
+          <StyledInput
+            type="password"
+            placeholder="새로운 비밀번호를 입력해주세요"
+          />
+        </div>
+        <div className="inputBlock">
+          <span>비밀번호 확인</span>
+          <StyledInput
+            type="password"
+            placeholder="비밀번호를 한번 더 입력해주세요"
+          />
+        </div>
+        <button>비밀번호 수정하기</button>
+      </EditPasswordFormWrapper>
+    </EditPasswordFormBlock>
+  );
+}
+
+export default EditPasswordForm;
 
 const EditPasswordFormBlock = styled.div`
   width: 50%;
@@ -54,37 +88,3 @@ const StyledInput = styled.input`
     border: 2px solid ${palette.yellow[0]};
   }
 `;
-
-function EditPasswordForm() {
-  return (
-    <EditPasswordFormBlock>
-      <h2>비밀번호 수정</h2>
-      <EditPasswordFormWrapper>
-        <div className="inputBlock">
-          <span>현재 비밀번호</span>
-          <StyledInput
-            type="password"
-            placeholder="현재 비밀번호를 입력해주세요"
-          />
-        </div>
-        <div className="inputBlock">
-          <span>새로운 비밀번호</span>
-          <StyledInput
-            type="password"
-            placeholder="새로운 비밀번호를 입력해주세요"
-          />
-        </div>
-        <div className="inputBlock">
-          <span>비밀번호 확인</span>
-          <StyledInput
-            type="password"
-            placeholder="비밀번호를 한번 더 입력해주세요"
-          />
-        </div>
-        <button>비밀번호 수정하기</button>
-      </EditPasswordFormWrapper>
-    </EditPasswordFormBlock>
-  );
-}
-
-export default EditPasswordForm;

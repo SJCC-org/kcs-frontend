@@ -1,7 +1,31 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import palette from '../../lib/styles/palette';
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import palette from "../../lib/styles/palette";
+
+function EditCategory({ onWithDrawal }) {
+  const onAlert = () => {
+    alert("준비중 입니다..!");
+  };
+  return (
+    <EditCategoryBlock>
+      <Link to="/mypage">
+        <h1>마이페이지</h1>
+      </Link>
+      <CategoryBlock onClick={onAlert}>
+        <span>회원정보 수정</span>
+      </CategoryBlock>
+      <CategoryBlock onClick={onAlert}>
+        <span>비밀번호 수정</span>
+      </CategoryBlock>
+      <CategoryBlock onClick={onWithDrawal}>
+        <span>회원 탈퇴</span>
+      </CategoryBlock>
+    </EditCategoryBlock>
+  );
+}
+
+export default EditCategory;
 
 const EditCategoryBlock = styled.div`
   margin-top: 84px;
@@ -24,33 +48,3 @@ const CategoryBlock = styled.div`
   padding: 1rem 0;
   cursor: pointer;
 `;
-
-function EditCategory({ onWithDrawal }) {
-  const onAlert = () => {
-    alert('준비중 입니다..!');
-  };
-  return (
-    <EditCategoryBlock>
-      <Link to="/mypage">
-        <h1>마이페이지</h1>
-      </Link>
-      <CategoryBlock onClick={onAlert}>
-        {/* <Link to="/mypage/edit/user">
-          <span>회원정보 수정</span>
-        </Link> */}
-        <span>회원정보 수정</span>
-      </CategoryBlock>
-      <CategoryBlock onClick={onAlert}>
-        {/* <Link to="/mypage/edit/password">
-          <span>비밀번호 수정</span>
-        </Link> */}
-        <span>비밀번호 수정</span>
-      </CategoryBlock>
-      <CategoryBlock onClick={onWithDrawal}>
-        <span>회원 탈퇴</span>
-      </CategoryBlock>
-    </EditCategoryBlock>
-  );
-}
-
-export default EditCategory;

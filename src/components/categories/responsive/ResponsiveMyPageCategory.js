@@ -1,32 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import palette from '../../../lib/styles/palette';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper';
-import 'swiper/css';
-
-const ResponsiveMyPageCategoryBlock = styled.div`
-  display: none;
-  @media (max-width: 768px) {
-    display: block;
-  }
-  width: 100%;
-  height: 50px;
-  background-color: ${palette.yellow[0]};
-
-  .swiper-slide {
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    span {
-      color: ${palette.brown[0]};
-      font-weight: bold;
-    }
-  }
-`;
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import palette from "../../../lib/styles/palette";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
+import "swiper/css";
 
 function ResponsiveMyPageCategory() {
   return (
@@ -62,3 +40,25 @@ function ResponsiveMyPageCategory() {
 }
 
 export default ResponsiveMyPageCategory;
+
+const ResponsiveMyPageCategoryBlock = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+  width: 100%;
+  height: 50px;
+  background-color: ${palette.yellow[0]};
+
+  .swiper-slide {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      color: ${palette.brown[0]};
+      font-weight: bold;
+    }
+  }
+`;

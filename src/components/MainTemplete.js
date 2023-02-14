@@ -1,5 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+
+const MainTemplete = ({ children }) => {
+  return <MainTempleteBlock>{children}</MainTempleteBlock>;
+};
+
+export default MainTemplete;
 
 const MainTempleteBlock = styled.div`
   width: 1200px;
@@ -11,9 +17,3 @@ const MainTempleteBlock = styled.div`
     padding: 0 2rem;
   }
 `;
-
-const MainTemplete = ({ children }) => {
-  return <MainTempleteBlock>{children}</MainTempleteBlock>;
-};
-
-export default MainTemplete;

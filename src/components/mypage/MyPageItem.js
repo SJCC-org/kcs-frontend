@@ -1,7 +1,40 @@
-import React from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import palette from "../../lib/styles/palette";
+import { useNavigate } from "react-router-dom";
+
+function MyPageItem({ study }) {
+  const navigate = useNavigate();
+
+  const onMoveStudyInfo = () => {
+    navigate(`/study/info/${study.id}`);
+  };
+  return (
+    <MyPageItemBlock onClick={onMoveStudyInfo}>
+      <StudyItemHeader>
+        <div className="studyInfo">
+          <div className="studyCategory">{study.studyCategory}</div>
+        </div>
+        <div className="studyDate">{study.createdDate.substr(0, 10)}</div>
+      </StudyItemHeader>
+      <StudyItemTitle>
+        <h3>{study.title}</h3>
+      </StudyItemTitle>
+      <StudyItemNum>
+        {study.recruitCompleted ? (
+          <div className="studyStatus">모집완료</div>
+        ) : (
+          <div className="studyStatus">모집중</div>
+        )}
+        <span>{study.curNum}</span>
+        <span>/</span>
+        <span>{study.maxNum}</span>
+      </StudyItemNum>
+    </MyPageItemBlock>
+  );
+}
+
+export default MyPageItem;
 
 const MyPageItemBlock = styled.div`
   width: 100%;
@@ -59,35 +92,3 @@ const StudyItemNum = styled.div`
     margin-bottom: 0.3rem;
   }
 `;
-function MyPageItem({ study }) {
-  const navigate = useNavigate();
-
-  const onMoveStudyInfo = () => {
-    navigate(`/study/info/${study.id}`);
-  };
-  return (
-    <MyPageItemBlock onClick={onMoveStudyInfo}>
-      <StudyItemHeader>
-        <div className="studyInfo">
-          <div className="studyCategory">{study.studyCategory}</div>
-        </div>
-        <div className="studyDate">{study.createdDate.substr(0, 10)}</div>
-      </StudyItemHeader>
-      <StudyItemTitle>
-        <h3>{study.title}</h3>
-      </StudyItemTitle>
-      <StudyItemNum>
-        {study.recruitCompleted ? (
-          <div className="studyStatus">모집완료</div>
-        ) : (
-          <div className="studyStatus">모집중</div>
-        )}
-        <span>{study.curNum}</span>
-        <span>/</span>
-        <span>{study.maxNum}</span>
-      </StudyItemNum>
-    </MyPageItemBlock>
-  );
-}
-
-export default MyPageItem;

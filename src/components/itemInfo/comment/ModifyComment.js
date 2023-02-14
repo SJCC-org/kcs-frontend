@@ -1,7 +1,51 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import palette from '../../../lib/styles/palette';
-import { AiOutlineClose } from 'react-icons/ai';
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import palette from "../../../lib/styles/palette";
+import { AiOutlineClose } from "react-icons/ai";
+
+function ModifyComment({
+  modifyReplies,
+  onChange,
+  onModifyReplies,
+  commentIdx,
+  onIsModify,
+}) {
+  useEffect(() => {
+    document.body.style.cssText = `
+          position: fixed;
+          top: -${window.scrollY}px;
+          overflow-y: scroll;
+          width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = "";
+      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+    };
+  }, []);
+
+  return (
+    <ModifyCommentBlock>
+      <ModifyModal>
+        <div className="modifyHeader">
+          <div className="closeBlock">
+            <AiOutlineClose onClick={onIsModify} />
+          </div>
+          <h2>댓글 수정</h2>
+        </div>
+        <ModifyWrapper>
+          <StyledTextArea
+            name="modifyReplies"
+            value={modifyReplies}
+            onChange={onChange}
+          />
+          <button onClick={() => onModifyReplies(commentIdx)}>수정하기</button>
+        </ModifyWrapper>
+      </ModifyModal>
+    </ModifyCommentBlock>
+  );
+}
+
+export default ModifyComment;
 
 const ModifyCommentBlock = styled.div`
   position: fixed;
@@ -83,47 +127,3 @@ const StyledTextArea = styled.textarea`
     border: 1px solid ${palette.yellow[0]};
   }
 `;
-
-function ModifyComment({
-  modifyReplies,
-  onChange,
-  onModifyReplies,
-  commentIdx,
-  onIsModify,
-}) {
-  useEffect(() => {
-    document.body.style.cssText = `
-          position: fixed;
-          top: -${window.scrollY}px;
-          overflow-y: scroll;
-          width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = '';
-      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-    };
-  }, []);
-
-  return (
-    <ModifyCommentBlock>
-      <ModifyModal>
-        <div className="modifyHeader">
-          <div className="closeBlock">
-            <AiOutlineClose onClick={onIsModify} />
-          </div>
-          <h2>댓글 수정</h2>
-        </div>
-        <ModifyWrapper>
-          <StyledTextArea
-            name="modifyReplies"
-            value={modifyReplies}
-            onChange={onChange}
-          />
-          <button onClick={() => onModifyReplies(commentIdx)}>수정하기</button>
-        </ModifyWrapper>
-      </ModifyModal>
-    </ModifyCommentBlock>
-  );
-}
-
-export default ModifyComment;

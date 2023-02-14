@@ -1,9 +1,50 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
-import { Link } from 'react-router-dom';
-import LoginFormContainer from '../../containers/auth/LoginFormContainer';
-import HelpTemplete from '../help/HelpTemplete';
+import React, { useState } from "react";
+import styled from "styled-components";
+import palette from "../../lib/styles/palette";
+import { Link } from "react-router-dom";
+import LoginFormContainer from "../../containers/auth/LoginFormContainer";
+import HelpTemplete from "../help/HelpTemplete";
+
+function Header({ userRes }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenHelp, setIsOpenHelp] = useState(false);
+  const onCloseLoginModal = () => {
+    setIsOpen(!isOpen);
+  };
+  const onCloseHelp = () => {
+    setIsOpenHelp(!isOpenHelp);
+  };
+  return (
+    <>
+      {isOpen && <LoginFormContainer onCloseLoginModal={onCloseLoginModal} />}
+      {isOpenHelp && <HelpTemplete onCloseHelp={onCloseHelp} />}
+      <HeaderBlock>
+        <Link to="/">
+          <div className="headerTitle">
+            <h2 id="kakao">카카오</h2>
+            <h2 id="cloud">클라우드 스쿨 스터디</h2>
+          </div>
+        </Link>
+        <div className="buttonWrapper">
+          <div id="help" onClick={onCloseHelp}>
+            문의사항
+          </div>
+          {userRes ? (
+            <div id="login">
+              <Link to="/mypage">MY</Link>
+            </div>
+          ) : (
+            <div id="login" onClick={() => setIsOpen(!isOpen)}>
+              로그인
+            </div>
+          )}
+        </div>
+      </HeaderBlock>
+    </>
+  );
+}
+
+export default Header;
 
 const HeaderBlock = styled.div`
   width: 100%;
@@ -71,44 +112,3 @@ const HeaderBlock = styled.div`
     }
   }
 `;
-
-function Header({ userRes }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpenHelp, setIsOpenHelp] = useState(false);
-  const onCloseLoginModal = () => {
-    setIsOpen(!isOpen);
-  };
-  const onCloseHelp = () => {
-    setIsOpenHelp(!isOpenHelp);
-  };
-  return (
-    <>
-      {isOpen && <LoginFormContainer onCloseLoginModal={onCloseLoginModal} />}
-      {isOpenHelp && <HelpTemplete onCloseHelp={onCloseHelp} />}
-      <HeaderBlock>
-        <Link to="/">
-          <div className="headerTitle">
-            <h2 id="kakao">카카오</h2>
-            <h2 id="cloud">클라우드 스쿨 스터디</h2>
-          </div>
-        </Link>
-        <div className="buttonWrapper">
-          <div id="help" onClick={onCloseHelp}>
-            문의사항
-          </div>
-          {userRes ? (
-            <div id="login">
-              <Link to="/mypage">MY</Link>
-            </div>
-          ) : (
-            <div id="login" onClick={() => setIsOpen(!isOpen)}>
-              로그인
-            </div>
-          )}
-        </div>
-      </HeaderBlock>
-    </>
-  );
-}
-
-export default Header;

@@ -1,6 +1,41 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
+import React, { useState } from "react";
+import styled from "styled-components";
+import palette from "../../lib/styles/palette";
+
+function EditUserForm() {
+  const [isOpenEmail, setIsOpenEmail] = useState(false);
+  return (
+    <EditUserFormBlock>
+      <h2>회원정보 수정</h2>
+      <EditUserFormWrapper>
+        <div className="inputBlock">
+          <span>이름</span>
+          <StyledInput type="text" placeholder="이름을 입력해주세요" />
+        </div>
+        <div className="inputBlock">
+          <span>이메일</span>
+          <div className="duplicateBlock">
+            <StyledInput type="email" placeholder="이메일을 입력해주세요" />
+            <button type="button" onClick={() => setIsOpenEmail(!isOpenEmail)}>
+              인증하기
+            </button>
+          </div>
+        </div>
+        {isOpenEmail && (
+          <div className="inputBlock">
+            <div className="duplicateBlock">
+              <StyledInput type="text" placeholder="인증코드를 입력해주세요" />
+              <button type="button">확인</button>
+            </div>
+          </div>
+        )}
+        <button type="submit">회원정보 수정</button>
+      </EditUserFormWrapper>
+    </EditUserFormBlock>
+  );
+}
+
+export default EditUserForm;
 
 const EditUserFormBlock = styled.div`
   width: 50%;
@@ -74,38 +109,3 @@ const StyledInput = styled.input`
     border: 2px solid ${palette.yellow[0]};
   }
 `;
-
-function EditUserForm() {
-  const [isOpenEmail, setIsOpenEmail] = useState(false);
-  return (
-    <EditUserFormBlock>
-      <h2>회원정보 수정</h2>
-      <EditUserFormWrapper>
-        <div className="inputBlock">
-          <span>이름</span>
-          <StyledInput type="text" placeholder="이름을 입력해주세요" />
-        </div>
-        <div className="inputBlock">
-          <span>이메일</span>
-          <div className="duplicateBlock">
-            <StyledInput type="email" placeholder="이메일을 입력해주세요" />
-            <button type="button" onClick={() => setIsOpenEmail(!isOpenEmail)}>
-              인증하기
-            </button>
-          </div>
-        </div>
-        {isOpenEmail && (
-          <div className="inputBlock">
-            <div className="duplicateBlock">
-              <StyledInput type="text" placeholder="인증코드를 입력해주세요" />
-              <button type="button">확인</button>
-            </div>
-          </div>
-        )}
-        <button type="submit">회원정보 수정</button>
-      </EditUserFormWrapper>
-    </EditUserFormBlock>
-  );
-}
-
-export default EditUserForm;

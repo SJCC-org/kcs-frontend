@@ -1,8 +1,157 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { AiOutlineClose } from 'react-icons/ai';
-import palette from '../../lib/styles/palette';
-import { MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { AiOutlineClose } from "react-icons/ai";
+import palette from "../../lib/styles/palette";
+import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
+
+function ModifyStudy({
+  title,
+  description,
+  schedule,
+  howTo,
+  maxNum,
+  onChange,
+  onModifyStudy,
+  onChangeCategory,
+  onOpenModify,
+}) {
+  const [category, setCategory] = useState("카테고리를 선택해주세요");
+  const [isOpenDropDown, setIsOpenDropDown] = useState(false);
+
+  const onChangeCategoryName = (name) => {
+    setCategory(name);
+    setIsOpenDropDown(!isOpenDropDown);
+  };
+  return (
+    <ModifyStudyBlock>
+      <div className="closeBlock">
+        <AiOutlineClose onClick={onOpenModify} />
+      </div>
+      <StudyCategory>
+        <span>카테고리</span>
+        <div className="wholeCategory">
+          <div className="categoryBlock">
+            <span>{category}</span>
+            {isOpenDropDown === true ? (
+              <MdArrowDropUp
+                onClick={() => setIsOpenDropDown(!isOpenDropDown)}
+              />
+            ) : (
+              <MdArrowDropDown
+                onClick={() => setIsOpenDropDown(!isOpenDropDown)}
+              />
+            )}
+          </div>
+          {isOpenDropDown && (
+            <div className="subCategory">
+              <ul>
+                <li
+                  onClick={() => {
+                    onChangeCategoryName("알고리즘");
+                    onChangeCategory("ALGORITHM");
+                  }}
+                >
+                  알고리즘
+                </li>
+                <li
+                  onClick={() => {
+                    onChangeCategoryName("자격증");
+                    onChangeCategory("CERTIFICATE");
+                  }}
+                >
+                  자격증
+                </li>
+                <li
+                  onClick={() => {
+                    onChangeCategoryName("수업복습");
+                    onChangeCategory("CLASS_REVIEW");
+                  }}
+                >
+                  수업복습
+                </li>
+                <li
+                  onClick={() => {
+                    onChangeCategoryName("프로젝트");
+                    onChangeCategory("PROJECT");
+                  }}
+                >
+                  프로젝트
+                </li>
+                <li
+                  onClick={() => {
+                    onChangeCategoryName("CS");
+                    onChangeCategory("CS");
+                  }}
+                >
+                  CS
+                </li>
+                <li
+                  onClick={() => {
+                    onChangeCategoryName("기타");
+                    onChangeCategory("ETC");
+                  }}
+                >
+                  기타
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+      </StudyCategory>
+      <StudySchedule>
+        <span>스터디 일정</span>
+        <StyledInput
+          type="text"
+          name="schedule"
+          value={schedule}
+          onChange={onChange}
+        />
+      </StudySchedule>
+      <StudyHowTo>
+        <span>스터디 방식</span>
+        <StyledInput
+          type="text"
+          name="howTo"
+          value={howTo}
+          onChange={onChange}
+        />
+      </StudyHowTo>
+      <StudyMaxNum>
+        {" "}
+        <span>정원</span>
+        <StyledInput
+          type="number"
+          min={1}
+          max={25}
+          name="maxNum"
+          value={maxNum}
+          onChange={onChange}
+        />
+      </StudyMaxNum>
+      <StudyInfo>
+        <StyledInput
+          id="title"
+          type="text"
+          placeholder="제목을 입력해주세요"
+          name="title"
+          value={title}
+          onChange={onChange}
+        />
+        <StyledTextArea
+          name="description"
+          value={description}
+          onChange={onChange}
+          placeholder="스터디를 설명해주세요"
+        />
+      </StudyInfo>
+      <div className="buttonWrapper">
+        <button onClick={onModifyStudy}>수정하기</button>
+      </div>
+    </ModifyStudyBlock>
+  );
+}
+
+export default ModifyStudy;
 
 const ModifyStudyBlock = styled.div`
   width: 800px;
@@ -207,7 +356,7 @@ const StudyMaxNum = styled.div`
     margin-right: 1rem;
   }
 
-  input[type='number'] {
+  input[type="number"] {
     width: 20%;
   }
 `;
@@ -222,157 +371,8 @@ const StudyInfo = styled.div`
     margin-right: 1rem;
   }
 
-  input[type='text'] {
+  input[type="text"] {
     width: 100%;
     margin-bottom: 1rem;
   }
 `;
-
-function ModifyStudy({
-  title,
-  description,
-  schedule,
-  howTo,
-  maxNum,
-  onChange,
-  onModifyStudy,
-  onChangeCategory,
-  onOpenModify,
-}) {
-  const [category, setCategory] = useState('카테고리를 선택해주세요');
-  const [isOpenDropDown, setIsOpenDropDown] = useState(false);
-
-  const onChangeCategoryName = (name) => {
-    setCategory(name);
-    setIsOpenDropDown(!isOpenDropDown);
-  };
-  return (
-    <ModifyStudyBlock>
-      <div className="closeBlock">
-        <AiOutlineClose onClick={onOpenModify} />
-      </div>
-      <StudyCategory>
-        <span>카테고리</span>
-        <div className="wholeCategory">
-          <div className="categoryBlock">
-            <span>{category}</span>
-            {isOpenDropDown === true ? (
-              <MdArrowDropUp
-                onClick={() => setIsOpenDropDown(!isOpenDropDown)}
-              />
-            ) : (
-              <MdArrowDropDown
-                onClick={() => setIsOpenDropDown(!isOpenDropDown)}
-              />
-            )}
-          </div>
-          {isOpenDropDown && (
-            <div className="subCategory">
-              <ul>
-                <li
-                  onClick={() => {
-                    onChangeCategoryName('알고리즘');
-                    onChangeCategory('ALGORITHM');
-                  }}
-                >
-                  알고리즘
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategoryName('자격증');
-                    onChangeCategory('CERTIFICATE');
-                  }}
-                >
-                  자격증
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategoryName('수업복습');
-                    onChangeCategory('CLASS_REVIEW');
-                  }}
-                >
-                  수업복습
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategoryName('프로젝트');
-                    onChangeCategory('PROJECT');
-                  }}
-                >
-                  프로젝트
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategoryName('CS');
-                    onChangeCategory('CS');
-                  }}
-                >
-                  CS
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategoryName('기타');
-                    onChangeCategory('ETC');
-                  }}
-                >
-                  기타
-                </li>
-              </ul>
-            </div>
-          )}
-        </div>
-      </StudyCategory>
-      <StudySchedule>
-        <span>스터디 일정</span>
-        <StyledInput
-          type="text"
-          name="schedule"
-          value={schedule}
-          onChange={onChange}
-        />
-      </StudySchedule>
-      <StudyHowTo>
-        <span>스터디 방식</span>
-        <StyledInput
-          type="text"
-          name="howTo"
-          value={howTo}
-          onChange={onChange}
-        />
-      </StudyHowTo>
-      <StudyMaxNum>
-        {' '}
-        <span>정원</span>
-        <StyledInput
-          type="number"
-          min={1}
-          max={25}
-          name="maxNum"
-          value={maxNum}
-          onChange={onChange}
-        />
-      </StudyMaxNum>
-      <StudyInfo>
-        <StyledInput
-          id="title"
-          type="text"
-          placeholder="제목을 입력해주세요"
-          name="title"
-          value={title}
-          onChange={onChange}
-        />
-        <StyledTextArea
-          name="description"
-          value={description}
-          onChange={onChange}
-          placeholder="스터디를 설명해주세요"
-        />
-      </StudyInfo>
-      <div className="buttonWrapper">
-        <button onClick={onModifyStudy}>수정하기</button>
-      </div>
-    </ModifyStudyBlock>
-  );
-}
-
-export default ModifyStudy;

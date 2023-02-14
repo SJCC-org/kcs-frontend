@@ -1,33 +1,10 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import AddStudyContainer from '../../containers/main/AddStudyContainer';
-import { useNavigate } from 'react-router-dom';
-import StudyCategoryContainer from '../../containers/categories/StudyCategoryContainer';
-import MainItem from './MainItem';
+import React, { useState } from "react";
+import styled from "styled-components";
+import AddStudyContainer from "../../containers/main/AddStudyContainer";
+import { useNavigate } from "react-router-dom";
+import StudyCategoryContainer from "../../containers/categories/StudyCategoryContainer";
+import MainItem from "./MainItem";
 
-const WholeWrapper = styled.div`
-  display: flex;
-`;
-const MainItemListBlock = styled.div`
-  width: 50%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  margin-top: 84px;
-  position: relative;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const EmptyPage = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  font-size: 25px;
-  font-weight: bold;
-`;
 function MainItemList({
   userRes,
   listRes,
@@ -40,7 +17,7 @@ function MainItemList({
     if (userRes) {
       setIsOpenStudy(!isOpenStudy);
     } else {
-      alert('로그인 후 이용하실 수 있습니다.');
+      alert("로그인 후 이용하실 수 있습니다.");
     }
   };
 
@@ -48,7 +25,7 @@ function MainItemList({
     if (userRes) {
       navigate(`/study/info/${studyId}`);
     } else {
-      alert('로그인 후 이용하실 수 있습니다.');
+      alert("로그인 후 이용하실 수 있습니다.");
     }
   };
   return (
@@ -77,3 +54,27 @@ function MainItemList({
 }
 
 export default MainItemList;
+
+const WholeWrapper = styled.div`
+  display: flex;
+`;
+const MainItemListBlock = styled.div`
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 84px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+`;
+
+const EmptyPage = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+`;
