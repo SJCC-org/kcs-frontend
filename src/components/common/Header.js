@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
 import { Link } from "react-router-dom";
-import LoginFormContainer from "../../containers/auth/LoginFormContainer";
 import HelpTemplete from "../help/HelpTemplete";
+import LoginForm from "../auth/LoginForm";
 
 function Header({ userRes }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,7 @@ function Header({ userRes }) {
   };
   return (
     <>
-      {isOpen && <LoginFormContainer onCloseLoginModal={onCloseLoginModal} />}
+      {isOpen && <LoginForm onCloseLoginModal={onCloseLoginModal} />}
       {isOpenHelp && <HelpTemplete onCloseHelp={onCloseHelp} />}
       <HeaderBlock>
         <Link to="/">
