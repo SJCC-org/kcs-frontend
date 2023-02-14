@@ -1,13 +1,13 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { Route, Routes } from 'react-router-dom';
-import Layout from './components/common/Layout';
-import EditPasswordPage from './pages/EditPasswordPage';
-import EditUserPage from './pages/EditUserPage';
-import ItemInfoPage from './pages/ItemInfoPage';
-import MainPage from './pages/MainPage';
-import MyPage from './pages/MyPage';
-import RegisterPage from './pages/RegisterPage';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/common/Layout";
+import EditPasswordPage from "./pages/EditPasswordPage";
+import EditUserPage from "./pages/EditUserPage";
+import ItemInfoPage from "./pages/ItemInfoPage";
+import MainPage from "./pages/MainPage";
+import MyPage from "./pages/MyPage";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
   return (
