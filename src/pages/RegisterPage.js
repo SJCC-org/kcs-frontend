@@ -1,12 +1,12 @@
-import React from 'react';
-import MainTemplete from '../components/MainTemplete';
-import RegisterFormContainer from '../containers/auth/RegisterFormContainer';
+import React from "react";
+import RegisterForm from "../components/auth/RegisterForm";
+import MainTemplete from "../components/MainTemplete";
 
 function RegisterPage() {
   return (
     <div>
       <MainTemplete>
-        <RegisterFormContainer />
+        <RegisterForm />
       </MainTemplete>
     </div>
   );
