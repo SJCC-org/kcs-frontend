@@ -1,34 +1,39 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import useGetMember from "../../hooks/useGetMember";
+import useGetUserStudyList from "../../hooks/useGetUserStudyList";
 import MyPageCategory from "../categories/MyPageCategory";
 import MyPageItem from "./MyPageItem";
 
-function MyPageItemList({ userRes, listRes }) {
+function MyPageItemList() {
+  const { memberInfo } = useGetMember();
+  const { userStudyList } = useGetUserStudyList();
+
   const [switchCategory, setSwitchCategory] = useState("make");
 
   const onSwitchCategory = (name) => {
     setSwitchCategory(name);
-    console.log(switchCategory);
   };
+
   return (
-    userRes && (
+    memberInfo && (
       <WholeWrapper>
         <MyPageCategory onSwitchCategory={onSwitchCategory} />
         <MyPageItemListBlock>
-          <h2>{userRes.name}님 안녕하세요!</h2>
-          {listRes &&
+          <h2>{memberInfo.name}님 안녕하세요!</h2>
+          {userStudyList &&
             (switchCategory === "make" ? (
-              listRes.organizedStudies.length === 0 ? (
+              userStudyList.organizedStudies.length === 0 ? (
                 <EmptyPage>개설한 스터디가 없습니다.</EmptyPage>
               ) : (
-                listRes.organizedStudies.map((study) => (
+                userStudyList.organizedStudies.map((study) => (
                   <MyPageItem key={study.id} study={study} />
                 ))
               )
-            ) : listRes.participatedStudies.length === 0 ? (
+            ) : userStudyList.participatedStudies.length === 0 ? (
               <EmptyPage>참여한 스터디가 없습니다.</EmptyPage>
             ) : (
-              listRes.participatedStudies.map((participant) => (
+              userStudyList.participatedStudies.map((participant) => (
                 <MyPageItem key={participant.id} study={participant} />
               ))
             ))}
