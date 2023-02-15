@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import MyPageItemListContainer from '../../containers/mypage/MyPageItemListContainer';
+import React from "react";
+import styled from "styled-components";
+import MyPageItemList from "./MyPageItemList";
 
 const MyPageTempleteBlock = styled.div``;
 
 function MyPageTemplete() {
   return (
     <MyPageTempleteBlock>
-      <MyPageItemListContainer />
+      <MyPageItemList />
     </MyPageTempleteBlock>
   );
 }
