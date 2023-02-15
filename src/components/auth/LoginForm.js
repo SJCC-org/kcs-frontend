@@ -27,8 +27,8 @@ const LoginForm = ({ onCloseLoginModal }) => {
   const handleSignIn = async () => {
     const response = await postSignIn(watch("username"), watch("password"));
     if (response.data) {
+      localStorage.setItem("accessToken", response.data.data.accessToken);
       window.location.replace("/");
-      localStorage.setItem("accessToken", response.data.accessToken);
     } else {
       setLoginErrorMsg("아이디와 비밀번호를 확인해주세요");
     }
