@@ -1,11 +1,11 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import HeaderContainer from '../../containers/common/HeaderContainer';
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
 
 function Layout() {
   return (
     <div>
-      <HeaderContainer />
+      <Header />
       <main>
         <Outlet />
       </main>
