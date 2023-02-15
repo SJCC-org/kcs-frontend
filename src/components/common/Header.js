@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import palette from "../../lib/styles/palette";
 import { Link } from "react-router-dom";
 import HelpTemplete from "../help/HelpTemplete";
 import LoginForm from "../auth/LoginForm";
 
-function Header({ userRes }) {
+const Header = () => {
+  const [checkUser, setCheckUser] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenHelp, setIsOpenHelp] = useState(false);
+
   const onCloseLoginModal = () => {
     setIsOpen(!isOpen);
   };
   const onCloseHelp = () => {
     setIsOpenHelp(!isOpenHelp);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) setCheckUser((prev) => !prev);
+  }, []);
+
   return (
     <>
       {isOpen && <LoginForm onCloseLoginModal={onCloseLoginModal} />}
@@ -29,7 +36,7 @@ function Header({ userRes }) {
           <div id="help" onClick={onCloseHelp}>
             문의사항
           </div>
-          {userRes ? (
+          {checkUser ? (
             <div id="login">
               <Link to="/mypage">MY</Link>
             </div>
@@ -42,7 +49,7 @@ function Header({ userRes }) {
       </HeaderBlock>
     </>
   );
-}
+};
 
 export default Header;
 
