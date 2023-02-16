@@ -11,7 +11,7 @@ import { getCookie, removeCookie } from "./lib/cookie";
 import { userFailure, userSuccess } from "./modules/user";
 import axios from "axios";
 import jwt from "jwt-decode";
-import { GlobalStyle } from "./lib/styles/globalStyle";
+import { GlobalStyle } from "./styles/globalStyle";
 
 const store = createStore(rootReducer, composeWithDevTools());
 const root = ReactDOM.createRoot(document.getElementById("root"));
