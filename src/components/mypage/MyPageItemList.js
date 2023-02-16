@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import useGetMember from "../../hooks/useGetMember";
-import useGetUserStudyList from "../../hooks/useGetUserStudyList";
+import useGetMember from "../../lib/hooks/useGetMember";
+import useGetUserStudyList from "../../lib/hooks/useGetUserStudyList";
+
 import MyPageCategory from "../categories/MyPageCategory";
 import MyPageItem from "./MyPageItem";
 

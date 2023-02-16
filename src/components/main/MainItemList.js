@@ -13,6 +13,7 @@ function MainItemList({
 }) {
   const [isOpenStudy, setIsOpenStudy] = useState(false);
   const navigate = useNavigate();
+
   const onOpenStudy = () => {
     if (userRes) {
       setIsOpenStudy(!isOpenStudy);

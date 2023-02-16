@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import palette from "../../../lib/styles/palette";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import "swiper/css";
+import palette from "../../../styles/palette";
 
 function ResponsiveStudyCategory({
   onIsResponsiveOpen,

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import palette from "../../../lib/styles/palette";
 import { AiOutlineClose } from "react-icons/ai";
+import palette from "../../../styles/palette";
 
 function ModifyComment({
   modifyReplies,

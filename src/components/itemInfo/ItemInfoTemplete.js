@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CommentContainer from "../../containers/comment/CommentContainer";
 import ModifyStudyContainer from "../../containers/itemInfo/ModifyStudyContainer";
-import palette from "../../lib/styles/palette";
+import palette from "../../styles/palette";
 
 function ItemInfoTemplete({
   userRes,

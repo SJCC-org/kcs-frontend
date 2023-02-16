@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import palette from "../../lib/styles/palette";
 import {
   getDuplicateUser,
   postEmailAuthentication,
@@ -10,6 +9,7 @@ import {
 } from "../../lib/api/auth";
 import { useNavigate } from "react-router-dom";
 import ErrorMsg from "../common/ErrorMsg";
+import palette from "../../styles/palette";
 
 const RegisterForm = () => {
   const [openEmail, setOpenEmail] = useState(false);

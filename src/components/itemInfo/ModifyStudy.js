@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
-import palette from "../../lib/styles/palette";
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
+import palette from "../../styles/palette";
 
 function ModifyStudy({
   title,

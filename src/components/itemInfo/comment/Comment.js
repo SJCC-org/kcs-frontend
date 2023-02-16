@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ModifyCommentContainer from "../../../containers/comment/ModifyCommentContainer";
-import palette from "../../../lib/styles/palette";
+import palette from "../../../styles/palette";
 import CommentAdd from "./CommentAdd";
 
 function Comment({

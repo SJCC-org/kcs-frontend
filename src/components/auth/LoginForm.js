@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import palette from "../../lib/styles/palette";
+import palette from "../../styles/palette";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { postSignIn } from "../../lib/api/auth";
 import ErrorMsg from "../common/ErrorMsg";
+import { setAccessToken } from "../../lib/token";
 
 const LoginForm = ({ onCloseLoginModal }) => {
   const [loginErrorMsg, setLoginErrorMsg] = useState("");
@@ -27,7 +28,7 @@ const LoginForm = ({ onCloseLoginModal }) => {
   const handleSignIn = async () => {
     const response = await postSignIn(watch("username"), watch("password"));
     if (response.data) {
-      localStorage.setItem("accessToken", response.data.data.accessToken);
+      setAccessToken("accessToken", response.data.data.accessToken);
       window.location.replace("/");
     } else {
       setLoginErrorMsg("아이디와 비밀번호를 확인해주세요");

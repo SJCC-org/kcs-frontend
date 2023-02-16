@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import palette from "../../lib/styles/palette";
+import palette from "../../styles/palette";
 import { Link } from "react-router-dom";
 import HelpTemplete from "../help/HelpTemplete";
 import LoginForm from "../auth/LoginForm";
+import { getAccessToken } from "../../lib/token";
 
 const Header = () => {
   const [checkUser, setCheckUser] = useState(false);
@@ -18,7 +19,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) setCheckUser((prev) => !prev);
+    if (getAccessToken("accessToken")) setCheckUser((prev) => !prev);
   }, []);
 
   return (
