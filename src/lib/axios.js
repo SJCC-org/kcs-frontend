@@ -1,6 +1,7 @@
 import axios from "axios";
+import { getAccessToken } from "./token";
 
-const ACCESS_TOKEN = localStorage.getItem("accessToken");
+const ACCESS_TOKEN = getAccessToken("accessToken");
 
 export const client = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_URL}`,
@@ -11,7 +12,7 @@ export const client = axios.create({
 });
 
 client.interceptors.request.use(function (config) {
-  config.headers.common["Authorization"] = localStorage.getItem("accessToken");
+  config.headers.common["Authorization"] = ACCESS_TOKEN;
   return config;
 });
 
