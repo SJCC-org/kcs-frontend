@@ -1,24 +1,18 @@
-import { createAction, handleActions } from 'redux-actions';
+import { createAction, handleActions } from "redux-actions";
 
-const USER_SUCCESS = 'user/USER_SUCCESS';
-const USER_FAILURE = 'user/USER_FALIURE';
-const USER_STUDY_LIST_SUCCESS = 'study/USER_STUDY_LIST_SUCCESS';
-const USER_STUDY_LIST_FAILURE = 'study/USER_STUDY_LIST_FAILURE';
+const USER_SUCCESS = "user/USER_SUCCESS";
+const USER_FAILURE = "user/USER_FALIURE";
+const USER_STUDY_LIST_SUCCESS = "study/USER_STUDY_LIST_SUCCESS";
 
 export const userSuccess = createAction(USER_SUCCESS, (userRes) => userRes);
 export const userFailure = createAction(USER_FAILURE, (userError) => userError);
 export const userStudyListSuccess = createAction(
   USER_STUDY_LIST_SUCCESS,
-  (listRes) => listRes,
-);
-export const userStudyListFailure = createAction(
-  USER_STUDY_LIST_FAILURE,
-  (listError) => listError,
+  (listRes) => listRes
 );
 
 const initialState = {
   userRes: null,
-  userError: null,
 
   listRes: null,
   listError: null,
@@ -40,12 +34,8 @@ const user = handleActions(
       listRes,
       listError: null,
     }),
-    [USER_STUDY_LIST_FAILURE]: (state, { payload: listError }) => ({
-      ...state,
-      listError,
-    }),
   },
-  initialState,
+  initialState
 );
 
 export default user;
