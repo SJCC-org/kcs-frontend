@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import AddStudyContainer from "../../containers/main/AddStudyContainer";
 import { useNavigate } from "react-router-dom";
 import MainItem from "./MainItem";
 import useGetStudyList from "../../lib/hooks/useGetStudyList";
 import StudyCategory from "../categories/StudyCategory";
+import { getAccessToken } from "../../lib/token";
+import AddStudy from "./AddStudy";
 
-function MainItemList({
-  userRes,
-  // listRes,
-  isResponsiveOpen,
-  onIsResponsiveOpen,
-}) {
+const MainItemList = ({ isResponsiveOpen, onIsResponsiveOpen }) => {
   const { listRes, handleStudyList } = useGetStudyList();
   const [isOpenStudy, setIsOpenStudy] = useState(false);
   const navigate = useNavigate();
@@ -21,7 +17,7 @@ function MainItemList({
   }, []);
 
   const onOpenStudy = () => {
-    if (userRes) {
+    if (getAccessToken("accessToken")) {
       setIsOpenStudy(!isOpenStudy);
     } else {
       alert("로그인 후 이용하실 수 있습니다.");
@@ -29,7 +25,7 @@ function MainItemList({
   };
 
   const onMoveStudyInfo = (studyId) => {
-    if (userRes) {
+    if (getAccessToken("accessToken")) {
       navigate(`/study/info/${studyId}`);
     } else {
       alert("로그인 후 이용하실 수 있습니다.");
@@ -39,9 +35,9 @@ function MainItemList({
     <WholeWrapper>
       <StudyCategory onOpenStudy={onOpenStudy} />
       <MainItemListBlock>
-        {isOpenStudy && <AddStudyContainer onOpenStudy={onOpenStudy} />}
+        {isOpenStudy && <AddStudy onOpenStudy={onOpenStudy} />}
         {isResponsiveOpen && (
-          <AddStudyContainer onIsResponsiveOpen={onIsResponsiveOpen} />
+          <AddStudy onIsResponsiveOpen={onIsResponsiveOpen} />
         )}
         {listRes &&
           (listRes.content.length === 0 ? (
@@ -58,7 +54,7 @@ function MainItemList({
       </MainItemListBlock>
     </WholeWrapper>
   );
-}
+};
 
 export default MainItemList;
 
