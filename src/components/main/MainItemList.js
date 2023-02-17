@@ -4,13 +4,15 @@ import AddStudyContainer from "../../containers/main/AddStudyContainer";
 import { useNavigate } from "react-router-dom";
 import StudyCategoryContainer from "../../containers/categories/StudyCategoryContainer";
 import MainItem from "./MainItem";
+import useGetStudyList from "../../lib/hooks/useGetStudyList";
 
 function MainItemList({
   userRes,
-  listRes,
+  // listRes,
   isResponsiveOpen,
   onIsResponsiveOpen,
 }) {
+  const { listRes } = useGetStudyList();
   const [isOpenStudy, setIsOpenStudy] = useState(false);
   const navigate = useNavigate();
 
