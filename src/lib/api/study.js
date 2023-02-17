@@ -19,3 +19,26 @@ export const getStudyCategory = async (category) => {
     console.error(e);
   }
 };
+
+export const postAddStudy = async (
+  title,
+  description,
+  schedule,
+  howTo,
+  studyCategory,
+  maxNum
+) => {
+  try {
+    const data = await client.post("/v1/study", {
+      title,
+      description,
+      schedule,
+      howTo,
+      studyCategory,
+      maxNum,
+    });
+    return data.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
