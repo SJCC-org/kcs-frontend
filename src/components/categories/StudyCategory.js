@@ -1,33 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { CATEGORY_LIST } from "../../constants/category";
+import useGetStudyList from "../../lib/hooks/useGetStudyList";
 import palette from "../../styles/palette";
 
-function StudyCategory({ onOpenStudy, onGetCategoryStudy, onGetCategory }) {
+function StudyCategory({ onOpenStudy }) {
+  const { handleStudyCategory, handleStudyList } = useGetStudyList();
+
   return (
     <StudyCategoryBlock>
       <h1>카테고리</h1>
       <button onClick={onOpenStudy}>개설하기</button>
-      <CategoryBlock onClick={onGetCategory}>
+      <CategoryBlock onClick={handleStudyList}>
         <span>전체보기</span>
       </CategoryBlock>
-      <CategoryBlock onClick={() => onGetCategoryStudy("ALGORITHM")}>
-        <span>알고리즘</span>
-      </CategoryBlock>
-      <CategoryBlock onClick={() => onGetCategoryStudy("CERTIFICATE")}>
-        <span>자격증</span>
-      </CategoryBlock>
-      <CategoryBlock onClick={() => onGetCategoryStudy("CLASS_REVIEW")}>
-        <span>수업복습</span>
-      </CategoryBlock>
-      <CategoryBlock onClick={() => onGetCategoryStudy("PROJECT")}>
-        <span>프로젝트</span>
-      </CategoryBlock>
-      <CategoryBlock onClick={() => onGetCategoryStudy("CS")}>
-        <span>CS</span>
-      </CategoryBlock>
-      <CategoryBlock onClick={() => onGetCategoryStudy("ETC")}>
-        <span>기타</span>
-      </CategoryBlock>
+      {CATEGORY_LIST.map(({ id, en, ko }) => (
+        <CategoryBlock key={id} onClick={() => handleStudyCategory(en)}>
+          <span>{ko}</span>
+        </CategoryBlock>
+      ))}
     </StudyCategoryBlock>
   );
 }

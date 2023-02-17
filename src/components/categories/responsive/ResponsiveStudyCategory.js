@@ -4,12 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import "swiper/css";
 import palette from "../../../styles/palette";
+import useGetStudyList from "../../../lib/hooks/useGetStudyList";
+import { CATEGORY_LIST } from "../../../constants/category";
 
-function ResponsiveStudyCategory({
-  onIsResponsiveOpen,
-  onGetCategoryStudy,
-  onGetCategory,
-}) {
+const ResponsiveStudyCategory = ({ onIsResponsiveOpen }) => {
+  const { handleStudyCategory, handleStudyList } = useGetStudyList();
+
   return (
     <ResponsiveStudyCategoryBlock>
       <Swiper
@@ -27,31 +27,18 @@ function ResponsiveStudyCategory({
         <SwiperSlide onClick={onIsResponsiveOpen}>
           <span>개설하기</span>
         </SwiperSlide>
-        <SwiperSlide onClick={onGetCategory}>
+        <SwiperSlide onClick={handleStudyList}>
           <span>전체보기</span>
         </SwiperSlide>
-        <SwiperSlide onClick={() => onGetCategoryStudy("ALGORITHM")}>
-          <span>알고리즘</span>
-        </SwiperSlide>
-        <SwiperSlide onClick={() => onGetCategoryStudy("CERTIFICATE")}>
-          <span>자격증</span>
-        </SwiperSlide>
-        <SwiperSlide onClick={() => onGetCategoryStudy("CLASS_REVIEW")}>
-          <span>수업복습</span>
-        </SwiperSlide>
-        <SwiperSlide onClick={() => onGetCategoryStudy("PROJECT")}>
-          <span>프로젝트</span>
-        </SwiperSlide>
-        <SwiperSlide onClick={() => onGetCategoryStudy("CS")}>
-          <span>CS</span>
-        </SwiperSlide>
-        <SwiperSlide onClick={() => onGetCategoryStudy("ETC")}>
-          <span>기타</span>
-        </SwiperSlide>
+        {CATEGORY_LIST.map(({ id, en, ko }) => (
+          <SwiperSlide key={id} onClick={() => handleStudyCategory(en)}>
+            <span>{ko}</span>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </ResponsiveStudyCategoryBlock>
   );
-}
+};
 
 export default ResponsiveStudyCategory;
 
