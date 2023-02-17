@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AddStudyContainer from "../../containers/main/AddStudyContainer";
 import { useNavigate } from "react-router-dom";
-import StudyCategoryContainer from "../../containers/categories/StudyCategoryContainer";
 import MainItem from "./MainItem";
 import useGetStudyList from "../../lib/hooks/useGetStudyList";
+import StudyCategory from "../categories/StudyCategory";
 
 function MainItemList({
   userRes,
@@ -12,9 +12,13 @@ function MainItemList({
   isResponsiveOpen,
   onIsResponsiveOpen,
 }) {
-  const { listRes } = useGetStudyList();
+  const { listRes, handleStudyList } = useGetStudyList();
   const [isOpenStudy, setIsOpenStudy] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    handleStudyList();
+  }, []);
 
   const onOpenStudy = () => {
     if (userRes) {
@@ -33,7 +37,7 @@ function MainItemList({
   };
   return (
     <WholeWrapper>
-      <StudyCategoryContainer onOpenStudy={onOpenStudy} />
+      <StudyCategory onOpenStudy={onOpenStudy} />
       <MainItemListBlock>
         {isOpenStudy && <AddStudyContainer onOpenStudy={onOpenStudy} />}
         {isResponsiveOpen && (

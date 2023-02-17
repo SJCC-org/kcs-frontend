@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getStudyCategory, getStudyList } from "../api/study";
-import { useEffect } from "react";
 import { studyListSuccess } from "../../modules/study";
 
 const useGetStudyList = () => {
@@ -10,21 +9,17 @@ const useGetStudyList = () => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const handleStudyList = async () => {
-      const response = await getStudyList();
-      dispatch(studyListSuccess(response));
-    };
-
-    handleStudyList();
-  }, [dispatch]);
+  const handleStudyList = async () => {
+    const response = await getStudyList();
+    dispatch(studyListSuccess(response));
+  };
 
   const handleStudyCategory = async (category) => {
     const response = await getStudyCategory(category);
     dispatch(studyListSuccess(response));
   };
 
-  return { listRes, handleStudyCategory };
+  return { listRes, handleStudyList, handleStudyCategory };
 };
 
 export default useGetStudyList;
