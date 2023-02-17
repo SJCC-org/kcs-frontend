@@ -1,103 +1,103 @@
-import { createAction, handleActions } from 'redux-actions';
+import { createAction, handleActions } from "redux-actions";
 
-const CHANGE_FIELD = 'study/CHANGE_FIELD';
-const INITIALIZE_FORM = 'study/INITIALIZE_FORM';
-const ADD_STUDY_SUCCESS = 'study/ADD_STUDY_SUCCESS';
-const ADD_STUDY_FAILURE = 'study/ADD_STUDY_FAILURE';
-const STUDY_SUCCESS = 'study/STUDY_SUCCESS';
-const STUDY_FAILURE = 'study/STUDY_FAILURE';
-const RECRUIT_END_STUDY_SUCCESS = 'study/RECRUIT_END_STUDY_SUCCESS';
-const RECRUIT_END_STUDY_FAILURE = 'study/RECRUIT_END_STUDY_FAILURE';
-const DELETE_STUDY_SUCCESS = 'study/DELETE_STUDY_SUCCESS';
-const DELETE_STUDY_FAILURE = 'study/DELETE_STUDY_FAILURE';
-const WITHDRAWAL_STUDY_SUCCESS = 'study/WITHDRAWAL_STUDY_SUCCESS';
-const WITHDRAWAL_STUDY_FAILURE = 'study/WITHDRAWAL_STUDY_FAILURE';
-const ENTER_STUDY_SUCCESS = 'study/ENTER_STUDY_SUCCESS';
-const ENTER_STUDY_FAILURE = 'study/ENTER_STUDY_FAILURE';
-const STUDY_LIST_SUCCESS = 'study/STUDY_LIST_SUCCESS';
-const STUDY_LIST_FAILURE = 'study/STUDY_LIST_FAILURE';
-const STUDY_MODIFY_SUCCESS = 'study/STUDY_MODIFY_SUCCESS';
-const STUDY_MODIFY_FAILURE = 'study/STUDY_MODIFY_FAILURE';
-const SET_ORIGINAL_STUDY = 'study/SET_ORIGINAL_STUDY';
+const CHANGE_FIELD = "study/CHANGE_FIELD";
+const INITIALIZE_FORM = "study/INITIALIZE_FORM";
+const ADD_STUDY_SUCCESS = "study/ADD_STUDY_SUCCESS";
+const ADD_STUDY_FAILURE = "study/ADD_STUDY_FAILURE";
+const STUDY_SUCCESS = "study/STUDY_SUCCESS";
+const STUDY_FAILURE = "study/STUDY_FAILURE";
+const RECRUIT_END_STUDY_SUCCESS = "study/RECRUIT_END_STUDY_SUCCESS";
+const RECRUIT_END_STUDY_FAILURE = "study/RECRUIT_END_STUDY_FAILURE";
+const DELETE_STUDY_SUCCESS = "study/DELETE_STUDY_SUCCESS";
+const DELETE_STUDY_FAILURE = "study/DELETE_STUDY_FAILURE";
+const WITHDRAWAL_STUDY_SUCCESS = "study/WITHDRAWAL_STUDY_SUCCESS";
+const WITHDRAWAL_STUDY_FAILURE = "study/WITHDRAWAL_STUDY_FAILURE";
+const ENTER_STUDY_SUCCESS = "study/ENTER_STUDY_SUCCESS";
+const ENTER_STUDY_FAILURE = "study/ENTER_STUDY_FAILURE";
+const STUDY_LIST_SUCCESS = "study/STUDY_LIST_SUCCESS";
+const STUDY_LIST_FAILURE = "study/STUDY_LIST_FAILURE";
+const STUDY_MODIFY_SUCCESS = "study/STUDY_MODIFY_SUCCESS";
+const STUDY_MODIFY_FAILURE = "study/STUDY_MODIFY_FAILURE";
+const SET_ORIGINAL_STUDY = "study/SET_ORIGINAL_STUDY";
 
 export const changeField = createAction(
   CHANGE_FIELD,
-  ({ form, key, value }) => ({ form, key, value }),
+  ({ form, key, value }) => ({ form, key, value })
 );
 export const initializeForm = createAction(INITIALIZE_FORM, (form) => form);
 export const addStudySuccess = createAction(
   ADD_STUDY_SUCCESS,
-  (addRes) => addRes,
+  (addRes) => addRes
 );
 export const addStudyFailure = createAction(
   ADD_STUDY_FAILURE,
-  (addError) => addError,
+  (addError) => addError
 );
 export const studySuccess = createAction(STUDY_SUCCESS, (studyRes) => studyRes);
 export const studyFailure = createAction(
   STUDY_FAILURE,
-  (studyError) => studyError,
+  (studyError) => studyError
 );
 export const recruitEndStudySuccess = createAction(
   RECRUIT_END_STUDY_SUCCESS,
-  (recruitRes) => recruitRes,
+  (recruitRes) => recruitRes
 );
 export const recruitEndStudyFailure = createAction(
   RECRUIT_END_STUDY_FAILURE,
-  (recruitError) => recruitError,
+  (recruitError) => recruitError
 );
 export const deleteStudySuccess = createAction(
   DELETE_STUDY_SUCCESS,
-  (deleteRes) => deleteRes,
+  (deleteRes) => deleteRes
 );
 export const deleteStudyFailure = createAction(
   DELETE_STUDY_FAILURE,
-  (deleteError) => deleteError,
+  (deleteError) => deleteError
 );
 export const withDrawalStudySuccess = createAction(
   WITHDRAWAL_STUDY_SUCCESS,
-  (withDrawalRes) => withDrawalRes,
+  (withDrawalRes) => withDrawalRes
 );
 export const withDrawalStudyFailure = createAction(
   WITHDRAWAL_STUDY_FAILURE,
-  (withDrawalError) => withDrawalError,
+  (withDrawalError) => withDrawalError
 );
 export const enterStudySuccess = createAction(
   ENTER_STUDY_SUCCESS,
-  (enterRes) => enterRes,
+  (enterRes) => enterRes
 );
 export const enterStudyFailure = createAction(
   ENTER_STUDY_FAILURE,
-  (enterError) => enterError,
+  (enterError) => enterError
 );
 export const studyListSuccess = createAction(
   STUDY_LIST_SUCCESS,
-  (listRes) => listRes,
+  (listRes) => listRes
 );
 export const StudyListFailure = createAction(
   STUDY_LIST_FAILURE,
-  (listError) => listError,
+  (listError) => listError
 );
 export const studyModifySuccess = createAction(
   STUDY_MODIFY_SUCCESS,
-  (modifyRes) => modifyRes,
+  (modifyRes) => modifyRes
 );
 export const studyModifyFailure = createAction(
   STUDY_MODIFY_FAILURE,
-  (modifyError) => modifyError,
+  (modifyError) => modifyError
 );
 export const setOriginalStudy = createAction(
   SET_ORIGINAL_STUDY,
-  (study) => study,
+  (study) => study
 );
 
 const initialState = {
-  title: '',
-  description: '',
-  schedule: '',
-  howTo: '',
-  studyCategory: '',
-  maxNum: '',
+  title: "",
+  description: "",
+  schedule: "",
+  howTo: "",
+  studyCategory: "",
+  maxNum: "",
   recruitCompleted: false,
 
   addRes: null,
@@ -204,7 +204,7 @@ const study = handleActions(
       state,
       {
         payload: { title, description, schedule, howTo, studyCategory, maxNum },
-      },
+      }
     ) => ({
       ...state,
       title,
@@ -215,7 +215,7 @@ const study = handleActions(
       maxNum,
     }),
   },
-  initialState,
+  initialState
 );
 
 export default study;
