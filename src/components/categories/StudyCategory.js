@@ -4,7 +4,7 @@ import { CATEGORY_LIST } from "../../constants/category";
 import useGetStudyList from "../../lib/hooks/useGetStudyList";
 import palette from "../../styles/palette";
 
-function StudyCategory({ onOpenStudy }) {
+const StudyCategory = ({ onOpenStudy }) => {
   const { handleStudyCategory, handleStudyList } = useGetStudyList();
 
   return (
@@ -21,7 +21,7 @@ function StudyCategory({ onOpenStudy }) {
       ))}
     </StudyCategoryBlock>
   );
-}
+};
 
 export default StudyCategory;
 
