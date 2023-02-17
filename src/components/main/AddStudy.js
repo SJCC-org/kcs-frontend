@@ -1,28 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import palette from "../../styles/palette";
 import { AiOutlineClose } from "react-icons/ai";
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
+import { CATEGORY_LIST } from "../../constants/category";
+import { useForm } from "react-hook-form";
+import { STUDY_MIN_NUM } from "../../constants/addStudy";
+import { useAddStudy } from "../../lib/hooks/useAddStudy";
 
-function AddStudy({
-  title,
-  description,
-  schedule,
-  howTo,
-  maxNum,
-  onChange,
-  onChangeCategory,
-  onOpenStudy,
-  onAddStudy,
-  onIsResponsiveOpen,
-}) {
-  const [category, setCategory] = useState("카테고리를 선택해주세요");
-  const [isOpenDropDown, setIsOpenDropDown] = useState(false);
+const AddStudy = ({ onOpenStudy }) => {
+  const {
+    handleChangeCategory,
+    handleAddStudy,
+    handleChangeCategoryName,
+    setIsOpenDropDown,
+    category,
+    isOpenDropDown,
+  } = useAddStudy();
 
-  const onChangeCategoryName = (name) => {
-    setCategory(name);
-    setIsOpenDropDown(!isOpenDropDown);
-  };
+  const { register, watch } = useForm();
+
+  const { title, description, schedule, howTo, maxNum } = watch();
+
   return (
     <AddStudyBlock>
       <div className="closeBlock">
@@ -33,7 +32,7 @@ function AddStudy({
         <div className="wholeCategory">
           <div
             className="categoryBlock"
-            onClick={() => setIsOpenDropDown(!isOpenDropDown)}
+            onClick={() => setIsOpenDropDown((prev) => !prev)}
           >
             <span>{category}</span>
             {isOpenDropDown === true ? <MdArrowDropUp /> : <MdArrowDropDown />}
@@ -41,54 +40,17 @@ function AddStudy({
           {isOpenDropDown && (
             <div className="subCategory">
               <ul>
-                <li
-                  onClick={() => {
-                    onChangeCategory("ALGORITHM");
-                    onChangeCategoryName("알고리즘");
-                  }}
-                >
-                  알고리즘
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategory("CERTIFICATE");
-                    onChangeCategoryName("자격증");
-                  }}
-                >
-                  자격증
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategory("CLASS_REVIEW");
-                    onChangeCategoryName("수업복습");
-                  }}
-                >
-                  수업복습
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategory("PROJECT");
-                    onChangeCategoryName("프로젝트");
-                  }}
-                >
-                  프로젝트
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategory("CS");
-                    onChangeCategoryName("CS");
-                  }}
-                >
-                  CS
-                </li>
-                <li
-                  onClick={() => {
-                    onChangeCategory("ETC");
-                    onChangeCategoryName("기타");
-                  }}
-                >
-                  기타
-                </li>
+                {CATEGORY_LIST.map(({ id, ko, en }) => (
+                  <li
+                    key={id}
+                    onClick={() => {
+                      handleChangeCategory(en);
+                      handleChangeCategoryName(ko);
+                    }}
+                  >
+                    {ko}
+                  </li>
+                ))}
               </ul>
             </div>
           )}
@@ -96,55 +58,48 @@ function AddStudy({
       </StudyCategory>
       <StudyInfo>
         <StyledInput
-          id="title"
           type="text"
           placeholder="제목을 입력해주세요"
-          name="title"
-          value={title}
-          onChange={onChange}
+          {...register("title", { required: true })}
         />
         <StyledTextArea
-          name="description"
-          value={description}
-          onChange={onChange}
           placeholder="스터디를 설명해주세요"
+          {...register("description", { required: true })}
         />
       </StudyInfo>
       <StudySchedule>
         <span>스터디 일정</span>
         <StyledInput
           type="text"
-          name="schedule"
-          value={schedule}
-          onChange={onChange}
+          {...register("schedule", { required: true })}
         />
       </StudySchedule>
       <StudyHowTo>
         <span>스터디 방식</span>
-        <StyledInput
-          type="text"
-          name="howTo"
-          value={howTo}
-          onChange={onChange}
-        />
+        <StyledInput type="text" {...register("howTo", { required: true })} />
       </StudyHowTo>
       <StudyMaxNum>
         <span>정원</span>
         <StyledInput
           type="number"
-          min={1}
-          max={25}
-          name="maxNum"
-          value={maxNum}
-          onChange={onChange}
+          min={STUDY_MIN_NUM}
+          max={STUDY_MIN_NUM}
+          {...register("maxNum", { required: true })}
         />
       </StudyMaxNum>
       <div className="buttonWrapper">
-        <button onClick={onAddStudy}>개설하기</button>
+        <button
+          type="submit"
+          onClick={() =>
+            handleAddStudy(title, description, schedule, howTo, maxNum)
+          }
+        >
+          개설하기
+        </button>
       </div>
     </AddStudyBlock>
   );
-}
+};
 
 export default AddStudy;
 
@@ -324,7 +279,7 @@ const StudyMaxNum = styled.div`
     width: 20%;
   }
 `;
-const StudyInfo = styled.div`
+const StudyInfo = styled.form`
   width: 100%;
   border-bottom: 1px solid ${palette.gray[0]};
   padding: 1rem;
