@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import ResponsiveStudyCategory from "../components/categories/responsive/ResponsiveStudyCategory";
 import MainItemList from "../components/main/MainItemList";
 import MainTemplete from "../components/MainTemplete";
-import ResponsiveStudyCategoryContainer from "../containers/categories/responsive/ResponsiveStudyCategoryContainer";
 
 function MainPage() {
   const [isResponsiveOpen, setIsResponsiveOpen] = useState(false);
@@ -11,9 +11,7 @@ function MainPage() {
   };
   return (
     <div>
-      <ResponsiveStudyCategoryContainer
-        onIsResponsiveOpen={onIsResponsiveOpen}
-      />
+      <ResponsiveStudyCategory onIsResponsiveOpen={onIsResponsiveOpen} />
       <MainTemplete>
         <MainItemList
           isResponsiveOpen={isResponsiveOpen}
