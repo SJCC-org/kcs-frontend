@@ -2,11 +2,11 @@
 
 - 카카오 클라우드 스쿨의 스터디 모집을 위한 프로젝트 입니다.
 
-👉 <a href="https://kakaocloudschool.zooneon.dev/" target="_blank">배포 링크</a>
+👉 <a href="https://kakaocloudschool.zooneon.dev/" target="_blank">배포 링크</a> , 현재는 닫혀있는 상태입니다.
 
 ## 개발 인원 및 기간
 
-- 개발 기간: 2022.07 ~ 지속적으로 리팩토링 계획 중
+- 개발 기간: 2022.07 
 
 <br/>
 
